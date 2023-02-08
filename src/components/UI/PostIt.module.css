@@ -1,0 +1,7 @@
+.postIt{
+    border: deeppink 2px solid;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
