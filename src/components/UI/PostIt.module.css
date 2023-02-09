@@ -1,13 +1,13 @@
 .postIt{
     border: deeppink 2px solid;
-    width: 300px;
-    height: 200px;
     overflow: hidden;
-    transition: all 0.3s ease-out;
+    transition: all 0.1s ease-out;
 }
 .tab {
+    display: inline-flex;
+    margin-left: auto;
     position: relative;
-    top: -20px;
+    top: 0px;
     transition: all 0.3s ease-out;
     background: red;
     z-index: 100;
@@ -15,4 +15,5 @@
 }
 .content{
     background: darkcyan;
+    height: 100%;
 }

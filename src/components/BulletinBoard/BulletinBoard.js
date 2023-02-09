@@ -1,6 +1,6 @@
 import classes from "./BulletinBoard.module.css";
 import PostIt from "@/components/UI/PostIt";
-
+import {useState} from "react";
 
 
 const BulletinBoard = props => {

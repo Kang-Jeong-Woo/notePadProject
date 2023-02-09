@@ -21,8 +21,13 @@ const DUMMY_POSTITS=[{
 }]
 
 function HomePage(props) {
+    async function positionHandler(posData){
+        console.log(posData.id);
+        console.log(posData.id);
+        console.log(posData.id);
+    }
     return(
-        <MainPage postits={props.postits}/>
+        <MainPage postits={props.postits} onSavePostion={positionHandler}/>
     )
 };
 
