@@ -1,7 +1,18 @@
 .postIt{
     border: deeppink 2px solid;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+.tab {
+    position: relative;
+    top: -20px;
+    transition: all 0.3s ease-out;
+    background: red;
     z-index: 100;
-    width: 100px;
-    height: 100px;
     cursor: pointer;
+}
+.content{
+    background: darkcyan;
 }
