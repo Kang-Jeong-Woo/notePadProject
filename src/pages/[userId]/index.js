@@ -1,4 +1,6 @@
-import MainPage from "@/components/MainPage";
+import SideBar from "@/components/SideBar/SideBar";
+import BulletinBoard from "@/components/BulletinBoard/BulletinBoard";
+import styles from"@/styles/Home.module.css"
 
 const DUMMY_POSTITS=[{
     id:"p1",
@@ -22,12 +24,24 @@ const DUMMY_POSTITS=[{
 
 function HomePage(props) {
     async function positionHandler(posData){
+        //fetch DB에 id 찾아서 바꿔주는 query
         console.log(posData.id);
+        console.log(posData.x);
+        console.log(posData.y);
+    }
+    async function sizePositionHandler(posData){
+        //fetch DB에 id 찾아서 바꿔주는 query
         console.log(posData.id);
-        console.log(posData.id);
+        console.log(posData.x);
+        console.log(posData.y);
+        console.log(posData.h);
+        console.log(posData.w);
     }
     return(
-        <MainPage postits={props.postits} onSavePostion={positionHandler}/>
+        <div className={styles.homeCtnr}>
+            <SideBar/>
+            <BulletinBoard postits={props.postits} onDragPst={positionHandler} onSizePst={sizePositionHandler}/>
+        </div>
     )
 };
 

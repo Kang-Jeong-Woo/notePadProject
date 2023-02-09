@@ -110,6 +110,13 @@
   height: 100vh;
 }
 
+.homeCtnr{
+  display: grid;
+  grid-template-columns: 350px auto;
+  align-items: stretch;
+  height: 100%;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {

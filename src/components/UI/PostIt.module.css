@@ -1,5 +1,5 @@
 .postIt{
-    border: deeppink 2px solid;
+
     overflow: hidden;
     transition: all 0.1s ease-out;
 }
@@ -7,7 +7,7 @@
     display: inline-flex;
     margin-left: auto;
     position: relative;
-    top: 0px;
+    top: -23px;
     transition: all 0.3s ease-out;
     background: red;
     z-index: 100;
@@ -16,4 +16,5 @@
 .content{
     background: darkcyan;
     height: 100%;
+    border: deeppink 2px solid;
 }

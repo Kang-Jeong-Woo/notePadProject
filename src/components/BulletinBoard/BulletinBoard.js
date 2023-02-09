@@ -14,6 +14,8 @@ const BulletinBoard = props => {
                     positionX={post.positionX}
                     positionY={post.positionY}
                     positionZ={post.positionZ}
+                    onDragPst={props.onDragPst}
+                    onSizePst={props.onSizePst}
                 />
             ))}
         </div>

@@ -2,6 +2,7 @@ import classes from "./PostIt.module.css";
 import {Fragment, useRef, useState} from "react";
 import {Transition} from "react-transition-group";
 import {Rnd} from "react-rnd";
+import BulletinBoard from "@/components/BulletinBoard/BulletinBoard";
 
 
 const PostIt = props => {
@@ -28,26 +29,25 @@ const PostIt = props => {
     }
     const sizeStop = (data) => {
         // y가 가로임
-        console.log(data)
+        console.log(data);
     }
     return (
         <Rnd minWidth={300}
              minHeight={200}
-             default={{x: 50, y: 50, width: 300, height: 200}}
+             bounds={"parent"}
+             default={{x: props.positionX, y: props.positionY, width: 100, height: 100}}
              disableDragging={dragable}
              onResize={(e, direction, ref, delta, position) => {
                  setDiagramWidth(ref.style.width);
                  setDiagramHeight(ref.style.height);
              }}
-             onDragStop={(e, d)=>{
-                 console.log("d.x : " + d.x);
-                 console.log("d.y : " + d.y);
+             onDragStop={(e, d, id=props.id)=>{
+                 const XY = {id:id, x:d.y, y:d.x}
+                 props.onDragPst(XY);
              }}
-             onResizeStop={(e, direction, ref, delta, position)=>{
-                 console.log("delta.height : " + delta.height);
-                 console.log("delta.width : " + delta.width);
-                 console.log("position.x : " + position.x);
-                 console.log("position.y : " + position.y);
+             onResizeStop={(e, direction, ref, delta, position, id=props.id)=>{
+                 const XYHW = {id:id, x:position.y, y:position.x, h:delta.height, w:delta.width}
+                 props.onSizePst(XYHW);
              }}
         >
 

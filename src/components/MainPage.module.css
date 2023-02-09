@@ -1,6 +1,0 @@
-.homeCtnr{
-    display: grid;
-    grid-template-columns: 350px auto;
-    align-items: stretch;
-    height: 100%;
-}
