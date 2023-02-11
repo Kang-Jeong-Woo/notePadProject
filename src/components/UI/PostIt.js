@@ -1,15 +1,16 @@
 import classes from "./PostIt.module.css";
-import {Fragment, useRef, useState} from "react";
-import {Transition} from "react-transition-group";
+import {useRef, useState} from "react";
 import {Rnd} from "react-rnd";
-import BulletinBoard from "@/components/BulletinBoard/BulletinBoard";
-
 
 const PostIt = props => {
     const tabRef = useRef(undefined);
     const [dragable, setDragable] = useState(false);
     const [diagramWidth, setDiagramWidth] = useState(300);
     const [diagramHeight, setDiagramHeight] = useState(200);
+
+    const setZIndex = (current, next) => {
+        return next > current ? next : current;
+    };
 
     const pinEvent = () => {
         setDragable(!dragable);
@@ -22,7 +23,7 @@ const PostIt = props => {
     }
     const mouseOut = () => {
         tabRef.current.style.top = "-23px";
-    }
+    } 
     const postionStop = (data) => {
         // y가 가로임
         console.log(data);
@@ -41,14 +42,21 @@ const PostIt = props => {
                  setDiagramWidth(ref.style.width);
                  setDiagramHeight(ref.style.height);
              }}
-             onDragStop={(e, d, id=props.id)=>{
-                 const XY = {id:id, x:d.y, y:d.x}
+             onDragStart={(e, d, id=props.id) => {
+                 d.node.style.zIndex=props.positionZ;
+                 const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
+                 const Z = {id: id, z: setIndex};
+                 props.onZpst(Z);
+             }}
+             onDragStop={(e, d, id = props.id) => {
+                 const XY = {id: id, x: d.y, y: d.x}
                  props.onDragPst(XY);
              }}
-             onResizeStop={(e, direction, ref, delta, position, id=props.id)=>{
-                 const XYHW = {id:id, x:position.y, y:position.x, h:delta.height, w:delta.width}
+             onResizeStop={(e, direction, ref, delta, position, id = props.id) => {
+                 const XYHW = {id: id, x: position.y, y: position.x, h: delta.height, w: delta.width}
                  props.onSizePst(XYHW);
              }}
+             style={{zIndex:props.positionZ}}
         >
 
             <div className={classes.postIt} style={{width: diagramWidth, height: diagramHeight}}
