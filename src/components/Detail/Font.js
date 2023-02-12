@@ -3,7 +3,7 @@ const FontSection = () => {
     return (
         <>
             <h1 className={classes.ih}>폰트 hud</h1>
-            <div></div>
+            <div> </div>
         </>
     )
 }

@@ -8,7 +8,7 @@ import PenSection from "@/components/Detail/Pen";
 import TableSection from "@/components/Detail/Table";
 import FontSection from "@/components/Detail/Font";
 
-const SideBar = () => {
+const SideBar = (props) => {
     const dispatch = useDispatch();
     const choice = useSelector((state) => state.choice);
     const addPost = () => {dispatch(choiceActions.changePlus());};
@@ -20,7 +20,7 @@ const SideBar = () => {
     return(
         <div className={classes.Cntnr}>
             <div className={classes.detail}>
-                {choice.plus && <PlusSection/>}
+                {choice.plus && <PlusSection onAddPost={props.addPostIt}/>}
                 {choice.pen && <PenSection/>}
                 {choice.table && <TableSection/>}
                 {choice.font && <FontSection/>}

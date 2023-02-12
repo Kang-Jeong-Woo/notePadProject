@@ -33,6 +33,7 @@ const PostIt = props => {
         console.log(data);
     }
     return (
+        // 스타일이 font일 경우 background opacity 0로 만들기
         <Rnd minWidth={300}
              minHeight={200}
              bounds={"parent"}
@@ -56,7 +57,7 @@ const PostIt = props => {
                  const XYHW = {id: id, x: position.y, y: position.x, h: delta.height, w: delta.width}
                  props.onSizePst(XYHW);
              }}
-             style={{zIndex:props.positionZ}}
+             style={{zIndex:props.positionZ }}
         >
 
             <div className={classes.postIt} style={{width: diagramWidth, height: diagramHeight}}

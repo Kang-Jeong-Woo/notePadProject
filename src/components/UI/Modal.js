@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
+import PostItForm from "@/components/Form/PostItForm";
 
 const Backdrop = (props) => {
     return <div className={classes.backdrop} onClick={props.onClose}/>;
 };
 
 const ModalOverlay = (props) => {
-    // 여기에 input form 작성
     return (
         <div className={classes.modal}>
-            <div className={classes.content}></div>
+            <div className={classes.content}><PostItForm onAddPost={props.onAddPost}/></div>
         </div>
     );
 };
@@ -20,7 +20,7 @@ const Modal = (props) => {
         <>
             {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, crtPortal())}
             {ReactDOM.createPortal(
-                <ModalOverlay>{props.children}</ModalOverlay>,crtPortal()
+                <ModalOverlay onAddPost={props.onAddPost}>{props.children}</ModalOverlay>,crtPortal()
             )}
         </>
     );

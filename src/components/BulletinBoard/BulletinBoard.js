@@ -52,6 +52,8 @@ const BulletinBoard = props => {
                     key={post.id}
                     id={post.id}
                     content={post.content}
+                    width={post.width}
+                    height={post.height}
                     positionX={post.positionX}
                     positionY={post.positionY}
                     positionZ={post.positionZ}
