@@ -8,38 +8,58 @@ function HomePage(props) {
     const router = useRouter();
 
     async function positionHandler(posData) {
-        // console.log(posData);
-        // const res = await fetch("https://react-http-e4fe2-default-rtdb.asia-southeast1.firebasedatabase.app/postit.json",{
-        //     method: "POST",
-        //     body:JSON.stringify(객체),
-        //     headers:{
-        //         "Content-Type":"application/json"
-        //     }
-        // });
-        // const data = await res.json();
-        // console.log(data);
+        const positionData = {id:posData.id, x:posData.x, y:posData.y}
+        const res = await fetch("/api/fetch-position",{
+            method: "POST",
+            body:JSON.stringify(positionData),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        const data = await res.json();
     }
 
     async function sizePositionHandler(posData) {
-        //fetch DB에 id 찾아서 바꿔주는 query
-        // console.log(posData.id);
-        // console.log(posData.x);
-        // console.log(posData.y);
-        // console.log(posData.h);
-        // console.log(posData.w);
+        const positionData = {id:posData.id, x:posData.x, y:posData.y, w:posData.w, h:posData.h}
+        const res = await fetch("/api/fetch-resize",{
+            method: "POST",
+            body:JSON.stringify(positionData),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        const data = await res.json();
     }
 
     async function zIndexHandler(posData) {
-        //fetch DB에 id 찾아서 기존z인덱스 z값으로 치환하는 query
-        // console.log(posData.id);
-        // console.log(posData.z);
+        const positionData = {id:posData.id, z:posData.z}
+        const res = await fetch("/api/fetch-zindex",{
+            method: "POST",
+            body:JSON.stringify(positionData),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        const data = await res.json();
+    }
+
+    async function delHandler(posData){
+        const res = await fetch("/api/fetch-delete",{
+            method:"POST",
+            body: JSON.stringify(posData),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        const data = await res.json();
+        router.reload();
     }
 
     async function addPostIt(postData) {
 
         const postIt = {
             title: postData.content,
-            content: postData.img,
+            content: postData.path,
             pinned: false,
             style: "",
             width: 300,
@@ -56,7 +76,6 @@ function HomePage(props) {
             }
         });
         const data = await res.json();
-        console.log(data);
         router.reload();
     }
 
@@ -64,7 +83,7 @@ function HomePage(props) {
         <div className={styles.homeCtnr}>
             <SideBar addPostIt={addPostIt}/>
             <BulletinBoard postits={props.postits} onDragPst={positionHandler} onSizePst={sizePositionHandler}
-                           onZPst={zIndexHandler}/>
+                           onZPst={zIndexHandler} onDel={delHandler}/>
         </div>
     )
 };

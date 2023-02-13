@@ -19,7 +19,8 @@ const PostItForm = (props) => {
             setImageFile({
                 file: fileList[0],
                 thumbnail: url,
-                type: fileList[0].type.slice(0, 5)
+                type: fileList[0].type.slice(0, 5),
+                path:`/${fileList[0].name}`
             })
         }
     }
@@ -35,13 +36,13 @@ const PostItForm = (props) => {
         event.preventDefault();
         const uploadedImage = imageFile.file;
         const enteredContent = descriptionInputRef.current.value;
+        const imagePath = imageFile.path;
         const postData = {
             img: uploadedImage,
             content: enteredContent,
+            path : imagePath
         }
-        console.log("click!");
-        console.log(uploadedImage);
-        // props.onAddPost(postData);
+        props.onAddPost(postData);
     }
 
     return(
