@@ -1,12 +1,17 @@
 import classes from "./BulletinBoard.module.css";
 import PostIt from "@/components/UI/PostIt";
 import {useEffect, useRef, useState} from "react";
+import Table from "@/components/UI/Table";
+import { useSelector } from "react-redux";
 
 
 const BulletinBoard = props => {
+
     const canvasRef = useRef();
     const contextRef = useRef();
     const [isDrawing, setIsDrawing] = useState(false);
+
+    const tables = useSelector((state)=>{return state.table})
 
     useEffect(()=>{
         const canvas = canvasRef.current;
@@ -62,6 +67,9 @@ const BulletinBoard = props => {
                     onZpst={props.onZPst}
                 />
             ))}
+            { tables.map((table, i)=>{
+                return <Table key={i} table={table}></Table>
+            })}
         </div>
     );
 }
