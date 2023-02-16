@@ -7,15 +7,17 @@ import PlusSection from "@/components/Detail/Plus";
 import PenSection from "@/components/Detail/Pen";
 import TableSection from "@/components/Detail/Table";
 import FontSection from "@/components/Detail/Font";
+import {tableActions} from "@/store/table-slice";
 
 const SideBar = (props) => {
     const dispatch = useDispatch();
     const choice = useSelector((state) => state.choice);
     const addPost = () => {dispatch(choiceActions.changePlus());};
     const drawing = () => {dispatch(choiceActions.changeDraw());};
-    const addTable = () => {dispatch(choiceActions.changeTable());};
     const addFont = () => {dispatch(choiceActions.changeFont());};
     const cheeze = () => {alert("찰캌!")}
+
+    const addTable = () => {dispatch(tableActions.addTable());};
 
     return(
         <div className={classes.Cntnr}>
