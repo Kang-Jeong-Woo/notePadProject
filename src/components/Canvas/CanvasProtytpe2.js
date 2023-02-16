@@ -1,7 +1,7 @@
 import {useRef, useState} from "react";
 import CanvasDraw from "react-canvas-draw";
 
-const CanvasTest = () => {
+const CanvasProtytpe2 = () => {
     const canvasRef = useRef(null);
     const [drawing, setDrawing] = useState();
 
@@ -32,4 +32,4 @@ const CanvasTest = () => {
     )
 }
 
-export default CanvasTest;
+export default CanvasProtytpe2;

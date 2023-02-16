@@ -4,10 +4,10 @@ async function handler(req, res){
         const data = req.body;
         const client = await MongoClient.connect("mongodb+srv://zzangkbc1:ML5svjETdraNKLuV@cluster0.snz22kc.mongodb.net/?retryWrites=true&w=majority");
         const db = client.db();
-        const postItCollection = db.collection("drawData");
-        const result = await postItCollection.updateOne({userId:data.userId},{$set:{saveImage:data.saveImage}},{upsert:true});
+        const fontCollection = db.collection("fontData");
+        const result = await fontCollection.insertOne(data);
         client.close();
-        res.status(201).json({message:"성공"})
+        res.status(201).json({message: "success"});
     }
 }
 export default handler;

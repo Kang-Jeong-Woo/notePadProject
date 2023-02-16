@@ -1,55 +1,63 @@
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useState} from "react";
+import CanvasDraw from "react-canvas-draw";
+import classes from "./Canvas.module.css";
 
-const Canvas = ( ) => {
-    const canvasRef = useRef();
-    const contextRef = useRef();
-    const [isDrawing, setIsDrawing] = useState(false);
-
-    useEffect(()=>{
-        const canvas = canvasRef.current;
-        canvas.width = parent.innerWidth * 2;
-        canvas.height = parent.innerHeight * 2;
-        canvas.style.width = `${parent.innerWidth}px`;
-        canvas.style.height = `${parent.innerHeight}px`;
-
-        const context = canvas.getContext("2d");
-        context.scale(2,2)
-        context.lineCap = "round" // "square"
-        context.strokeStyle = "black"
-        context.shadowColor = "red";        // 불어펜 기능
-        context.shadowOffsetX = 10;        // 불어펜 기능
-        context.shadowOffsetY = 10;        // 불어펜 기능
-        context.lineWidth = 5
-        context.save();
-        contextRef.current = context;
-        context.restore();
-    },[]);
-
-    const startDrawing = ({nativeEvent}) => {
-        const {offsetX, offsetY} = nativeEvent;
-        contextRef.current.beginPath()
-        contextRef.current.moveTo(offsetX, offsetY)
-        setIsDrawing(true);
+const Canvas = (props) => {
+    const [color, setColor] = useState();
+    const [radius, setRadius] = useState();
+    const [canDraw, setCanDraw] = useState(true);
+    let saveableCanvas;
+    const height = () => typeof window !== "undefined" ? Math.ceil(window.innerHeight - 25) : 1270;
+    const drawSave = () => {
+        props.onSaveDraw(saveableCanvas.getSaveData());
     };
-
-    const finishDrawing = () => {
-        contextRef.current.closePath()
-        setIsDrawing(false)
+    const eraseAll = () => {
+        saveableCanvas.eraseAll();
     };
-
-    const draw = ({nativeEvent}) => {
-        if(!isDrawing){
-            return
-        }
-        const {offsetX, offsetY} = nativeEvent;
-        contextRef.current.lineTo(offsetX, offsetY)
-        contextRef.current.stroke()
-        contextRef.current.save();
+    const undo = () => {
+        saveableCanvas.undo();
     };
+    const changeColor = (event) => {
+        setColor(event.target.value);
+    };
+    const changeRadius = (event) => {
+        setRadius(event.target.value);
+    };
+    const chagneDraw = () => {
+        setCanDraw(!canDraw);
+    };
+    return (
+        <>
+            <label className={classes.switch}>그리기
+                <input type="checkbox" value={canDraw} onChange={chagneDraw}/>
+                <span className={classes.slider}></span>
+            </label>
 
-    return(<canvas onMouseDown={startDrawing} onMouseUp={finishDrawing} onMouseMove={draw}
-                   ref={canvasRef}></canvas>
+            <label htmlFor={"color"}>색깔</label>
+            <input type={"color"} id={"color"} name={"color"} value={color} onChange={changeColor}/>
+
+            <label htmlFor={"radius"}>두께</label>
+            <input type="range" id={"radius"} name={"radius"} min={1} max={20} step={0.5} value={radius}
+                   onChange={changeRadius}/>
+
+            <button onClick={drawSave}>Save</button>
+            <button onClick={eraseAll}>Erase</button>
+            <button onClick={undo}>Undo</button>
+            <CanvasDraw
+                ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
+                saveData={props.drewData[0]?.dbDrawData}
+                canvasWidth={3000}
+                canvasHeight={1270}
+                style={{backgroundColor: "#FFC0CB"}}
+                hideGrid={true}
+                disabled={canDraw}
+                lazyRadius={0}
+                brushRadius={radius}
+                brushColor={color}
+                catenaryColor={"#0a0302"}
+            />
+        </>
     );
-};
+}
 
 export default Canvas;

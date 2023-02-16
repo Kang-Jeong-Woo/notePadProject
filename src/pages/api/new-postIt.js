@@ -7,7 +7,7 @@ async function handler(req, res){
         const postItCollection = db.collection("postIts");
         const result = await postItCollection.insertOne(data);
         client.close();
-        res.status(201).json({message:"성공"})
+        res.status(201).json({message:"success"})
     }
 }
 export default handler;
