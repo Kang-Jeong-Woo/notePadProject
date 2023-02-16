@@ -6,7 +6,6 @@ import {useRouter} from "next/router";
 
 function HomePage(props) {
     const router = useRouter();
-
     async function positionHandler(posData) {
         const positionData = {id:posData.id, x:posData.x, y:posData.y}
         const res = await fetch("/api/fetch-position",{
@@ -18,7 +17,6 @@ function HomePage(props) {
         });
         const data = await res.json();
     }
-
     async function sizePositionHandler(posData) {
         const positionData = {id:posData.id, x:posData.x, y:posData.y, w:posData.w, h:posData.h}
         const res = await fetch("/api/fetch-resize",{
@@ -30,7 +28,6 @@ function HomePage(props) {
         });
         const data = await res.json();
     }
-
     async function zIndexHandler(posData) {
         const positionData = {id:posData.id, z:posData.z}
         const res = await fetch("/api/fetch-zindex",{
@@ -42,7 +39,6 @@ function HomePage(props) {
         });
         const data = await res.json();
     }
-
     async function delHandler(posData){
         const res = await fetch("/api/fetch-delete",{
             method:"POST",
@@ -54,9 +50,7 @@ function HomePage(props) {
         const data = await res.json();
         router.reload();
     }
-
     async function addPostIt(postData) {
-
         const postIt = {
             title: postData.content,
             content: postData.path,
@@ -73,19 +67,36 @@ function HomePage(props) {
             body: JSON.stringify(postIt),
             headers:{
                 "Content-Type":"application/json"
+            },
+            file:postData
+        });
+        const data = await res.json();
+        router.reload();
+    }
+    async function addDrawData(drawData) {
+        const inputData = {
+            id:"userid",
+            saveImage: drawData,
+        }
+        const res = await fetch("/api/fetch-draw",{
+            method: "POST",
+            body: JSON.stringify(inputData),
+            headers:{
+                "Content-Type":"application/json"
             }
         });
         const data = await res.json();
+        console.log(data);
         router.reload();
     }
 
     return (
         <div className={styles.homeCtnr}>
             <SideBar addPostIt={addPostIt}/>
-            <BulletinBoard postits={props.postits} onDragPst={positionHandler} onSizePst={sizePositionHandler}
-                           onZPst={zIndexHandler} onDel={delHandler}/>
+            <BulletinBoard postits={props.postits} drawDatas={props.drawData} onDragPst={positionHandler} onSizePst={sizePositionHandler}
+                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData}/>
         </div>
-    )
+    );
 };
 
 export async function getServerSideProps() {
@@ -93,6 +104,8 @@ export async function getServerSideProps() {
     const db = client.db();
     const postItCollection = db.collection("postIts");
     const postItsAry = await postItCollection.find().toArray();
+    const drawCollection = db.collection("drawData");
+    const drawAry = await drawCollection.find({id:"userid"}).toArray();
     client.close();
     return {
         props: {
@@ -107,6 +120,10 @@ export async function getServerSideProps() {
                 positionX: postIts.positionX,
                 positionY: postIts.positionY,
                 positionZ: postIts.positionZ
+            })),
+            drawData:drawAry.map(drawdata=>({
+                id:"userid",
+                dbDrawData:drawdata.saveImage
             }))
         }
     };

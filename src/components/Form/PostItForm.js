@@ -47,7 +47,7 @@ const PostItForm = (props) => {
 
     return(
         <>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} encType={"multipart/form-data"}>
                 <div>
                     <label htmlFor="description">내용을 입력해주세요! (ex.앨범 제목, 출시 날짜...)</label>
                     <textarea id={"description"} rows={"5"} ref={descriptionInputRef}></textarea>
@@ -55,7 +55,7 @@ const PostItForm = (props) => {
                 {showImage}
                 <div>
                     <label htmlFor="image">앨범 사진을 올려주세요!</label>
-                    <input id={"image"} type="file" accept={"image/jpg, image/jpeg, image/png"} ref={fileInputRef} onChange={uploadFile}/>
+                    <input id={"image"} name={"file"} type="file" accept={"image/jpg, image/jpeg, image/png"} ref={fileInputRef} onChange={uploadFile} />
                 </div>
                 <button>post!</button>
             </form>
