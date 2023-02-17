@@ -5,7 +5,6 @@ import Canvas from "@/components/Canvas/Canvas";
 import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 
 const BulletinBoard = props => {
-    console.log()
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>
@@ -31,6 +30,9 @@ const BulletinBoard = props => {
                         key={fonts.id}
                         id={fonts.id}
                         content={fonts.content}
+                        style={fonts.style}
+                        degree={fonts.degree}
+                        color={fonts.color}
                         width={fonts.width}
                         height={fonts.height}
                         positionX={fonts.positionX}
@@ -40,6 +42,7 @@ const BulletinBoard = props => {
                         onSizePst={props.onSizePst}
                         onZpst={props.onZPst}
                         onDel={props.onDel}
+                        onSetDegree={props.onSetDegree}
                     />
                 ))}
                 <Canvas drewData={props.drewData} onSaveDraw={props.onSaveDraw}/>

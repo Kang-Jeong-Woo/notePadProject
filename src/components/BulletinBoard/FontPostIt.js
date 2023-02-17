@@ -1,5 +1,5 @@
 import {Rnd} from "react-rnd";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import classes from "./FontPostIt.module.css";
 
 const FontPostIt = (props) => {
@@ -11,6 +11,7 @@ const FontPostIt = (props) => {
     const [picWidth, setPicWidth] = useState();
     const [picHeight, setPicHeight] = useState();
     const [isFirstLoad, setFirstLoad] = useState(true);
+    const [degree, setDegree] = useState(props.degree);
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
@@ -31,7 +32,7 @@ const FontPostIt = (props) => {
         borderRef.current.style.border = "0px";
     }
     const dragStart = (e, d, id = props.id) => {
-        d.node.style.border="#000000 dot-dash 4px";
+        d.node.style.border = "#000000 dot-dash 4px";
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "fontData"};
@@ -54,6 +55,22 @@ const FontPostIt = (props) => {
         const XYHW = {id: id, x: position.y, y: position.x, h: height, w: width, colName: "fontData"}
         props.onSizePst(XYHW);
     }
+    const wheelEvent = (event) => {
+        if(event.deltaY<0){
+            setDegree(degree - 10);
+        }else{
+            setDegree(degree + 10);
+        }
+    }
+    useEffect(() => {
+        const setDegree = setTimeout((id = props.id) => {
+            const degreeData = {id:id, degree:degree, colName:"fontData"}
+            props.onSetDegree(degreeData);
+        }, 1000);
+        return () => {
+            clearTimeout(setDegree);
+        }
+    }, [wheelEvent]);
     return (
         <Rnd minWidth={100} minHeight={100} bounds={"parent"} disableDragging={dragable}
              default={{x: props.positionX, y: props.positionY, width: props.width, height: props.height + 23}}
@@ -72,8 +89,10 @@ const FontPostIt = (props) => {
                 <div className={classes.content} style={{
                     width: isFirstLoad ? props.width : +picWidth,
                     height: isFirstLoad ? props.height : +picHeight - 23,
-                    fontStyle: props.style
-                }} ref={borderRef}>
+                    rotate: `${degree}deg`,
+                    fontFamily: props.style.toString(),
+                    color: props.color,
+                }} ref={borderRef} onWheel={wheelEvent}>
                     {props.content}
                 </div>
             </div>

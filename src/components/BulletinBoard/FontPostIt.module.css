@@ -13,7 +13,6 @@
     cursor: pointer;
 }
 .content{
-    border: black 1px solid;
     display : flex;
     justify-content : center;
     align-items : center;

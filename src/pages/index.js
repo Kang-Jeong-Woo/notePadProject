@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Container from "@/components/UI/Container";
 import Login from "@/components/Login/Login";
 
 export default function Home() {
@@ -7,7 +6,7 @@ export default function Home() {
         <>
             <Head>
                 <meta charSet="utf-8"/>
-
+                <title>덕질 패드</title>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 

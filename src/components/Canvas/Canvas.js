@@ -46,8 +46,8 @@ const Canvas = (props) => {
             <CanvasDraw
                 ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
                 saveData={props.drewData[0]?.dbDrawData}
-                canvasWidth={3000}
-                canvasHeight={1270}
+                canvasWidth={1700}
+                canvasHeight={900}
                 style={{backgroundColor: "#FFC0CB"}}
                 hideGrid={true}
                 disabled={canDraw}
