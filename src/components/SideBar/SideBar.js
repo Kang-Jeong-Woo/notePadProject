@@ -25,7 +25,7 @@ const SideBar = (props) => {
                 {choice.plus && <PlusSection onAddPost={props.addPostIt}/>}
                 {choice.pen && <PenSection/>}
                 {choice.table && <TableSection/>}
-                {choice.font && <FontSection/>}
+                {choice.font && <FontSection onAddFont={props.onAddFont}/>}
             </div>
             <div className={classes.choice}>
                 <ul className={classes.list}>

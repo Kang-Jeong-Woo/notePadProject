@@ -8,38 +8,77 @@ function HomePage(props) {
     const router = useRouter();
 
     async function positionHandler(posData) {
-        // console.log(posData);
-        // const res = await fetch("https://react-http-e4fe2-default-rtdb.asia-southeast1.firebasedatabase.app/postit.json",{
-        //     method: "POST",
-        //     body:JSON.stringify(객체),
-        //     headers:{
-        //         "Content-Type":"application/json"
-        //     }
-        // });
-        // const data = await res.json();
-        // console.log(data);
+        const positionData = {id: posData.id, x: Math.floor(posData.x), y: Math.floor(posData.y), colName: posData.colName}
+        const res = await fetch("/api/fetch-position", {
+            method: "POST",
+            body: JSON.stringify(positionData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
     }
 
     async function sizePositionHandler(posData) {
-        //fetch DB에 id 찾아서 바꿔주는 query
-        // console.log(posData.id);
-        // console.log(posData.x);
-        // console.log(posData.y);
-        // console.log(posData.h);
-        // console.log(posData.w);
+        const positionData = {
+            id: posData.id,
+            x: Math.floor(posData.x),
+            y: Math.floor(posData.y),
+            w: posData.w,
+            h: posData.h,
+            colName: posData.colName
+        }
+        const res = await fetch("/api/fetch-resize", {
+            method: "POST",
+            body: JSON.stringify(positionData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+    }
+
+    async function delHandler(posData) {
+        const positionData = {id: posData.id, colName: posData.colName}
+        const res = await fetch("/api/fetch-delete", {
+            method: "POST",
+            body: JSON.stringify(positionData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+        router.reload();
     }
 
     async function zIndexHandler(posData) {
-        //fetch DB에 id 찾아서 기존z인덱스 z값으로 치환하는 query
-        // console.log(posData.id);
-        // console.log(posData.z);
+        const positionData = {id: posData.id, z: posData.z, colName: posData.colName}
+        const res = await fetch("/api/fetch-zindex", {
+            method: "POST",
+            body: JSON.stringify(positionData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+    }
+
+    async function degreeHandler(degreeData) {
+        const res = await fetch("/api/fetch-degree", {
+            method: "POST",
+            body: JSON.stringify(degreeData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
     }
 
     async function addPostIt(postData) {
-
         const postIt = {
+            userId: "userid",
             title: postData.content,
-            content: postData.img,
+            content: postData.path,
             pinned: false,
             style: "",
             width: 300,
@@ -48,37 +87,85 @@ function HomePage(props) {
             positionY: 0,
             positionZ: 10
         }
-        const res = await fetch("/api/new-postIt",{
-            method:"POST",
+        const res = await fetch("/api/new-postIt", {
+            method: "POST",
             body: JSON.stringify(postIt),
-            headers:{
-                "Content-Type":"application/json"
+            headers: {
+                "Content-Type": "application/json"
+            },
+            file: postData
+        });
+        const data = await res.json();
+        router.reload();
+    }
+
+    async function addDrawData(drawData) {
+        const inputData = {
+            userId: "userid",
+            saveImage: drawData,
+        }
+        const res = await fetch("/api/fetch-draw", {
+            method: "POST",
+            body: JSON.stringify(inputData),
+            headers: {
+                "Content-Type": "application/json"
             }
         });
         const data = await res.json();
-        console.log(data);
+        router.reload();
+    }
+
+    async function addFontData(fontData) {
+        const inputData = {
+            userId: "userid",
+            content: fontData.content,
+            pinned: false,
+            style: fontData.style,
+            degree: 0,
+            color:fontData.color,
+            width: 300,
+            height: 200,
+            positionX: 0,
+            positionY: 0,
+            positionZ: 10
+        }
+
+        const res = await fetch("/api/new-font", {
+            method: "POST",
+            body: JSON.stringify(inputData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
         router.reload();
     }
 
     return (
         <div className={styles.homeCtnr}>
-            <SideBar addPostIt={addPostIt}/>
-            <BulletinBoard postits={props.postits} onDragPst={positionHandler} onSizePst={sizePositionHandler}
-                           onZPst={zIndexHandler}/>
+            <SideBar addPostIt={addPostIt} onAddFont={addFontData}/>
+            <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
+                           onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
+                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData}/>
         </div>
-    )
+    );
 };
 
 export async function getServerSideProps() {
     const client = await MongoClient.connect("mongodb+srv://zzangkbc1:ML5svjETdraNKLuV@cluster0.snz22kc.mongodb.net/?retryWrites=true&w=majority")
     const db = client.db();
     const postItCollection = db.collection("postIts");
-    const postItsAry = await postItCollection.find().toArray();
+    const postItsAry = await postItCollection.find({"userId": "userid"}).toArray();
+    const drawCollection = db.collection("drawData");
+    const drawAry = await drawCollection.find({"userId": "userid"}).toArray();
+    const fontCollection = db.collection("fontData");
+    const fontAry = await fontCollection.find({"userId": "userid"}).toArray();
     client.close();
     return {
         props: {
-            postits: postItsAry.map(postIts => ({
+            postIts: postItsAry.map(postIts => ({
                 id: postIts._id.toString(),
+                userId: postIts.userId,
                 title: postIts.title,
                 content: postIts.content,
                 pinned: postIts.pinned,
@@ -88,6 +175,24 @@ export async function getServerSideProps() {
                 positionX: postIts.positionX,
                 positionY: postIts.positionY,
                 positionZ: postIts.positionZ
+            })),
+            drawData: drawAry.map(drawdata => ({
+                userId: drawdata.userId,
+                dbDrawData: drawdata.saveImage
+            })),
+            fontData: fontAry.map(fontData => ({
+                id: fontData._id.toString(),
+                userId: fontData.userId,
+                content: fontData.content,
+                pinned: fontData.pinned,
+                style: fontData.style,
+                degree:fontData.degree,
+                color: fontData.color,
+                width: fontData.width,
+                height: fontData.height,
+                positionX: fontData.positionX,
+                positionY: fontData.positionY,
+                positionZ: fontData.positionZ
             }))
         }
     };
