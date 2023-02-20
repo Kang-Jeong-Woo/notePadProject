@@ -24,7 +24,7 @@ const FontSection = (props) => {
                 <label htmlFor={"content"}>내용</label>
                 <input type="text" id={"content"} name={"content"} ref={inputRef}/>
                 <select ref={styleRef} defaultValue={""}>
-                    <option value={""} selected={true}>원하는 글자체를 선택하세요</option>
+                    <option defaultValue={""}>원하는 글자체를 선택하세요</option>
                     <option value={"cursive"} style={{fontFamily:"cursive"}}>cursive</option>
                     <option value={"fantasy"} style={{fontFamily:"fantasy"}}>fantasy</option>
                     <option value={"monospace"} style={{fontFamily:"monospace"}}>monospace</option>

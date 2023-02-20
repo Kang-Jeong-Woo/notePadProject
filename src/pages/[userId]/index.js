@@ -3,10 +3,13 @@ import BulletinBoard from "@/components/BulletinBoard/BulletinBoard";
 import styles from "@/styles/Home.module.css"
 import {MongoClient} from "mongodb";
 import {useRouter} from "next/router";
+import {useDispatch} from "react-redux";
+import {tableActions} from "@/store/table-slice";
 
 function HomePage(props) {
     const router = useRouter();
-
+    const dispatch = useDispatch();
+    dispatch(tableActions.setTable(props.tableData));
     async function positionHandler(posData) {
         const positionData = {id: posData.id, x: Math.floor(posData.x), y: Math.floor(posData.y), colName: posData.colName}
         const res = await fetch("/api/fetch-position", {
@@ -129,7 +132,6 @@ function HomePage(props) {
             positionY: 0,
             positionZ: 10
         }
-
         const res = await fetch("/api/new-font", {
             method: "POST",
             body: JSON.stringify(inputData),
@@ -160,6 +162,8 @@ export async function getServerSideProps() {
     const drawAry = await drawCollection.find({"userId": "userid"}).toArray();
     const fontCollection = db.collection("fontData");
     const fontAry = await fontCollection.find({"userId": "userid"}).toArray();
+    const tableCollection = db.collection("tableData");
+    const tableAry = await tableCollection.find({"userId": "userid"}).toArray();
     client.close();
     return {
         props: {
@@ -193,6 +197,18 @@ export async function getServerSideProps() {
                 positionX: fontData.positionX,
                 positionY: fontData.positionY,
                 positionZ: fontData.positionZ
+            })),
+            tableData: tableAry.map(tableData => ({
+                id: tableData._id.toString(),
+                userId: tableData.userId,
+                contents: tableData.contents,
+                pinned: tableData.pinned,
+                style: tableData.style,
+                width: tableData.width,
+                height: tableData.height,
+                positionX: tableData.positionX,
+                positionY: tableData.positionY,
+                positionZ: tableData.positionZ
             }))
         }
     };

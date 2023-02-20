@@ -2,95 +2,77 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const table = createSlice({
     name: "table",
-    initialState: [],
+    initialState: {isInit: true, tableData: []},
     reducers: {
+        setTable(state, action) {
+            if (state.isInit) {
+                action.payload.map(tableData => (
+                    state.tableData.push(tableData)
+                ));
+                state.isInit = false;
+            }
+            return
+        },
         addTable(state) {
             const tableDefaultData = {
-                id: 0, x: 100, y: 100, z: 0, width: 200, height: 220, 
-                titles: ["타이틀", "타이틀"], contents: [['내용', '내용'], ['내용', '내용']]
+                id: Math.random(),
+                positionX: 0,
+                positionY: 0,
+                positionZ: 10,
+                width: 200,
+                height: 220,
+                userId: "userid",
+                style: "",
+                pinned: false,
+                contents: {titles: ["타이틀1", "타이틀2"], contents: [['내용1', '내용2'], ['내용3', '내용4']]}
             }
-            if(state.length > 0) {
-                state.push({
-                    id: state[state.length-1].id, x: state[state.length-1].x, y: state[state.length-1].y, z: state[state.length-1].z, 
-                    width: state[state.length-1].width, height: state[state.length-1].height, 
-                    titles: state[state.length-1].titles, contents: state[state.length-1].contents
-                })
-            } else {                        
-                state.push(tableDefaultData)
-            }
-        },
-        deleteTable(state, action) {
-            for(let i = 0; i<state.length; i++) {
-                if(state[i].id === action.payload) {
-                    state.splice(i, 1)
-                }
-            }
-        },
-        updateTable(state, action) {
-            for(let i = 0; i<state.length; i++) {
-                if(state[i].id === action.payload.id) {
-                    if(action.payload.type === 'title') {
-                        state[i].titles[action.payload.i] = action.payload.value
-                    } else {
-                        state[i].contents[action.payload.column][action.payload.i] = action.payload.value
-                    }
-                }
-            }
-        },
-        addRow(state, action) {
-            for(let i = 0; i<state.length; i++) {
-                if(state[i].id === action.payload) {
-                    if (state[i].titles.length>9) {
-                        alert("적당히 하지?")
-                    } else {
-                        state[i].width += 100; 
-                        state[i].titles.push('타이틀');
-                        for(let j=0; j<state[i].contents.length; j++) {
-                            state[i].contents[j].push('내용')
-                        }
-                    }
-                }
-            }
-        },
-        deleteRow(state, action) {
-            for(let i = 0; i<state.length; i++) {
-                if(state[i].id === action.payload) {
-                    if (state[i].titles.length < 2) {
-                        alert("그만해")
-                    } else {
-                        state[i].width -= 100; 
-                        state[i].titles.pop();
-                        for(let j=0; j<state[i].contents.length; j++) {
-                            state[i].contents[j].pop()
-                        }
-                    }
-                }
-            }
+            state.tableData.push(tableDefaultData);
         },
         addColumn(state, action) {
-            for(let i = 0; i<state.length; i++) {
-                if(state[i].id === action.payload) {
-                    if (state[i].contents.length>9) {
-                        alert("적당히 하지?")
-                    } else {
-                        state[i].height += 100; 
-                        state[i].contents.push(Array(state[i].titles.length).fill('내용'))
-                    }
-                }
+            const id = action.payload;
+            const editAry = state.tableData.find((table) => table.id === id);
+            editAry.contents.titles.push("타이틀")
+            for(let i =0; i<editAry.contents.contents.length;i++){
+                editAry.contents.contents[i].push("내용")
             }
         },
         deleteColumn(state, action) {
-            for(let i = 0; i<state.length; i++) {
-                if(state[i].id === action.payload) {
-                    if (state[i].contents.length < 2) {
-                        alert("그만해")
-                    } else {
-                        state[i].height -= 100;
-                        state[i].contents.pop()
-                    }
-                }
+            const id = action.payload;
+            const editAry = state.tableData.find((table) => table.id === id);
+            editAry.contents.titles.pop()
+            for(let i =0; i<editAry.contents.contents.length;i++){
+                editAry.contents.contents[i].pop()
             }
-        }
+        },
+        addRow(state, action) {
+            const id = action.payload;
+            const editAry = state.tableData.find((table) => table.id === id);
+            editAry.contents.contents.push(Array(editAry.contents.titles.length).fill("내용"))
+        },
+        deleteRow(state, action) {
+            const id = action.payload;
+            const editAry = state.tableData.find((table) => table.id === id);
+            editAry.contents.contents.pop()
+        },
+        updateTable(state, action) {
+            const newData = action.payload;
+            const editAry = state.tableData.find((table) => table.id === newData.id);
+            if (action.payload.type === 'title') {
+                editAry.contents.titles[newData.i] = newData.value
+            } else {
+                editAry.contents.contents[newData.column][newData.i] = newData.value
+            }
+        },
+        deleteTable(state, action) {
+            const newData = action.payload;
+            const editAry = state.tableData.find((table) => table.id === newData.id);
+            console.log(editAry);
+            // for (let i = 0; i < state.tableData.length; i++) {
+            //     if (state.tableData[i].id === action.payload) {
+            //         state.tableData.splice(i, 1)
+            //     }
+            // }
+        },
     }
 });
 
