@@ -9,7 +9,7 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
     return (
         <div className={classes.modal}>
-            <div className={classes.content}><PostItForm onAddPost={props.onAddPost}/></div>
+            <div className={classes.content}>{props.children}</div>
         </div>
     );
 };
@@ -20,7 +20,7 @@ const Modal = (props) => {
         <>
             {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, crtPortal())}
             {ReactDOM.createPortal(
-                <ModalOverlay onAddPost={props.onAddPost}>{props.children}</ModalOverlay>,crtPortal()
+                <ModalOverlay>{props.children}</ModalOverlay>,crtPortal()
             )}
         </>
     );

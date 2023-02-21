@@ -1,17 +1,25 @@
 import {Rnd} from "react-rnd";
 import {useEffect, useRef, useState} from "react";
 import classes from "./FontPostIt.module.css";
+import {useDispatch} from "react-redux";
+import {tableActions} from "@/store/table-slice";
+import {fontAction} from "@/store/font-slice";
 
 const FontPostIt = (props) => {
     const tabRef = useRef(undefined);
     const borderRef = useRef(undefined);
     const [dragable, setDragable] = useState(false);
+    const dispatch = useDispatch();
     const [diagramWidth, setDiagramWidth] = useState();
     const [diagramHeight, setDiagramHeight] = useState();
     const [picWidth, setPicWidth] = useState();
     const [picHeight, setPicHeight] = useState();
     const [isFirstLoad, setFirstLoad] = useState(true);
     const [degree, setDegree] = useState(props.degree);
+    const updateZIndex = (data) => {dispatch(fontAction.updateZIndex(data))};
+    const updateXYPosition = (data) => {dispatch(fontAction.updateXYPosition(data))};
+    const updateWHPosition = (data) => {dispatch(fontAction.updateWHPosition(data))};
+    const updateDegree = (data) => {dispatch(fontAction.updateDegree(data))};
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
@@ -36,11 +44,13 @@ const FontPostIt = (props) => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "fontData"};
-        props.onZpst(Z);
+        updateZIndex(Z);
+        // props.onZpst(Z);
     }
     const dragStop = (e, d, id = props.id) => {
-        const XY = {id: id, x: d.y, y: d.x, colName: "fontData"}
-        props.onDragPst(XY);
+        const XY = {id: id, x: d.x, y: d.y, colName: "fontData"}
+        updateXYPosition(XY);
+        // props.onDragPst(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -52,8 +62,9 @@ const FontPostIt = (props) => {
     const resizeStop = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.y, y: position.x, h: height, w: width, colName: "fontData"}
-        props.onSizePst(XYHW);
+        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "fontData"}
+        updateWHPosition(XYHW);
+        // props.onSizePst(XYHW);
     }
     const wheelEvent = (event) => {
         if(event.deltaY<0){
@@ -65,7 +76,8 @@ const FontPostIt = (props) => {
     useEffect(() => {
         const setDegree = setTimeout((id = props.id) => {
             const degreeData = {id:id, degree:degree, colName:"fontData"}
-            props.onSetDegree(degreeData);
+            updateDegree(degreeData);
+            // props.onSetDegree(degreeData);
         }, 1000);
         return () => {
             clearTimeout(setDegree);

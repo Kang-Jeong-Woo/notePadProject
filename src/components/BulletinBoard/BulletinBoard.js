@@ -10,6 +10,9 @@ const BulletinBoard = props => {
     const tablesData = useSelector((state) => {
         return state.table.tableData
     });
+    const fontsData = useSelector((state) => {
+        return state.font.fontData
+    });
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>
@@ -30,19 +33,19 @@ const BulletinBoard = props => {
                         onDel={props.onDel}
                     />
                 ))}
-                {props.fontData.map((fonts) => (
+                {fontsData.map((font) => (
                     <FontPostIt
-                        key={fonts.id}
-                        id={fonts.id}
-                        content={fonts.content}
-                        style={fonts.style}
-                        degree={fonts.degree}
-                        color={fonts.color}
-                        width={fonts.width}
-                        height={fonts.height}
-                        positionX={fonts.positionX}
-                        positionY={fonts.positionY}
-                        positionZ={fonts.positionZ}
+                        key={font.id}
+                        id={font.id}
+                        content={font.content}
+                        style={font.style}
+                        degree={font.degree}
+                        color={font.color}
+                        width={font.width}
+                        height={font.height}
+                        positionX={font.positionX}
+                        positionY={font.positionY}
+                        positionZ={font.positionZ}
                         onDragPst={props.onDragPst}
                         onSizePst={props.onSizePst}
                         onZpst={props.onZPst}

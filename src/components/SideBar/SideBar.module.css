@@ -3,9 +3,6 @@
     border-right: hotpink 3px solid;
     height: 100%
 }
-.detail {
-    height: 60%;
-}
 .choice {
     position: absolute;
     bottom: 1rem;

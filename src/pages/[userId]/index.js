@@ -6,13 +6,16 @@ import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
 import {useEffect} from "react";
+import {fontAction} from "@/store/font-slice";
 
 function HomePage(props) {
     const router = useRouter();
     const dispatch = useDispatch();
-    
     useEffect(()=>{
         dispatch(tableActions.setTable(props.tableData));
+    },[])
+    useEffect(()=>{
+        dispatch(fontAction.setFont(props.fontData));
     },[])
     async function positionHandler(posData) {
         const positionData = {id: posData.id, x: Math.floor(posData.x), y: Math.floor(posData.y), colName: posData.colName}
@@ -147,21 +150,29 @@ function HomePage(props) {
         router.reload();
     }
 
-    async function addDB(targetData){
-        const res = await fetch("/api/fetch-table", {
+    async function addDB(tableData, fontData){
+        const resTable = await fetch("/api/fetch-table", {
             method: "POST",
-            body: JSON.stringify(targetData),
+            body: JSON.stringify(tableData),
             headers: {
                 "Content-Type": "application/json"
             }
         });
-        const data = await res.json();
+        const resFont = await fetch("/api/fetch-font", {
+            method: "POST",
+            body: JSON.stringify(fontData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const resTableData = await resTable.json();
+        const resFontData = await resFont.json();
         router.reload();
     }
 
     return (
         <div className={styles.homeCtnr}>
-            <SideBar addPostIt={addPostIt} onAddFont={addFontData} onSaveDB={addDB}/>
+            <SideBar onAddPost={addPostIt} onAddFont={addFontData} onSaveDB={addDB}/>
             <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
                            onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
                            onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData} />

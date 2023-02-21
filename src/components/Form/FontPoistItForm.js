@@ -1,18 +1,24 @@
-import classes from "src/components/SideBar/SideBar.module.css";
+import classes from "@/components/SideBar/SideBar.module.css";
 import {useRef} from "react";
+import {tableActions} from "@/store/table-slice";
+import {useDispatch} from "react-redux";
+import {fontAction} from "@/store/font-slice";
 const FontSection = (props) => {
     const inputRef = useRef();
     const styleRef = useRef();
     const colorRef = useRef("#000000");
+    const dispatch = useDispatch();
+    const addFontSlice = (data) => {dispatch(fontAction.addFont(data))};
     const addFont = (event) => {
         event.preventDefault();
-        if(inputRef.current.value.trim() !== 0 && styleRef.current.value !== ""){
+        if(inputRef.current.value.trim().length !== 0 && styleRef.current.value !== "원하는 글자체를 선택하세요"){
             const data = {
                 content: inputRef.current.value,
                 style: styleRef.current.value,
                 color: colorRef.current.value
             }
-            props.onAddFont(data);
+            addFontSlice(data);
+            // props.onAddFont(data);
             return
         }
         alert("내용이나 폰트 스타일을 다시 한 번 확인해 주세요");
