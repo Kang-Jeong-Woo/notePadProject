@@ -7,9 +7,6 @@ import {useSelector} from "react-redux";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 
 const BulletinBoard = props => {
-    // const tables = useSelector(state => {
-    //     return state.table;
-    // });
     const tablesData = useSelector((state) => {
         return state.table.tableData
     });
@@ -37,7 +34,7 @@ const BulletinBoard = props => {
                     <FontPostIt
                         key={fonts.id}
                         id={fonts.id}
-                        content={fonts.contents}
+                        content={fonts.content}
                         style={fonts.style}
                         degree={fonts.degree}
                         color={fonts.color}

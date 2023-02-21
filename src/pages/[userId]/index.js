@@ -5,11 +5,15 @@ import {MongoClient} from "mongodb";
 import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
+import {useEffect} from "react";
 
 function HomePage(props) {
     const router = useRouter();
     const dispatch = useDispatch();
-    dispatch(tableActions.setTable(props.tableData));
+    
+    useEffect(()=>{
+        dispatch(tableActions.setTable(props.tableData));
+    },[])
     async function positionHandler(posData) {
         const positionData = {id: posData.id, x: Math.floor(posData.x), y: Math.floor(posData.y), colName: posData.colName}
         const res = await fetch("/api/fetch-position", {
@@ -107,7 +111,7 @@ function HomePage(props) {
             userId: "userid",
             saveImage: drawData,
         }
-        const res = await fetch("/api/fetch-draw", {
+        const res = await fetch("/api/new-draw", {
             method: "POST",
             body: JSON.stringify(inputData),
             headers: {
@@ -143,12 +147,24 @@ function HomePage(props) {
         router.reload();
     }
 
+    async function addDB(targetData){
+        const res = await fetch("/api/fetch-table", {
+            method: "POST",
+            body: JSON.stringify(targetData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+        router.reload();
+    }
+
     return (
         <div className={styles.homeCtnr}>
-            <SideBar addPostIt={addPostIt} onAddFont={addFontData}/>
+            <SideBar addPostIt={addPostIt} onAddFont={addFontData} onSaveDB={addDB}/>
             <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
                            onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
-                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData}/>
+                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData} />
         </div>
     );
 };

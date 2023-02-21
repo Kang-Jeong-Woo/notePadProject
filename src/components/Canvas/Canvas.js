@@ -28,8 +28,8 @@ const Canvas = (props) => {
     };
     return (
         <>
-            <label className={classes.switch}>그리기
-                <input type="checkbox" value={canDraw|""} onChange={chagneDraw}/>
+            <label htmlFor={"onOff"} className={classes.switch}>그리기
+                <input type="checkbox" id={"onOff"} value={canDraw|""} onChange={chagneDraw}/>
                 <span className={classes.slider}></span>
             </label>
 

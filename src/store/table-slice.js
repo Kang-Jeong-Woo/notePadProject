@@ -1,8 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const table = createSlice({
+const initialState = {isInit: true, tableData: []}
+
+const tableSlice = createSlice({
     name: "table",
-    initialState: {isInit: true, tableData: []},
+    initialState,
     reducers: {
         setTable(state, action) {
             if (state.isInit) {
@@ -63,6 +65,25 @@ const table = createSlice({
                 editAry.contents.contents[newData.column][newData.i] = newData.value
             }
         },
+        updateZIndex(state, action){
+            const newData = action.payload;
+            const editAry = state.tableData.find((table) => table.id === newData.id);
+            editAry.positionZ=newData.z
+        },
+        updateXYPosition(state,action){
+            const newData = action.payload;
+            const editAry = state.tableData.find((table) => table.id === newData.id);
+            editAry.positionX=newData.x
+            editAry.positionY=newData.y
+        },
+        updateWHPosition(state, action){
+            const newData = action.payload;
+            const editAry = state.tableData.find((table) => table.id === newData.id);
+            editAry.positionX=newData.x
+            editAry.positionY=newData.y
+            editAry.width=newData.w
+            editAry.height=newData.h
+        },
         deleteTable(state, action) {
             const newData = action.payload;
             const editAry = state.tableData.find((table) => table.id === newData.id);
@@ -76,5 +97,5 @@ const table = createSlice({
     }
 });
 
-export const tableActions = table.actions;
-export default table;
+export const tableActions = tableSlice.actions;
+export default tableSlice;

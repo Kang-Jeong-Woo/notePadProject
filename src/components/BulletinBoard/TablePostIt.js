@@ -34,15 +34,26 @@ const TablePostIt = (props) => {
     const mouseOut = () => {
         tabRef.current.style.top = "-23px";
     }
+    const updateTable = (data) => {dispatch(tableActions.updateTable(data))};
+    const addRow = (id) => {dispatch(tableActions.addRow(id))};
+    const deleteRow = (id) => {dispatch(tableActions.deleteRow(id))};
+    const addColumn = (id) => {dispatch(tableActions.addColumn(id))};
+    const deleteColumn = (id) => {dispatch(tableActions.deleteColumn(id))};
+    const updateZIndex = (data) => {dispatch(tableActions.updateZIndex(data))};
+    const updateXYPosition = (data) => {dispatch(tableActions.updateXYPosition(data))};
+    const updateWHPosition = (data) => {dispatch(tableActions.updateWHPosition(data))};
+
     const dragStart = (e, d, id = props.id) => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "tableData"};
-        props.onZpst(Z);
+        updateZIndex(Z);
+        // props.onZpst(Z);
     }
     const dragStop = (e, d, id = props.id) => {
-        const XY = {id: id, x: d.y, y: d.x, colName: "tableData"}
-        props.onDragPst(XY);
+        const XY = {id: id, x: d.x, y: d.y, colName: "tableData"}
+        updateXYPosition(XY);
+        // props.onDragPst(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -54,27 +65,11 @@ const TablePostIt = (props) => {
     const resizeStop = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.y, y: position.x, h: height, w: width, colName: "tableData"}
-        props.onSizePst(XYHW);
+        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "tableData"}
+        updateWHPosition(XYHW);
+        // props.onSizePst(XYHW);
     }
-    const deleteTable = (id) => {
-        dispatch(tableActions.deleteTable(id));
-    };
-    const updateTable = (data) => {
-        dispatch(tableActions.updateTable(data));
-    };
-    const addRow = (id) => {
-        dispatch(tableActions.addRow(id));
-    };
-    const deleteRow = (id) => {
-        dispatch(tableActions.deleteRow(id));
-    };
-    const addColumn = (id) => {
-        dispatch(tableActions.addColumn(id));
-    };
-    const deleteColumn = (id) => {
-        dispatch(tableActions.deleteColumn(id));
-    };
+
     const editComponent = (<>
         <span className={classes.tabText}>행<button onClick={() => {
             addColumn(props.id)
@@ -124,14 +119,14 @@ const TablePostIt = (props) => {
                 <tr key={"B" + colIndex}>
                     {content.map((data, index) => (
                         <td key={index}><input type={"text"} defaultValue={data} onChange={e => {
-                            updateTable({id: props.id, column:colIndex, type: "content", i: index, value: e.target.value})
+                            updateTable({id: props.id,column: colIndex,type: "content",i: index,value: e.target.value
+                            })
                         }}/></td>
                     ))}
                 </tr>
             )
         })}
     </>)
-    console.log(props.table.contents);
     return (
         <Rnd minWidth={100} minHeight={100} bounds={"parent"}
              default={{x: props.positionX, y: props.positionY, width: props.width, height: props.height + 23}}
@@ -154,7 +149,7 @@ const TablePostIt = (props) => {
                     </tr>
                     </thead>
                     <tbody>
-                        {isEdit ? contentEditComponent : contentComponent}
+                    {isEdit ? contentEditComponent : contentComponent}
                     </tbody>
                 </table>
             </div>
