@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import CanvasDraw from "react-canvas-draw";
 import classes from "./Canvas.module.css";
 
@@ -7,9 +7,12 @@ const Canvas = (props) => {
     const [radius, setRadius] = useState();
     const [canDraw, setCanDraw] = useState(true);
     let saveableCanvas;
-    const height = () => typeof window !== "undefined" ? Math.ceil(window.innerHeight - 25) : 1270;
+    useEffect(()=>{
+        const height = () => typeof window !== "undefined" ? Math.ceil(window.innerHeight - 25) : 1270;
+    },[])
+
     const drawSave = () => {
-        props.onSaveDraw(saveableCanvas.getSaveData());
+        // props.onSaveDraw(saveableCanvas.getSaveData());
     };
     const eraseAll = () => {
         saveableCanvas.eraseAll();

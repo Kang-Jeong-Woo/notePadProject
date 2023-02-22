@@ -6,17 +6,17 @@ import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
 import {useEffect} from "react";
-import {fontAction} from "@/store/font-slice";
+import {fontActions} from "@/store/font-slice";
 
 function HomePage(props) {
     const router = useRouter();
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(tableActions.setTable(props.tableData));
+        dispatch(fontActions.setFont(props.fontData));
+        // dispatch(canvasActions.setDrawData(props.drawData));
     },[])
-    useEffect(()=>{
-        dispatch(fontAction.setFont(props.fontData));
-    },[])
+// 안 씀
     async function positionHandler(posData) {
         const positionData = {id: posData.id, x: Math.floor(posData.x), y: Math.floor(posData.y), colName: posData.colName}
         const res = await fetch("/api/fetch-position", {
@@ -28,7 +28,7 @@ function HomePage(props) {
         });
         const data = await res.json();
     }
-
+// 안 씀
     async function sizePositionHandler(posData) {
         const positionData = {
             id: posData.id,
@@ -60,7 +60,7 @@ function HomePage(props) {
         const data = await res.json();
         router.reload();
     }
-
+// 안 씀
     async function zIndexHandler(posData) {
         const positionData = {id: posData.id, z: posData.z, colName: posData.colName}
         const res = await fetch("/api/fetch-zindex", {
@@ -72,7 +72,7 @@ function HomePage(props) {
         });
         const data = await res.json();
     }
-
+// 안 씀
     async function degreeHandler(degreeData) {
         const res = await fetch("/api/fetch-degree", {
             method: "POST",
@@ -83,7 +83,7 @@ function HomePage(props) {
         });
         const data = await res.json();
     }
-
+// 안 씀
     async function addPostIt(postData) {
         const postIt = {
             userId: "userid",
@@ -124,7 +124,7 @@ function HomePage(props) {
         const data = await res.json();
         router.reload();
     }
-
+// 안 씀
     async function addFontData(fontData) {
         const inputData = {
             userId: "userid",

@@ -2,13 +2,13 @@ import classes from "@/components/SideBar/SideBar.module.css";
 import {useRef} from "react";
 import {tableActions} from "@/store/table-slice";
 import {useDispatch} from "react-redux";
-import {fontAction} from "@/store/font-slice";
+import {fontActions} from "@/store/font-slice";
 const FontSection = (props) => {
     const inputRef = useRef();
     const styleRef = useRef();
     const colorRef = useRef("#000000");
     const dispatch = useDispatch();
-    const addFontSlice = (data) => {dispatch(fontAction.addFont(data))};
+    const addFontSlice = (data) => {dispatch(fontActions.addFont(data))};
     const addFont = (event) => {
         event.preventDefault();
         if(inputRef.current.value.trim().length !== 0 && styleRef.current.value !== "원하는 글자체를 선택하세요"){

@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import classes from "./FontPostIt.module.css";
 import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
-import {fontAction} from "@/store/font-slice";
+import {fontActions} from "@/store/font-slice";
 
 const FontPostIt = (props) => {
     const tabRef = useRef(undefined);
@@ -16,10 +16,10 @@ const FontPostIt = (props) => {
     const [picHeight, setPicHeight] = useState();
     const [isFirstLoad, setFirstLoad] = useState(true);
     const [degree, setDegree] = useState(props.degree);
-    const updateZIndex = (data) => {dispatch(fontAction.updateZIndex(data))};
-    const updateXYPosition = (data) => {dispatch(fontAction.updateXYPosition(data))};
-    const updateWHPosition = (data) => {dispatch(fontAction.updateWHPosition(data))};
-    const updateDegree = (data) => {dispatch(fontAction.updateDegree(data))};
+    const updateZIndex = (data) => {dispatch(fontActions.updateZIndex(data))};
+    const updateXYPosition = (data) => {dispatch(fontActions.updateXYPosition(data))};
+    const updateWHPosition = (data) => {dispatch(fontActions.updateWHPosition(data))};
+    const updateDegree = (data) => {dispatch(fontActions.updateDegree(data))};
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };

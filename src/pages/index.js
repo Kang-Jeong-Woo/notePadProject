@@ -9,7 +9,6 @@ export default function Home() {
                 <title>덕질 패드</title>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
-
                 <meta name="description" content="마음껏 꾸밀 수 있는 나만의 다이어리"/>
                 <meta name="keywords" content="다이어리 diary"/>
                 <meta name="author" content="KangJeongWoo"/>
@@ -19,7 +18,6 @@ export default function Home() {
             </Head>
             <main>
                 <Login></Login>
-
             </main>
         </>
 )

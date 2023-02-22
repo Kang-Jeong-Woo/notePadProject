@@ -17,7 +17,7 @@ const SideBar = (props) => {
     const tableData = useSelector((state) => state.table.tableData);
     const fontData = useSelector(state => state.font.fontData);
     const addDB = () => {props.onSaveDB(tableData, fontData)};
-    const addTable = () => {dispatch(tableActions.addTable());};
+    const addTable = () => {dispatch(tableActions.addTable())};
     const addPost = () => {
         setIsModal(true);
         setIsPost(true);

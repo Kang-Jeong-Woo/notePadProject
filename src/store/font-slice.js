@@ -61,5 +61,5 @@ const fontSlice = createSlice({
     }
 })
 
-export const fontAction = fontSlice.actions;
+export const fontActions = fontSlice.actions;
 export default fontSlice;
