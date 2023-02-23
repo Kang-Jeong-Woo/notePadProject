@@ -1,39 +1,60 @@
 import classes from "./SideBar.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPen, faFillDrip, faPalette, faPaintbrush, faPlus, faTable, faFont, faCamera} from "@fortawesome/free-solid-svg-icons";
-import {useDispatch, useSelector} from "react-redux";
-import {choiceActions} from "@/store/choice-slice";
-import PlusSection from "@/components/Detail/Plus";
-import PenSection from "@/components/Detail/Pen";
-import TableSection from "@/components/Detail/Table";
-import FontSection from "@/components/Detail/Font";
+import {faImage, faTable, faFont,} from "@fortawesome/free-solid-svg-icons";
+import {useDispatch} from "react-redux";
+import {tableActions} from "@/store/table-slice";
+import Modal from "@/components/UI/Modal";
+import {useState} from "react";
+import PostItForm from "@/components/Form/PostItForm";
+import FontSection from "@/components/Form/FontPoistItForm";
 
 const SideBar = (props) => {
+    const [isModalSate, setIsModalState] = useState({
+        modal: false,
+        post: false,
+        font: false,
+    });
     const dispatch = useDispatch();
-    const choice = useSelector((state) => state.choice);
-    const addPost = () => {dispatch(choiceActions.changePlus());};
-    const drawing = () => {dispatch(choiceActions.changeDraw());};
-    const addTable = () => {dispatch(choiceActions.changeTable());};
-    const addFont = () => {dispatch(choiceActions.changeFont());};
-    const cheeze = () => {alert("찰캌!")}
+    const addTable = () => {
+        dispatch(tableActions.addTable())
+    };
+    const addPost = () => {
+        setIsModalState(prevState => {
+            return {...prevState, modal: true, post: !prevState.post}
+        })
+    }
+    const addFont = () => {
+        setIsModalState(prevState => {
+            return {...prevState, modal: true, font: !prevState.font}
+        })
 
-    return(
+    }
+    const onClose = () => {
+        setIsModalState(prevState => {
+            return {...prevState, modal: !prevState.modal}
+        });
+    }
+
+    return (
         <div className={classes.Cntnr}>
-            <div className={classes.detail}>
-                {choice.plus && <PlusSection onAddPost={props.addPostIt}/>}
-                {choice.pen && <PenSection/>}
-                {choice.table && <TableSection/>}
-                {choice.font && <FontSection/>}
-            </div>
-            <div className={classes.choice}>
-                <ul className={classes.list}>
-                    <li><FontAwesomeIcon onClick={addPost} icon={faPlus}/></li>
-                    <li><FontAwesomeIcon onClick={drawing} icon={faPen}/></li>
-                    <li><FontAwesomeIcon onClick={addTable} icon={faTable}/></li>
-                    <li><FontAwesomeIcon onClick={addFont} icon={faFont}/></li>
-                    <li><FontAwesomeIcon onClick={cheeze} icon={faCamera}/></li>
-                </ul>
-            </div>
+            <ul>
+
+                <li onClick={addPost}>
+                    <FontAwesomeIcon icon={faImage}/>
+                    {isModalSate.modal && isModalSate.post &&
+                        <Modal onClose={onClose}><PostItForm onAddPost={props.onAddPost}/></Modal>}
+                </li>
+
+                <li onClick={addTable}>
+                    <FontAwesomeIcon icon={faTable}/>
+                </li>
+
+                <li onClick={addFont}>
+                    <FontAwesomeIcon icon={faFont}/>
+                    {isModalSate.modal && isModalSate.font && <Modal onClose={onClose} ><FontSection/></Modal>}
+                </li>
+
+            </ul>
         </div>
     )
 }
