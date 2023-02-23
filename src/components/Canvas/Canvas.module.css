@@ -1,18 +1,68 @@
-.switch {
-    position: relative;
+.btnCntnr button {
+    border: 0;
+    outline: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.iconCntnr {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10000;
+    width: 48px;
+    height: 48px;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(-225deg, #fff 0%, rgba(255, 255, 255, 0) 40%, rgba(0, 255, 255, 0) 60%, cyan 100%), linear-gradient(45deg, #3023AE 0%, #f09 100%);
+    transition: 0.6s;
+}
+
+.iconCntnr input {
+    cursor: pointer;
+}
+
+.iconCntnr:hover {
+    width: 68px;
+    height: 68px;
+    animation: vibrate-1 3s linear infinite both;
+}
+
+.penMenu {
+    position: absolute;
+    top: 15px;
+    left: -200px;
+    transition: 0.5s;
+    width: 200px;
+}
+
+.icon {
+    margin-right: 0.5em;
+    font-size: x-large;
+    color: white;
+}
+
+.iconB {
+    margin-right: 0.5em;
+    font-size: x-large;
+    color: black;
+}
+
+.penMenu div {
+    padding: 0.25em 0;
+}
+
+.toggleSwitch {
+    position: absolute;
+    top: -3px;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* The slider */
-.slider {
+.toggleButton {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -21,9 +71,10 @@
     bottom: 0;
     background-color: #ccc;
     transition: .4s;
+    border-radius: 34px;
 }
 
-.slider:before {
+.toggleButton:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -32,25 +83,103 @@
     bottom: 4px;
     background-color: white;
     transition: .4s;
+    border-radius: 50%;
 }
 
-input:checked + .slider {
-    background-color: #2196F3;
+.toggleSwitch input:checked + .toggleButton {
+    background-color: hotpink;
 }
 
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+.toggleSwitch input:focus + .toggleButton {
+    box-shadow: 0 0 1px hotpink;
 }
 
-input:checked + .slider:before {
+.toggleSwitch input:checked + .toggleButton:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
+
+.saveCntnr {
+    position: absolute;
+    top: 75px;
+    left: 15px;
+    z-index: 10000;
+    width: 48px;
+    height: 48px;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: linear-gradient(-225deg, #fff 0%, rgba(255, 255, 255, 0) 40%, rgba(0, 255, 255, 0) 60%, cyan 100%), linear-gradient(45deg, #3023AE 0%, #f09 100%);
+    transition: 0.6s;
 }
 
-.slider.round:before {
-    border-radius: 50%;
+.saveCntnr svg {
+    margin: 0;
+}
+
+.saveCntnr .save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 15px;
+    left: -200px;
+    transition: 0.5s;
+    width: 70px;
+    height: 30px;
+    background: hotpink;
+    cursor: pointer;
+}
+
+.saveCntnr .save:after {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: hotpink;
+    border-left: 0;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.saveCntnr:hover {
+    width: 68px;
+    height: 68px;
+    animation: vibrate-1 3s linear infinite both;
+}
+
+.iconCntnr:hover + .saveCntnr {
+    top: 100px;
+}
+
+@keyframes vibrate-1 {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px);
+    }
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px);
+    }
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
 }

@@ -1,18 +1,26 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    drawingOn: false,
-    lineStyle: "",
-    lineWidth: "",
-    penColor: "",
-    drawData: "",
-    canvasRef: undefined,
-}
+    drawingOn: true,
+    color: "#ffffff",
+    radius: 1,
+    drawData: {userId:"", drawData:undefined},
+};
 
 const canvasSlice = createSlice({
     name: "palette",
     initialState,
     reducers: {
+        setColor(state, action) {
+            state.color = action.payload
+        },
+        setRadius(state, action) {
+            state.radius = action.payload
+
+        },
+        setIsDraw(state) {
+            state.drawingOn=(!state.drawingOn)
+        },
         setDrawData(state, action) {
             if (state.isInit) {
                 state.dawData = action.payload;
@@ -21,7 +29,8 @@ const canvasSlice = createSlice({
             return
         },
         setSliceData(state, action){
-            state.saveableCanvas = action.payload;
+            state.drawData.userId = "userid";
+            state.drawData.drawData = action.payload;
         }
     }
 });

@@ -69,7 +69,7 @@ const BulletinBoard = props => {
                         onDel={props.onDel}
                     />
                 ))}
-                <Canvas drewData={props.drewData} onSaveDraw={props.onSaveDraw}/>
+                <Canvas drewData={props.drewData} onSaveDraw={props.onSaveDraw} onSaveDB={props.onSaveDB}/>
             </div>
         </div>
     );

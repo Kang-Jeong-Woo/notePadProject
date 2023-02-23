@@ -112,9 +112,10 @@
 
 .homeCtnr{
   display: grid;
-  grid-template-columns: 350px auto;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
   align-items: stretch;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 /* Enable hover only on non-touch devices */

@@ -150,7 +150,7 @@ function HomePage(props) {
         router.reload();
     }
 
-    async function addDB(tableData, fontData){
+    async function saveDB(tableData, fontData, drawData){
         const resTable = await fetch("/api/fetch-table", {
             method: "POST",
             body: JSON.stringify(tableData),
@@ -165,17 +165,25 @@ function HomePage(props) {
                 "Content-Type": "application/json"
             }
         });
+        const resDraw = await fetch("/api/fetch-draw", {
+            method: "POST",
+            body: JSON.stringify(drawData),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
         const resTableData = await resTable.json();
         const resFontData = await resFont.json();
+        const resDrawData = await resDraw.json();
         router.reload();
     }
 
     return (
         <div className={styles.homeCtnr}>
-            <SideBar onAddPost={addPostIt} onAddFont={addFontData} onSaveDB={addDB}/>
+            <SideBar onAddPost={addPostIt} onAddFont={addFontData} />
             <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
                            onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
-                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData} />
+                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData} onSaveDB={saveDB}/>
         </div>
     );
 };
