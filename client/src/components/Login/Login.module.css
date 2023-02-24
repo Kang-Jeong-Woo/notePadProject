@@ -1,0 +1,132 @@
+.Cntnr {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 4rem 0;
+}
+
+.form {
+    background: snow;
+    width: 320px;
+    padding: 20px;
+    padding-top: 10px;
+    margin: auto;
+    display: block;
+    border: 1px gray solid;
+    border-radius: 20px;
+}
+
+.form a {
+    color: #FF6EC7;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.form a:hover {
+    color: tomato;
+    font-weight: bold;
+}
+
+.logo {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title {
+    text-align: center;
+    padding-bottom: 20px;
+    color: rgba(0, 0, 0, 0.636);
+}
+
+.spanMode {
+    display: inline-block;
+    padding-bottom: 15px;
+    padding-right: 10px;
+}
+
+
+.spanBtn {
+    display: block;
+    background: rgb(251,72,196);
+    border-radius: 10px;
+    color: whitesmoke;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.spanBtn:hover {
+    font-weight: bold;
+    color: rgb(251,72,196);
+    background-color: whitesmoke;
+    border: 2px solid rgb(251,72,196);
+    margin: -2px;
+}
+
+.m1 {
+    margin: 1rem 0;
+}
+
+.label {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.label p {
+    display: block;
+    text-align: left;
+    padding-left: 60px;
+    font-size: 10px;
+    line-height: 10px;
+    margin-top: 5px;
+}
+
+.input {
+    font-size: 16px;
+    height: 30px;
+    padding-left: 10px;
+    display: inline-block;
+    border: 0px;
+    border-bottom: 1px solid gray;
+}
+
+.inputId {
+    font-size: 16px;
+    height: 30px;
+    padding-left: 10px;
+    display: inline-block;
+    border: 0px;
+    border-bottom: 1px solid gray;
+    width: 150px;
+}
+
+.checkBtn {
+    font-size: 16px;
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: gray;
+    background: whitesmoke;
+    border: 1px solid gray;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.checkBtn:hover {
+    font-size: 16px;
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #FF6EC7;
+    background: whitesmoke;
+    border: 1px solid #FF6EC7;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+}

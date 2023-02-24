@@ -4,10 +4,11 @@ import {faImage, faTable, faFont,} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {tableActions} from "@/store/table-slice";
 import Modal from "@/components/UI/Modal";
-import {useState} from "react";
 import PostItForm from "@/components/Form/PostItForm";
 import FontSection from "@/components/Form/FontPoistItForm";
 import {addActions} from "@/store/addMenu-slice";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const SideBar = (props) => {
     // const [isModalSate, setIsModalState] = useState({
@@ -16,6 +17,7 @@ const SideBar = (props) => {
     //     font: false,
     // });
     const addMenu = useSelector(state => state.add);
+    const router = useRouter();
     const dispatch = useDispatch();
     const addTable = () => {
         dispatch(tableActions.addTable())
@@ -61,6 +63,7 @@ const SideBar = (props) => {
                 </li>
 
             </ul>
+
         </div>
     )
 }
