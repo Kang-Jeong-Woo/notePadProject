@@ -13,15 +13,17 @@ const addSlice = createSlice({
         setFont(state) {
             state.modal = true
             state.font = true
+            state.post = false
         },
         setPost(state) {
             state.modal = true
             state.post = true
+            state.font = false
         },
         close(state) {
-            state.modal = false
             state.post = false
             state.font = false
+            state.modal = false
         },
     }
 });
