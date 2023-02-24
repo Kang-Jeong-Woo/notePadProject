@@ -8,8 +8,12 @@ import PenSection from "@/components/Detail/Pen";
 import TableSection from "@/components/Detail/Table";
 import FontSection from "@/components/Detail/Font";
 import {tableActions} from "@/store/table-slice";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const SideBar = (props) => {
+
+    const router = useRouter();
     const dispatch = useDispatch();
     const choice = useSelector((state) => state.choice);
     const addPost = () => {dispatch(choiceActions.changePlus());};
@@ -22,6 +26,17 @@ const SideBar = (props) => {
     return(
         <div className={classes.Cntnr}>
             <div className={classes.detail}>
+                <h1 style={{display:"inline-flex", paddingLeft: '10px'}}>{props.user.nick}님의 다이어리</h1>
+                <button onClick={()=>{
+                    axios.post(
+                        "http://localhost:8123/api/logout",
+                        { withCredentials: true }
+                    ).then((result) => {
+                        if (result.status === 200) {
+                            console.log(result.data.success)
+                            router.push("/")
+                        }})
+                }} style={{display: 'inline-flex', margin: "10px", padding: "5px"}}>Logout</button>
                 {choice.plus && <PlusSection onAddPost={props.addPostIt}/>}
                 {choice.pen && <PenSection/>}
                 {choice.table && <TableSection/>}

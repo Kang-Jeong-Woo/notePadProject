@@ -3,9 +3,45 @@ import BulletinBoard from "@/components/BulletinBoard/BulletinBoard";
 import styles from "@/styles/Home.module.css"
 import {MongoClient} from "mongodb";
 import {useRouter} from "next/router";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function HomePage(props) {
+
     const router = useRouter();
+    const [isLogin, setIsLogin] = useState(false);
+    const [user, setUser] = useState();    
+
+    useEffect(() => {
+
+        try {
+            axios.get("http://localhost:8123/api/login/success", { withCredentials: true })
+            .then((result) => {
+              if (result.data) {
+                setIsLogin(true);
+                setUser(result.data);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      }, []);
+    
+    // 토큰 갱신
+    setInterval((()=>{
+        axios.get("http://localhost:8123/api/refreshtoken", { withCredentials: true })
+            .then((result) => {
+              console.log(result.data)
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+    }), 7200000)
+
+    
 
     async function positionHandler(posData) {
         const positionData = {id: posData.id, x: Math.floor(posData.x), y: Math.floor(posData.y), colName: posData.colName}
@@ -142,12 +178,16 @@ function HomePage(props) {
     }
 
     return (
-        <div className={styles.homeCtnr}>
-            <SideBar addPostIt={addPostIt} onAddFont={addFontData}/>
-            <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
-                           onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
-                           onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData}/>
-        </div>
+        <>
+            { isLogin && 
+                <div className={styles.homeCtnr}>
+                    <SideBar user={user} addPostIt={addPostIt} onAddFont={addFontData}/>
+                    <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
+                                onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
+                                onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData}/>
+                </div>    
+            }
+        </>
     );
 };
 
