@@ -11,7 +11,7 @@ const table = createSlice({
             }
             if(state.length > 0) {
                 state.push({
-                    id: state[state.length-1].id, x: state[state.length-1].x, y: state[state.length-1].y, z: state[state.length-1].z, 
+                    id: state[state.length-1].id++, x: state[state.length-1].x, y: state[state.length-1].y, z: state[state.length-1].z++, 
                     width: state[state.length-1].width, height: state[state.length-1].height, 
                     titles: state[state.length-1].titles, contents: state[state.length-1].contents
                 })
