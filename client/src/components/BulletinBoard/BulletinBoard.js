@@ -7,12 +7,14 @@ import {useSelector} from "react-redux";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 
 const BulletinBoard = props => {
+
     const tablesData = useSelector((state) => {
         return state.table.tableData
     });
     const fontsData = useSelector((state) => {
         return state.font.fontData
     });
+
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>
@@ -69,7 +71,7 @@ const BulletinBoard = props => {
                         onDel={props.onDel}
                     />
                 ))}
-                <Canvas drewData={props.drewData} onSaveDraw={props.onSaveDraw} onSaveDB={props.onSaveDB}/>
+                <Canvas user={props.user} drewData={props.drewData} onSaveDraw={props.onSaveDraw} />
             </div>
         </div>
     );

@@ -1,6 +1,9 @@
-const jwt = require('jsonwebtoken')
-const { User } = require("../models/User")
-
+const jwt = require('jsonwebtoken');
+const { User } = require("../models/User");
+const { FontData } = require("../models/FontData");
+const { TableData } = require("../models/TableData");
+const { DrawData } = require("../models/DrawData");
+const { PostIts } = require("../models/PostIts");
 
 const login = async (req, res) => {
     const {userId, password} = await req.body;
@@ -95,8 +98,12 @@ const loginSuccess = async (req, res) => {
     try {
         const data = jwt.verify(req.cookies.accessToken, process.env.ACCESS_SECRET);
         const userData = await User.findOne({ userId:data.userId }).select('userId nick roll')
-        res.status(200).json(userData);
-
+        const tableData = await TableData.find({ userId:userData.userId })
+        const fontData = await FontData.find({ userId:userData.userId })
+        const drawData = await DrawData.find({ userId:userData.userId })
+        const postIts = await PostIts.find({ userId:userData.userId })
+        res.status(200).json({userData: userData, tableData: tableData, fontData: fontData, drawData: drawData, postIts: postIts});
+        
     } catch (error) {
         res.status(500).json(error);
     }
@@ -123,7 +130,7 @@ const signUp = async (req, res) => {
 }
 
 
-const idCheck = (req, res) => {
+const userIdCheck = (req, res) => {
 
     const { userId } = req.query;
     
@@ -138,6 +145,13 @@ const idCheck = (req, res) => {
 
 }
 
+const saveDB = (req, res) => {
+
+
+
+
+}
+
 
 
 module.exports = {
@@ -147,5 +161,6 @@ module.exports = {
     loginSuccess,
     logout,
     signUp,
-    idCheck
+    userIdCheck,
+    saveDB
 }

@@ -2,7 +2,7 @@ import classes from "./Table.module.css";
 import {tableActions} from "@/store/table-slice";
 import {Rnd} from "react-rnd";
 import {useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Table = (props) => {
     const table = props.table;

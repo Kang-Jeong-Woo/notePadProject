@@ -10,7 +10,8 @@ const {
     loginSuccess,
     logout,
     signUp,
-    idCheck
+    userIdCheck,
+    saveDB
 } = require('./controller/index')
 
 const app = express();
@@ -35,12 +36,15 @@ app.use(cors({
 app.post('/api/login', login);
 app.get('/api/accesstoken', accessToken);
 app.get('/api/refreshtoken', refreshToken);
-app.get('/api/login/success', loginSuccess);
+app.post('/api/login/success', loginSuccess);
 app.post('/api/logout', logout);
 
 // 회원가입 라우터
 app.post('/api/signup', signUp);
-app.get('/api/signup/idcheck', idCheck);
+app.get('/api/signup/useridcheck', userIdCheck);
+
+// DB저장 라우터
+app.post('/api/savedb', saveDB)
 
 app.listen(process.env.PORT, ()=>{
     console.log(`server is on ${process.env.PORT}`);

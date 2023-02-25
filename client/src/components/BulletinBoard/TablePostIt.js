@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
 
 const TablePostIt = (props) => {
+    
     const tabRef = useRef(undefined);
     const dispatch = useDispatch();
     const [dragable, setDragable] = useState(false);
@@ -26,7 +27,7 @@ const TablePostIt = (props) => {
     const closeEvent = async () => {
         const id = await props.id;
         const delData = {id: id, colName: "tableData"}
-        props.onDel(delData);
+        props.onDel(delData)
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";

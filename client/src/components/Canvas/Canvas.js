@@ -25,6 +25,9 @@ const Canvas = (props) => {
     const fontData = useSelector(state => state.font.fontData);
     const heightFn = () => Math.ceil(window.innerHeight - 5);
     const widthFn = () => Math.ceil(window.innerWidth - 5);
+
+    const userId = props.user.userId
+
     useEffect(() => {
         setWidth(widthFn());
         setHeight(heightFn());
@@ -53,9 +56,27 @@ const Canvas = (props) => {
     const changeDraw = () => {
         setIsDraw();
     };
+
     const onSaveDB = () => {
-        const drawData = {userId: "userid", drawData: canvasRef.current.getSaveData()}
-        props.onSaveDB(tableData, fontData, drawData);
+
+        const drawData = {userId: userId, drawData: canvasRef.current.getSaveData()}
+
+        try {
+            axios.post("http://localhost:8123/api/savedb",
+            { tableData: tableData, fontData: fontData, drawData: drawData },
+            { withCredentials: true }
+            )
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } catch (error) {
+          console.log(error);
+        }
+
+        // props.onSaveDB(tableData, fontData, drawData);
     };
     const menuMouseEnter = () => {
         penRef.current.style.left = "80px"

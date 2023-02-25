@@ -7,8 +7,6 @@ import Modal from "@/components/UI/Modal";
 import PostItForm from "@/components/Form/PostItForm";
 import FontSection from "@/components/Form/FontPoistItForm";
 import {addActions} from "@/store/addMenu-slice";
-import { useRouter } from "next/router";
-import axios from "axios";
 
 const SideBar = (props) => {
     // const [isModalSate, setIsModalState] = useState({
@@ -16,17 +14,19 @@ const SideBar = (props) => {
     //     post: false,
     //     font: false,
     // });
-    const addMenu = useSelector(state => state.add);
-    const router = useRouter();
+
     const dispatch = useDispatch();
-    const addTable = () => {
-        dispatch(tableActions.addTable())
-    };
+    
+    const userId = props.user.userId
+    const addMenu = useSelector(state => state.add);
+
+    const addTable = () => {dispatch(tableActions.addTable())};
     const setFont = () => {dispatch(addActions.setFont())}
     const setPost = () => {dispatch(addActions.setPost())}
     const close = () => {dispatch(addActions.close())}
 
     console.log( addMenu.modal, addMenu.font, addMenu.post)
+
     // const addPost = () => {
     //     setIsModalState(prevState => {
     //         return {...prevState, modal: true, post: !prevState.post}
@@ -53,7 +53,7 @@ const SideBar = (props) => {
                         <Modal onClose={close}><PostItForm onAddPost={props.onAddPost}/></Modal>}
                 </li>
 
-                <li onClick={addTable}>
+                <li onClick={()=>{addTable(userId)}}>
                     <FontAwesomeIcon icon={faTable}/>
                 </li>
 

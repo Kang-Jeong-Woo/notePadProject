@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const postitsSchema = mongoose.Schema({
+const postItsSchema = mongoose.Schema({
 
     serId: {
         type: String,
@@ -37,6 +37,6 @@ const postitsSchema = mongoose.Schema({
 
 })
 
-const Postits = mongoose.model('Postits', postitsSchema);
+const PostIts = mongoose.model('PostIts', postItsSchema);
 
-module.exports = { Postits };
+module.exports = { PostIts };
