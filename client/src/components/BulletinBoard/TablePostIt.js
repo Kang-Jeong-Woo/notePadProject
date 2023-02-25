@@ -15,6 +15,18 @@ const TablePostIt = (props) => {
     const [picWidth, setPicWidth] = useState();
     const [picHeight, setPicHeight] = useState();
     const [isFirstLoad, setFirstLoad] = useState(true);
+
+    const updateTable = (data) => {dispatch(tableActions.updateTable(data))};
+    const deleteTable = (id) => {dispatch(tableActions.deleteTable(id))};
+    const addRow = (id) => {dispatch(tableActions.addRow(id))};
+    const deleteRow = (id) => {dispatch(tableActions.deleteRow(id))};
+    const addColumn = (id) => {dispatch(tableActions.addColumn(id))};
+    const deleteColumn = (id) => {dispatch(tableActions.deleteColumn(id))};
+    const updateZIndex = (data) => {dispatch(tableActions.updateZIndex(data))};
+    const updateXYPosition = (data) => {dispatch(tableActions.updateXYPosition(data))};
+    const updateWHPosition = (data) => {dispatch(tableActions.updateWHPosition(data))};
+
+
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
@@ -26,8 +38,7 @@ const TablePostIt = (props) => {
     }
     const closeEvent = async () => {
         const id = await props.id;
-        const delData = {id: id, colName: "tableData"}
-        props.onDel(delData)
+        deleteTable(id)
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";
@@ -35,14 +46,6 @@ const TablePostIt = (props) => {
     const mouseOut = () => {
         tabRef.current.style.top = "-23px";
     }
-    const updateTable = (data) => {dispatch(tableActions.updateTable(data))};
-    const addRow = (id) => {dispatch(tableActions.addRow(id))};
-    const deleteRow = (id) => {dispatch(tableActions.deleteRow(id))};
-    const addColumn = (id) => {dispatch(tableActions.addColumn(id))};
-    const deleteColumn = (id) => {dispatch(tableActions.deleteColumn(id))};
-    const updateZIndex = (data) => {dispatch(tableActions.updateZIndex(data))};
-    const updateXYPosition = (data) => {dispatch(tableActions.updateXYPosition(data))};
-    const updateWHPosition = (data) => {dispatch(tableActions.updateWHPosition(data))};
 
     const dragStart = (e, d, id = props.id) => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
@@ -150,7 +153,7 @@ const TablePostIt = (props) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {isEdit ? contentEditComponent : contentComponent}
+                        {isEdit ? contentEditComponent : contentComponent}
                     </tbody>
                 </table>
             </div>

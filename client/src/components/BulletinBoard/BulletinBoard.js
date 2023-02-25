@@ -36,7 +36,7 @@ const BulletinBoard = props => {
                     />
                 ))}
                 {fontsData.map((font) => (
-                    <FontPostIt
+                    font.isDelete === false && <FontPostIt
                         key={font.id}
                         id={font.id}
                         content={font.content}
@@ -56,7 +56,7 @@ const BulletinBoard = props => {
                     />
                 ))}
                 {tablesData.map((table)=>(
-                    <TablePostIt
+                    table.isDelete === false && <TablePostIt
                         key={table.id}
                         id={table.id}
                         table={table.contents}

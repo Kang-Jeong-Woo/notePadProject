@@ -15,6 +15,7 @@ const login = async (req, res) => {
     if(!userInfo) {
         res.status(403).json("Not Authorized");
     } else {
+
         try {
             // accessToken 발급
             const accessToken = jwt.sign({
@@ -99,8 +100,11 @@ const refreshToken = async (req, res) => {
 
 
 const loginSuccess = async (req, res) => {
+
     try {
+        // 토큰 데이터 검증
         const data = jwt.verify(req.cookies.accessToken, process.env.ACCESS_SECRET);
+        // 검증 성공 시 데이터 전달
         const userData = await User.findOne({ userId:data.userId }).select('userId nick roll')
         const tableData = await TableData.find({ userId:userData.userId })
         const fontData = await FontData.find({ userId:userData.userId })
@@ -115,6 +119,7 @@ const loginSuccess = async (req, res) => {
 
 const logout = (req, res) => {
     try {
+        // 엑세스쿠키 초기화
         res.cookie('accessToken', '')
         res.status(200).json({success:"Logout Success"})
     } catch (error) {
@@ -125,6 +130,7 @@ const logout = (req, res) => {
 
 const signUp = async (req, res) => {
 
+    // 유저 데이터 생성
     const user = await new User(req.body);
     await user.save((err, userInfo)=>{
         if(err) return res.json({success: false, err})
@@ -136,8 +142,10 @@ const signUp = async (req, res) => {
 
 const userIdCheck = (req, res) => {
 
+    // 쿼리스트링에서 usrId 데이터 확인
     const { userId } = req.query;
     
+    // 아이디 중복 확인
     User.findOne({ userId: userId })
     .then((userInfo)=>{
         res.status(200).json(userInfo)
@@ -146,67 +154,71 @@ const userIdCheck = (req, res) => {
         res.status(403).json(err)
     })
 
-
 }
 
 const saveDB = async (req, res) => {
 
-    console.log(req.body)
+    // 바디에서 테이블, 폰트, 드로우, 포스트잇 데이터 확인
+    const tableData = req.body.tableData;
+    const fontData = req.body.fontData;
+    const drawData = req.body.drawData;
 
-    for(let i=0; i<req.body.tableData.length; i++) {
-        
-        if(ObjectId.isValid(req.body.tableData[i]._id)) {
-            await TableData.updateOne({_id: req.body.tableData[i].id}, req.body.tableData[i])
-            .then(()=>{
-                res.status(200).json({success: true})
-            })
-            .catch((err)=>{
-                res.status(403).json({success: false}, err)
-            })
-        } else {
-            const tableData = await new TableData(req.body.tableData[i]);
-            await tableData.save((err, tableData)=>{
-                    if(err) return res.json({success: false, err})
-                    return res.status(200).json({success: true})
-                })
+    try {
+
+        // 테이블 데이터 저장
+        for(let i=0; i<tableData.length; i++) {
+
+            // 삭제
+            if(tableData[i].isDelete) {
+                await TableData.deleteOne({ _id: new ObjectId(tableData[i].id) })
+            // 업데이트
+            } else if(ObjectId.isValid(tableData[i]._id)) {
+                await TableData.updateOne({_id: new ObjectId(tableData[i].id)}, {$set : tableData[i]})
+            // 신규생성
+            } else {
+                const NewTableData = await new TableData(tableData[i]);
+                await NewTableData.save()
+            }  
+
         }
-    
+
+        // 폰트 데이터 저장
+        for(let i=0; i<fontData.length; i++) {
+
+            // 삭제
+            if(fontData[i].isDelete) {
+                await FontData.deleteOne({ _id: new ObjectId(fontData[i].id) })
+            // 업데이트
+            } else if(ObjectId.isValid(tableData[i]._id)) {
+                await FontData.updateOne({_id: new ObjectId(fontData[i].id)}, {$set : fontData[i]})
+            // 신규생성
+            } else {
+                const NewFontData = await new FontData(fontData[i]);
+                await NewFontData.save()
+            }  
+
+        }
+
+        // 드로우 데이터 저장
+        for(let i=0; i<drawData.length; i++) {
+            // 업데이트
+            if(ObjectId.isValid(drawData[i]._id)) {
+                await DrawData.updateOne({_id: new ObjectId(drawData[i]._id)}, {$set : drawData[i]})
+            // 신규생성
+            } else {
+                const NewDrawData = await new DrawData(drawData[i]);
+                await NewDrawData.save()
+            }
+
+        }
+
+        res.status(200).json({success: true, message: 'update success'})
+       
+    } catch (error) {
+
+        res.status(403).json({success: false, error})
+
     }
-
-    for(let i=0; i<req.body.fontData.length; i++) {
-        const fontData = await new FontData(req.body.fontData[i]);
-        await fontData.save((err, fontData)=>{
-                if(err) return res.json({success: false, err})
-                return res.status(200).json({success: true})
-            })
-    }
-
-    for(let i=0; i<req.body.drawData.length; i++) {
-        const drawData = await new DrawData(req.body.drawData[i]);
-        await drawData.save((err, drawData)=>{
-                if(err) return res.json({success: false, err})
-                return res.status(200).json({success: true})
-            })
-    }
-
-    // const tableData = await new TableData(req.body.tableData);
-    // const fontData = await new FontData(req.body.fontData);
-    // const drawData = await new DrawData(req.body.drawData);
-
-    // await tableData.save((err, tableData)=>{
-    //     if(err) return res.json({success: false, err})
-    //     return res.status(200).json({success: true})
-    // })
-    // await fontData.save((err, fontData)=>{
-    //     if(err) return res.json({success: false, err})
-    //     return res.status(200).json({success: true})
-    // })
-    // await drawData.save((err, drawData)=>{
-    //     if(err) return res.json({success: false, err})
-    //     return res.status(200).json({success: true})
-    // })
-
-
 }
 
 

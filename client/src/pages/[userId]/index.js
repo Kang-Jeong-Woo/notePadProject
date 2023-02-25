@@ -81,19 +81,6 @@ function HomePage(props) {
         router.reload();
     }
 
-    async function delHandler(posData) {
-        const positionData = {id: posData.id, colName: posData.colName}
-        const res = await fetch("/api/fetch-delete", {
-            method: "POST",
-            body: JSON.stringify(positionData),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-        const data = await res.json();
-        router.reload();
-    }
-
     async function zIndexHandler(posData) {
         const positionData = {id: posData.id, z: posData.z, colName: posData.colName}
         const res = await fetch("/api/fetch-zindex", {
@@ -111,8 +98,7 @@ function HomePage(props) {
             { isLogin && 
                 <div className={styles.homeCtnr}>
                     <SideBar user={user} />
-                    <BulletinBoard user={user} postIts={postIts} drewData={drawData} onDragPst={positionHandler} onDel={delHandler} 
-                    onSaveDraw={addDrawData} onZPst={zIndexHandler} />
+                    <BulletinBoard user={user} postIts={postIts} drewData={drawData} onDragPst={positionHandler} onSaveDraw={addDrawData} onZPst={zIndexHandler} />
                 </div>    
             }
         </>

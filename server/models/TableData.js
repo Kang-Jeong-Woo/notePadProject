@@ -10,7 +10,12 @@ const tableDataSchema = mongoose.Schema({
         type: Object
     },
     pinned: {
-        type: Boolean
+        type: Boolean,
+        default: false
+    },
+    isDelete: {
+        type: Boolean,
+        default: false
     },
     style: {
         type: String,

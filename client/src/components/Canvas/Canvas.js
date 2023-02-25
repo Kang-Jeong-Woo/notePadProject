@@ -15,6 +15,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
 const Canvas = (props) => {
+    
     const dispatch = useDispatch();
     const canvasRef = useRef();
     const penRef = useRef();

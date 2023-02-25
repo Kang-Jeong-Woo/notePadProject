@@ -28,9 +28,17 @@ const tableSlice = createSlice({
                 userId: action.payload,
                 style: "",
                 pinned: false,
+                isDelete: false,
                 contents: {titles: ["타이틀1", "타이틀2"], contents: [['내용1', '내용2'], ['내용3', '내용4']]}
             }
             state.tableData.push(tableDefaultData);
+        },
+        deleteTable(state, action) {
+            for(let i = 0; i<state.tableData.length; i++) {
+                if(state.tableData[i].id === action.payload) {
+                    state.tableData[i].isDelete = true
+                }
+            }
         },
         addColumn(state, action) {
             const id = action.payload;
@@ -85,11 +93,6 @@ const tableSlice = createSlice({
             editAry.positionY=newData.y
             editAry.width=newData.w
             editAry.height=newData.h
-        },
-        deleteTable(state, action) {
-            const newData = action.payload;
-            const editAry = state.tableData.find((table) => table.id === newData.id);
-            console.log(editAry);
         },
     }
 });

@@ -1,6 +1,7 @@
 import {useRef} from "react";
 import {useDispatch} from "react-redux";
 import {fontActions} from "@/store/font-slice";
+
 const FontSection = (props) => {
     const inputRef = useRef();
     const styleRef = useRef();
@@ -42,4 +43,5 @@ const FontSection = (props) => {
         </>
     )
 }
+
 export default FontSection

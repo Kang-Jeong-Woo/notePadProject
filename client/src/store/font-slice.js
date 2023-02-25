@@ -8,9 +8,10 @@ const fontSlice = createSlice({
     reducers:{
         setFont(state, action) {
             if (state.isInit) {
-                action.payload.map(tableData => (
-                    state.fontData.push(tableData)
-                ));
+                action.payload.map((fontData) => {
+                    fontData.id = fontData._id
+                    state.fontData.push(fontData)
+                });
                 state.isInit = false;
             }
             return
@@ -22,6 +23,7 @@ const fontSlice = createSlice({
                 userId: "userid",
                 content: action.payload.content,
                 pinned: false,
+                isDelete: false,
                 style: action.payload.style,
                 degree: 0,
                 color:action.payload.color,
@@ -33,6 +35,13 @@ const fontSlice = createSlice({
             }
             console.log(newFontData);
             state.fontData.push(newFontData);
+        },
+        deleteFont(state, action) {
+            for(let i = 0; i<state.fontData.length; i++) {
+                if(state.fontData[i].id === action.payload) {
+                    state.fontData[i].isDelete = true
+                }
+            }
         },
         updateZIndex(state, action){
             const newData = action.payload;
