@@ -1,9 +1,11 @@
 import {Rnd} from "react-rnd";
 import {useEffect, useRef, useState} from "react";
 import classes from "./FontPostIt.module.css";
-import {useDispatch} from "react-redux";
-import {tableActions} from "@/store/table-slice";
+import {useDispatch, useSelector} from "react-redux";
 import {fontActions} from "@/store/font-slice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
+
 
 const FontPostIt = (props) => {
     const tabRef = useRef(undefined);
@@ -20,16 +22,18 @@ const FontPostIt = (props) => {
     const updateXYPosition = (data) => {dispatch(fontActions.updateXYPosition(data))};
     const updateWHPosition = (data) => {dispatch(fontActions.updateWHPosition(data))};
     const updateDegree = (data) => {dispatch(fontActions.updateDegree(data))};
+    const deleteFont = (data) => {dispatch(fontActions.deleteFont(data))};
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
     const pinEvent = () => {
         setDragable(!dragable);
     }
-    const closeEvent = async () => {
-        const id = await props.id;
+    const closeEvent = () => {
+        const id = props.id;
         const delData = {id: id, colName: "fontData"}
-        props.onDel(delData);
+        deleteFont(delData);
+        // props.onDel(delData);
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";
@@ -95,8 +99,8 @@ const FontPostIt = (props) => {
             <div className={classes.postIt} style={{width: diagramWidth, height: diagramHeight + 23}}
                  onMouseEnter={mouseIn} onMouseLeave={mouseOut}>
                 <span className={classes.tab} ref={tabRef}>
-                    <span onClick={pinEvent}>고정</span>
-                    <span onClick={closeEvent}>삭제</span>
+                    <span onClick={closeEvent}><FontAwesomeIcon className={classes.icon} style={{color:"red"}} icon={faCircleXmark}/></span>
+                    <span onClick={pinEvent}><FontAwesomeIcon className={classes.icon} style={{color:dragable?"green":"yellow"}} icon={faThumbtack}/></span>
                 </span>
                 <div className={classes.content} style={{
                     width: isFirstLoad ? props.width : +picWidth,

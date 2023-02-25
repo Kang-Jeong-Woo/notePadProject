@@ -86,13 +86,8 @@ const tableSlice = createSlice({
         },
         deleteTable(state, action) {
             const newData = action.payload;
-            const editAry = state.tableData.find((table) => table.id === newData.id);
-            console.log(editAry);
-            // for (let i = 0; i < state.tableData.length; i++) {
-            //     if (state.tableData[i].id === action.payload) {
-            //         state.tableData.splice(i, 1)
-            //     }
-            // }
+            const editAry = state.tableData.findIndex((table) => table.id == newData.id);
+            state.tableData.splice(editAry, 1);
         },
     }
 });

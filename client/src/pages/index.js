@@ -6,7 +6,7 @@ export default function Home() {
         <>
             <Head>
                 <meta charSet="utf-8"/>
-                <title>덕질 패드</title>
+                <title>DuckZil Pad | Login</title>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
                 <meta name="description" content="마음껏 꾸밀 수 있는 나만의 다이어리"/>

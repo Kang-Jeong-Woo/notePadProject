@@ -1,7 +1,9 @@
 import {useRef} from "react";
 import {useDispatch} from "react-redux";
 import {fontActions} from "@/store/font-slice";
-const FontSection = (props) => {
+import classes from "./Form.module.css";
+
+const FontSection = () => {
     const inputRef = useRef();
     const styleRef = useRef();
     const colorRef = useRef("#000000");
@@ -23,21 +25,39 @@ const FontSection = (props) => {
     }
     return (
         <>
-            <h1>폰트 업로드</h1>
-            <form onSubmit={addFont}>
-                <h2><label htmlFor={"content"}>Content</label></h2>
-                <input type="text" id={"content"} name={"content"} ref={inputRef}/>
-                <h2><label htmlFor={"content"}>Choose the font you want.</label></h2>
-                <select ref={styleRef} defaultValue={""}>
-                    <option defaultValue={""}>Choose the font you want.</option>
-                    <option value={"cursive"} style={{fontFamily:"cursive"}}>cursive</option>
-                    <option value={"fantasy"} style={{fontFamily:"fantasy"}}>fantasy</option>
-                    <option value={"monospace"} style={{fontFamily:"monospace"}}>monospace</option>
-                    <option value={"serif"} style={{fontFamily:"serif"}}>serif</option>
-                </select>
-                <h2><label htmlFor={"color"}>Select the color of the font you want.</label></h2>
-                <input type={"color"} id={"color"} name={"color"} ref={colorRef}/>
-                <button>전송</button>
+            <h1 className={classes.header}>Font Upload</h1>
+            <form className={classes.fontForm} onSubmit={addFont}>
+
+                <div className={classes.contentCntnr}>
+                    <h2><label htmlFor={"content"}>1. Please enter the content.</label></h2>
+                    <div className={classes.center}>
+                        <input className={classes.input} type="text" id={"content"} name={"content"} ref={inputRef}/>
+                    </div>
+                </div>
+
+                <div className={classes.fontCntnr}>
+                    <h2><label htmlFor={"content"}>2. Choose the font you want.</label></h2>
+                    <div className={classes.center}>
+                        <select className={classes.select} ref={styleRef} defaultValue={""}>
+                            <option defaultValue={""} style={{textAlign:"center"}}>Choose the font you want.</option>
+                            <option value={"cursive"} style={{fontFamily:"cursive"}}>cursive</option>
+                            <option value={"fantasy"} style={{fontFamily:"fantasy"}}>fantasy</option>
+                            <option value={"monospace"} style={{fontFamily:"monospace"}}>monospace</option>
+                            <option value={"serif"} style={{fontFamily:"serif"}}>serif</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div className={classes.colorCntnr}>
+                    <h2><label htmlFor={"color"}>3. Select the color of the font you want.</label></h2>
+                    <div className={classes.center}>
+                        <input type={"color"} id={"color"} name={"color"} ref={colorRef}/>
+                    </div>
+                </div>
+
+                <div className={classes.sendCntnr}>
+                    <button className={classes.button}>Send</button>
+                </div >
             </form>
         </>
     )

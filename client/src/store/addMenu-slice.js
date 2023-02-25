@@ -21,9 +21,9 @@ const addSlice = createSlice({
             state.font = false
         },
         close(state) {
+            state.modal = false
             state.post = false
             state.font = false
-            state.modal = false
         },
     }
 });

@@ -13,10 +13,13 @@ const BulletinBoard = props => {
     const fontsData = useSelector((state) => {
         return state.font.fontData
     });
+    const postItData = useSelector((state)=>{
+        return state.postIt.postItData
+    })
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>
-                {props.postIts?.map((post) => (
+                {postItData.map((post) => (
                     <PostIt
                         key={post.id}
                         id={post.id}
@@ -24,6 +27,7 @@ const BulletinBoard = props => {
                         title={post.title}
                         width={post.width}
                         height={post.height}
+                        pinned={post.pinned}
                         positionX={post.positionX}
                         positionY={post.positionY}
                         positionZ={post.positionZ}
@@ -41,6 +45,7 @@ const BulletinBoard = props => {
                         style={font.style}
                         degree={font.degree}
                         color={font.color}
+                        pinned={font.pinned}
                         width={font.width}
                         height={font.height}
                         positionX={font.positionX}
@@ -60,6 +65,7 @@ const BulletinBoard = props => {
                         table={table.contents}
                         width={table.width}
                         height={table.height}
+                        pinned={table.pinned}
                         positionX={table.positionX}
                         positionY={table.positionY}
                         positionZ={table.positionZ}

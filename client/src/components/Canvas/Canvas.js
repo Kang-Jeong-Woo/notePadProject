@@ -23,6 +23,7 @@ const Canvas = (props) => {
     const [height, setHeight] = useState(500);
     const tableData = useSelector((state) => state.table.tableData);
     const fontData = useSelector(state => state.font.fontData);
+    const postItData = useSelector(state => state.postIt.postItData);
     const heightFn = () => Math.ceil(window.innerHeight - 5);
     const widthFn = () => Math.ceil(window.innerWidth - 5);
     useEffect(() => {
@@ -55,10 +56,10 @@ const Canvas = (props) => {
     };
     const onSaveDB = () => {
         const drawData = {userId: "userid", drawData: canvasRef.current.getSaveData()}
-        props.onSaveDB(tableData, fontData, drawData);
+        props.onSaveDB(postItData, tableData, fontData, drawData);
     };
     const menuMouseEnter = () => {
-        penRef.current.style.left = "80px"
+        penRef.current.style.left = "60px"
         penRef.current.style.opacity = "1"
     }
     const menuMouseLeave = () => {
@@ -66,7 +67,7 @@ const Canvas = (props) => {
         penRef.current.style.opacity = "0"
     }
     const saveMouseEnter = () => {
-        saveRef.current.style.left = "80px"
+        saveRef.current.style.left = "60px"
         saveRef.current.style.opacity = "1"
     }
     const saveMouseLeave = () => {

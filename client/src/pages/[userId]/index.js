@@ -8,14 +8,16 @@ import {tableActions} from "@/store/table-slice";
 import {fontActions} from "@/store/font-slice";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Head from "next/head";
+import {postItActions} from "@/store/postIt-slice";
 
 function HomePage(props) {
-
     const router = useRouter();
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(tableActions.setTable(props.tableData));
         dispatch(fontActions.setFont(props.fontData));
+        dispatch(postItActions.setPostIt(props.postIts));
         // dispatch(canvasActions.setDrawData(props.drawData));
     },[])
     const [isLogin, setIsLogin] = useState(false);
@@ -183,7 +185,14 @@ function HomePage(props) {
         router.reload();
     }
 
-    async function saveDB(tableData, fontData, drawData){
+    async function saveDB(postItData, tableData, fontData, drawData){
+        const resPostIt = await fetch("/api/fetch-postIt",{
+            method: "POST",
+            body: JSON.stringify(postItData),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
         const resTable = await fetch("/api/fetch-table", {
             method: "POST",
             body: JSON.stringify(tableData),
@@ -205,6 +214,7 @@ function HomePage(props) {
                 "Content-Type": "application/json"
             }
         });
+        const resPostItData = await resPostIt.json();
         const resTableData = await resTable.json();
         const resFontData = await resFont.json();
         const resDrawData = await resDraw.json();
@@ -213,9 +223,21 @@ function HomePage(props) {
 
     return (
         <>
+            <Head>
+                <meta charSet="utf-8"/>
+                <title>DuckZil Pad | Main</title>
+                <link rel="icon" href="/favicon.ico"/>
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+                <meta name="description" content="마음껏 꾸밀 수 있는 나만의 다이어리"/>
+                <meta name="keywords" content="다이어리 diary"/>
+                <meta name="author" content="KangJeongWoo"/>
+                <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimum-scale=1.0"/>
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
+                <meta name="theme-color" content="#000000"/>
+            </Head>
             { isLogin && 
                 <div className={styles.homeCtnr}>
-                    <SideBar user={user} addPostIt={addPostIt} onAddFont={addFontData}/>
+                    <SideBar user={user} addPostIt={addPostIt} onAddFont={addFontData} />
                     <BulletinBoard postIts={props.postIts} drewData={props.drawData} fontData={props.fontData}
                                 onDragPst={positionHandler} onSizePst={sizePositionHandler} onSetDegree={degreeHandler}
                                 onZPst={zIndexHandler} onDel={delHandler} onSaveDraw={addDrawData} onSaveDB={saveDB}/>

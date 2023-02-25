@@ -2,8 +2,13 @@ import classes from "./PostIt.module.css";
 import {useRef, useState} from "react";
 import {Rnd} from "react-rnd";
 import Image from "next/image";
+import {useDispatch} from "react-redux";
+import {postItActions} from "@/store/postIt-slice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
 
 const PostIt = props => {
+    const dispatch = useDispatch();
     const tabRef = useRef(undefined);
     const [dragable, setDragable] = useState(false);
     const [diagramWidth, setDiagramWidth] = useState();
@@ -11,6 +16,10 @@ const PostIt = props => {
     const [picWidth, setPicWidth] = useState();
     const [picHeight, setPicHeight] = useState();
     const [isFirstLoad, setFirstLoad] = useState(true);
+    const updateZIndex= (data)=>{dispatch(postItActions.updateZIndex(data))};
+    const updateXYPosition= (data)=>{dispatch(postItActions.updateXYPosition(data))};
+    const updateWHPosition= (data)=>{dispatch(postItActions.updateWHPosition(data))};
+    const deleteTable= (data)=>{dispatch(postItActions.deleteTable(data))};
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
@@ -20,7 +29,8 @@ const PostIt = props => {
     const closeEvent = async () => {
         const id = await props.id;
         const delData = {id: id, colName: "postIts"}
-        props.onDel(delData);
+        deleteTable(delData);
+        // props.onDel(delData);
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";
@@ -32,11 +42,13 @@ const PostIt = props => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "postIts"};
-        props.onZpst(Z);
+        updateZIndex(Z);
+        // props.onZpst(Z);
     }
     const dragStop = (e, d, id = props.id) => {
-        const XY = {id: id, x: d.y, y: d.x, colName: "postIts"}
-        props.onDragPst(XY);
+        const XY = {id: id, x: d.x, y: d.y, colName: "postIts"}
+        updateXYPosition(XY);
+        // props.onDragPst(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -48,8 +60,9 @@ const PostIt = props => {
     const resizeStop = (e, d, ref, delta, position, id = props.id) => {
         const width = props.width + delta.width
         const height = props.height + delta.height
-        const XYHW = {id: id, x: position.y, y: position.x, h: height, w: width, colName: "postIts"}
-        props.onSizePst(XYHW);
+        const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postIts"}
+        updateWHPosition(XYHW);
+        // props.onSizePst(XYHW);
     }
     return (
         <Rnd minWidth={100}
@@ -66,8 +79,8 @@ const PostIt = props => {
             <div className={classes.postIt} style={{width: diagramWidth, height: diagramHeight + 23}}
                  onMouseEnter={mouseIn} onMouseLeave={mouseOut}>
                 <span className={classes.tab} ref={tabRef}>
-                    <span onClick={pinEvent}>고정</span>
-                    <span onClick={closeEvent}>삭제</span>
+                    <span onClick={closeEvent}><FontAwesomeIcon className={classes.icon} style={{color:"red"}} icon={faCircleXmark}/></span>
+                    <span onClick={pinEvent}><FontAwesomeIcon className={classes.icon} style={{color:dragable?"green":"yellow"}} icon={faThumbtack}/></span>
                 </span>
                 <div className={classes.content}>
                     <Image src={props.content} alt={props.title} width={isFirstLoad ? props.width : +picWidth}

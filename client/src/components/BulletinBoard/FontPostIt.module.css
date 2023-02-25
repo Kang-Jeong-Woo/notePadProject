@@ -1,20 +1,20 @@
 .postIt{
     overflow: hidden;
     transition: all 0.1s ease-out;
+    user-select: none;
 }
 .tab {
-    display: inline-flex;
-    margin-left: auto;
     position: relative;
     top: -23px;
     transition: all 0.3s ease-out;
-    background: red;
-    z-index: 100;
     cursor: pointer;
+}
+.icon{
+    margin-right: 0.2em;
 }
 .content{
     display : flex;
     justify-content : center;
     align-items : center;
-    font-size: 10em;
+    font-size: 5em;
 }

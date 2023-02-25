@@ -3,6 +3,15 @@ import {useRef, useState} from "react";
 import classes from "./TablePostIt.module.css";
 import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {
+    faCircleXmark,
+    faThumbtack,
+    faGears,
+    faArrowDownWideShort,
+    faArrowsLeftRightToLine,
+    faCheck
+} from "@fortawesome/free-solid-svg-icons";
 
 const TablePostIt = (props) => {
     const tabRef = useRef(undefined);
@@ -26,7 +35,8 @@ const TablePostIt = (props) => {
     const closeEvent = async () => {
         const id = await props.id;
         const delData = {id: id, colName: "tableData"}
-        props.onDel(delData);
+        deleteTable(delData);
+        // props.onDel(delData);
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";
@@ -34,14 +44,33 @@ const TablePostIt = (props) => {
     const mouseOut = () => {
         tabRef.current.style.top = "-23px";
     }
-    const updateTable = (data) => {dispatch(tableActions.updateTable(data))};
-    const addRow = (id) => {dispatch(tableActions.addRow(id))};
-    const deleteRow = (id) => {dispatch(tableActions.deleteRow(id))};
-    const addColumn = (id) => {dispatch(tableActions.addColumn(id))};
-    const deleteColumn = (id) => {dispatch(tableActions.deleteColumn(id))};
-    const updateZIndex = (data) => {dispatch(tableActions.updateZIndex(data))};
-    const updateXYPosition = (data) => {dispatch(tableActions.updateXYPosition(data))};
-    const updateWHPosition = (data) => {dispatch(tableActions.updateWHPosition(data))};
+    const updateTable = (data) => {
+        dispatch(tableActions.updateTable(data))
+    };
+    const addRow = (id) => {
+        dispatch(tableActions.addRow(id))
+    };
+    const deleteRow = (id) => {
+        dispatch(tableActions.deleteRow(id))
+    };
+    const addColumn = (id) => {
+        dispatch(tableActions.addColumn(id))
+    };
+    const deleteColumn = (id) => {
+        dispatch(tableActions.deleteColumn(id))
+    };
+    const updateZIndex = (data) => {
+        dispatch(tableActions.updateZIndex(data))
+    };
+    const updateXYPosition = (data) => {
+        dispatch(tableActions.updateXYPosition(data))
+    };
+    const updateWHPosition = (data) => {
+        dispatch(tableActions.updateWHPosition(data))
+    };
+    const deleteTable = (data) => {
+        dispatch(tableActions.deleteTable(data))
+    };
 
     const dragStart = (e, d, id = props.id) => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
@@ -71,26 +100,33 @@ const TablePostIt = (props) => {
     }
 
     const editComponent = (<>
-        <span className={classes.tabText}>행<button onClick={() => {
+        <span className={classes.tabText}><FontAwesomeIcon className={classes.icon} style={{color: "orange"}}
+                                                           icon={faArrowsLeftRightToLine}/><button onClick={() => {
             addColumn(props.id)
         }}>+</button>
             {props.table.titles.length}
             <button onClick={() => {
                 deleteColumn(props.id)
             }}>-</button></span>
-        <span className={classes.tabText}>열<button onClick={() => {
+        <span className={classes.tabText}><FontAwesomeIcon className={classes.icon} style={{color: "orange"}}
+                                                           icon={faArrowDownWideShort}/><button onClick={() => {
             addRow(props.id)
         }}>+</button>
             {props.table.contents.length}
             <button onClick={() => {
                 deleteRow(props.id)
             }}>-</button></span>
-        <span className={classes.tabBtn} onClick={editEvent}>완료</span>
+        <span className={classes.tabBtn} onClick={editEvent}><FontAwesomeIcon className={classes.icon}
+                                                                              style={{color: "green"}} icon={faCheck}/></span>
     </>)
     const defaultComponent = (<>
-        <span onClick={pinEvent}>고정</span>
-        <span onClick={editEvent}>수정</span>
-        <span onClick={closeEvent}>삭제</span>
+        <span onClick={closeEvent}><FontAwesomeIcon className={classes.icon} style={{color: "red"}}
+                                                    icon={faCircleXmark}/></span>
+        <span onClick={editEvent}><FontAwesomeIcon className={classes.icon} style={{color: "yellow"}}
+                                                   icon={faGears}/></span>
+        <span onClick={pinEvent}><FontAwesomeIcon className={classes.icon}
+                                                  style={{color: dragable ? "green" : "yellow"}}
+                                                  icon={faThumbtack}/></span>
     </>)
     const titleComponent = (<>
         {props.table.titles.map((title, index) => (
@@ -99,9 +135,10 @@ const TablePostIt = (props) => {
     </>)
     const titleEditComponent = (<>
         {props.table.titles.map((title, index) => (
-            <td key={"T" + index}><input type={"text"} defaultValue={title} onChange={e => {
-                updateTable({id: props.id, i: index, type: "title", value: e.target.value})
-            }}/></td>
+            <td key={"T" + index}><input className={classes.editInput} type={"text"} defaultValue={title}
+                                         onChange={e => {
+                                             updateTable({id: props.id, i: index, type: "title", value: e.target.value})
+                                         }}/></td>
         ))}
     </>)
     const contentComponent = (<>
@@ -118,10 +155,16 @@ const TablePostIt = (props) => {
             return (
                 <tr key={"B" + colIndex}>
                     {content.map((data, index) => (
-                        <td key={index}><input type={"text"} defaultValue={data} onChange={e => {
-                            updateTable({id: props.id,column: colIndex,type: "content",i: index,value: e.target.value
-                            })
-                        }}/></td>
+                        <td key={index}><input className={classes.editInput} type={"text"} defaultValue={data}
+                                               onChange={e => {
+                                                   updateTable({
+                                                       id: props.id,
+                                                       column: colIndex,
+                                                       type: "content",
+                                                       i: index,
+                                                       value: e.target.value
+                                                   })
+                                               }}/></td>
                     ))}
                 </tr>
             )

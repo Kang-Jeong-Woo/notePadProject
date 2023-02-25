@@ -8,8 +8,8 @@ const fontSlice = createSlice({
     reducers:{
         setFont(state, action) {
             if (state.isInit) {
-                action.payload.map(tableData => (
-                    state.fontData.push(tableData)
+                action.payload.map(fontData => (
+                    state.fontData.push(fontData)
                 ));
                 state.isInit = false;
             }
@@ -36,28 +36,33 @@ const fontSlice = createSlice({
         },
         updateZIndex(state, action){
             const newData = action.payload;
-            const editAry = state.fontData.find((table) => table.id === newData.id);
+            const editAry = state.fontData.find((font) => font.id === newData.id);
             editAry.positionZ=newData.z
         },
         updateXYPosition(state,action){
             const newData = action.payload;
-            const editAry = state.fontData.find((table) => table.id === newData.id);
+            const editAry = state.fontData.find((font) => font.id === newData.id);
             editAry.positionX=newData.x
             editAry.positionY=newData.y
         },
         updateWHPosition(state, action){
             const newData = action.payload;
-            const editAry = state.fontData.find((table) => table.id === newData.id);
+            const editAry = state.fontData.find((font) => font.id === newData.id);
             editAry.positionX=newData.x
             editAry.positionY=newData.y
             editAry.width=newData.w
             editAry.height=newData.h
         },
-        updateDegree(state, action){
+        updateDegree(state, action) {
             const newData = action.payload;
-            const editAry = state.fontData.find((table) => table.id === newData.id);
-            editAry.degree=newData.degree
-        }
+            const editAry = state.fontData.find((font) => font.id === newData.id);
+            editAry.degree = newData.degree
+        },
+        deleteFont(state, action) {
+            const newData = action.payload;
+            const editAry = state.fontData.findIndex((font) => font.id === newData.id);
+            state.fontData.splice(editAry, 1);
+        },
     }
 })
 

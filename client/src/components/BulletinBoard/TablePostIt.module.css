@@ -3,13 +3,9 @@
     transition: all 0.1s ease-out;
 }
 .tab {
-    display: inline-flex;
-    margin-left: auto;
     position: relative;
     top: -23px;
     transition: all 0.3s ease-out;
-    background: red;
-    z-index: 100;
     cursor: pointer;
 }
 .content{
@@ -17,10 +13,9 @@
     height: 89%;
     border: deeppink 2px solid;
 }
-/* SM CSS */
 .table {
+    /*position: relative;*/
     margin-left: auto;
-    position: relative;
     border: deeppink 2px solid;
     background: lightpink;
     border-collapse: collapse;
@@ -43,40 +38,22 @@
     transition: all 0.1s ease-out;
 }
 
-.tab {
-    display: inline-flex;
-    margin-left: auto;
-    position: relative;
-    top: -30px;
-    transition: all 0.3s ease-out;
-    z-index: 100;
-}
-
 .tabBtn {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    background: tomato;
-    border: 2px ridge tomato;
-    height: 25px;
+    height: 23px;
 }
 
 .tabText {
     text-align: center;
     vertical-align: middle;
     cursor: auto;
-    background: tomato;
-    border: 2px ridge tomato;
-    height: 25px;
+    height: 23px;
+    margin-right: 0.5em;
 }
-
-.btn {
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 2px ridge tomato;
-    background: wheat;
-    width: 12px;
-    height: 18px;
-    margin-bottom: 4px;
+.editInput {
+    border: none;
+    background-color: hotpink;
+    width: 80%;
 }
