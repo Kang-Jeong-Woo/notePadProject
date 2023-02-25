@@ -6,33 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8e5a3812-8879-4cd0-ab4a-38dae42d23b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/BulletinBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/BulletinBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Form/Form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/Form.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Form/PostItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/PostItForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Button.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/addMenu-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/addMenu-slice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/font-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/font-slice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/table-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/table-slice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
