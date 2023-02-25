@@ -8,14 +8,15 @@ const tableSlice = createSlice({
     reducers: {
         setTable(state, action) {
             if (state.isInit) {
-                action.payload.map(tableData => (
+                action.payload.map((tableData) => {
+                    tableData.id = tableData._id
                     state.tableData.push(tableData)
-                ));
+                });
                 state.isInit = false;
             }
             return
         },
-        addTable(state) {
+        addTable(state, action) {
             const tableDefaultData = {
                 id: Math.random(),
                 positionX: 0,
@@ -23,37 +24,38 @@ const tableSlice = createSlice({
                 positionZ: 10,
                 width: 200,
                 height: 220,
-                userId: "userid",
+                userId: action.payload,
                 style: "",
                 pinned: false,
+                isDelete: false,
                 contents: {titles: ["타이틀1", "타이틀2"], contents: [['내용1', '내용2'], ['내용3', '내용4']]}
             }
             state.tableData.push(tableDefaultData);
         },
+        deleteTable(state, action) {
+            const editAry = state.tableData.find((table) => table.id === action.payload);
+            editAry.isDelete = true;
+        },
         addColumn(state, action) {
-            const id = action.payload;
-            const editAry = state.tableData.find((table) => table.id === id);
+            const editAry = state.tableData.find((table) => table.id === action.payload);
             editAry.contents.titles.push("타이틀")
             for(let i =0; i<editAry.contents.contents.length;i++){
                 editAry.contents.contents[i].push("내용")
             }
         },
         deleteColumn(state, action) {
-            const id = action.payload;
-            const editAry = state.tableData.find((table) => table.id === id);
+            const editAry = state.tableData.find((table) => table.id === action.payload);
             editAry.contents.titles.pop()
             for(let i =0; i<editAry.contents.contents.length;i++){
                 editAry.contents.contents[i].pop()
             }
         },
         addRow(state, action) {
-            const id = action.payload;
-            const editAry = state.tableData.find((table) => table.id === id);
+            const editAry = state.tableData.find((table) => table.id === action.payload);
             editAry.contents.contents.push(Array(editAry.contents.titles.length).fill("내용"))
         },
         deleteRow(state, action) {
-            const id = action.payload;
-            const editAry = state.tableData.find((table) => table.id === id);
+            const editAry = state.tableData.find((table) => table.id === action.payload);
             editAry.contents.contents.pop()
         },
         updateTable(state, action) {
@@ -83,11 +85,6 @@ const tableSlice = createSlice({
             editAry.positionY=newData.y
             editAry.width=newData.w
             editAry.height=newData.h
-        },
-        deleteTable(state, action) {
-            const newData = action.payload;
-            const editAry = state.tableData.findIndex((table) => table.id == newData.id);
-            state.tableData.splice(editAry, 1);
         },
     }
 });

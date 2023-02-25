@@ -1,6 +1,7 @@
 import {useMemo, useRef, useState} from "react";
 import ShowFileImage from "@/components/Form/ShowFileImage";
 import classes from "./Form.module.css";
+import axios from "axios";
 
 const PostItForm = (props) => {
     const [imageFile, setImageFile] = useState(null);
@@ -32,14 +33,34 @@ const PostItForm = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
         const uploadedImage = imageFile.file;
-        const enteredContent = descriptionInputRef.current.value;
+        const enteredTitle = descriptionInputRef.current.value;
         const imagePath = imageFile.path;
-        const postData = {
-            img: uploadedImage,
-            content: enteredContent,
-            path: imagePath
+        const postItData = {
+            userId: props.userId,
+            title: enteredTitle,
+            content: imagePath,
+            pinned: false,
+            isDelete: false,
+            width: 300,
+            height: 300,
+            positionX: 0,
+            positionY: 0,
+            positionZ: 10,
         }
-        props.onAddPost(postData);
+        try {
+            axios.post("http://localhost:8123/api/saveImg",
+                { postItData:postItData },
+                { withCredentials: true }
+            )
+                .then((result) => {
+                    console.log(result)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

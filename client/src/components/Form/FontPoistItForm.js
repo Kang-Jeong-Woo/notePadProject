@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {fontActions} from "@/store/font-slice";
 import classes from "./Form.module.css";
 
-const FontSection = () => {
+const FontSection = (props) => {
     const inputRef = useRef();
     const styleRef = useRef();
     const colorRef = useRef("#000000");
@@ -13,12 +13,12 @@ const FontSection = () => {
         event.preventDefault();
         if(inputRef.current.value.trim().length !== 0 && styleRef.current.value !== "Choose the font you want."){
             const data = {
+                id: props.userId,
                 content: inputRef.current.value,
                 style: styleRef.current.value,
                 color: colorRef.current.value
             }
             addFontSlice(data);
-            // props.onAddFont(data);
             return
         }
         alert("Please check the content and font style again.");
@@ -62,4 +62,5 @@ const FontSection = () => {
         </>
     )
 }
+
 export default FontSection

@@ -23,29 +23,11 @@ const TablePostIt = (props) => {
     const [picWidth, setPicWidth] = useState();
     const [picHeight, setPicHeight] = useState();
     const [isFirstLoad, setFirstLoad] = useState(true);
-    const setZIndex = (current, next) => {
-        return next > current ? next : current;
-    };
-    const pinEvent = () => {
-        setDragable(!dragable);
-    }
-    const editEvent = () => {
-        setIsEdit(!isEdit);
-    }
-    const closeEvent = async () => {
-        const id = await props.id;
-        const delData = {id: id, colName: "tableData"}
-        deleteTable(delData);
-        // props.onDel(delData);
-    }
-    const mouseIn = () => {
-        tabRef.current.style.top = "0px";
-    }
-    const mouseOut = () => {
-        tabRef.current.style.top = "-23px";
-    }
     const updateTable = (data) => {
         dispatch(tableActions.updateTable(data))
+    };
+    const deleteTable = (id) => {
+        dispatch(tableActions.deleteTable(id))
     };
     const addRow = (id) => {
         dispatch(tableActions.addRow(id))
@@ -68,21 +50,34 @@ const TablePostIt = (props) => {
     const updateWHPosition = (data) => {
         dispatch(tableActions.updateWHPosition(data))
     };
-    const deleteTable = (data) => {
-        dispatch(tableActions.deleteTable(data))
+    const setZIndex = (current, next) => {
+        return next > current ? next : current;
     };
-
+    const pinEvent = () => {
+        setDragable(!dragable);
+    }
+    const editEvent = () => {
+        setIsEdit(!isEdit);
+    }
+    const closeEvent = () => {
+        const id = props.id;
+        deleteTable(id)
+    }
+    const mouseIn = () => {
+        tabRef.current.style.top = "0px";
+    }
+    const mouseOut = () => {
+        tabRef.current.style.top = "-23px";
+    }
     const dragStart = (e, d, id = props.id) => {
         const setIndex = setZIndex(d.node.style.zIndex, +d.node.style.zIndex + 1);
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "tableData"};
         updateZIndex(Z);
-        // props.onZpst(Z);
     }
     const dragStop = (e, d, id = props.id) => {
         const XY = {id: id, x: d.x, y: d.y, colName: "tableData"}
         updateXYPosition(XY);
-        // props.onDragPst(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -96,7 +91,6 @@ const TablePostIt = (props) => {
         const height = props.height + delta.height
         const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "tableData"}
         updateWHPosition(XYHW);
-        // props.onSizePst(XYHW);
     }
 
     const editComponent = (<>

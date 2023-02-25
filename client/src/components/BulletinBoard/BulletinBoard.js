@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
 
 const BulletinBoard = props => {
+
     const tablesData = useSelector((state) => {
         return state.table.tableData
     });
@@ -15,12 +16,13 @@ const BulletinBoard = props => {
     });
     const postItData = useSelector((state)=>{
         return state.postIt.postItData
-    })
+    });
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>
+
                 {postItData.map((post) => (
-                    <PostIt
+                    post.isDelete === false && <PostIt
                         key={post.id}
                         id={post.id}
                         content={post.content}
@@ -34,11 +36,10 @@ const BulletinBoard = props => {
                         onDragPst={props.onDragPst}
                         onSizePst={props.onSizePst}
                         onZpst={props.onZPst}
-                        onDel={props.onDel}
                     />
                 ))}
                 {fontsData.map((font) => (
-                    <FontPostIt
+                    font.isDelete === false && <FontPostIt
                         key={font.id}
                         id={font.id}
                         content={font.content}
@@ -54,12 +55,10 @@ const BulletinBoard = props => {
                         onDragPst={props.onDragPst}
                         onSizePst={props.onSizePst}
                         onZpst={props.onZPst}
-                        onDel={props.onDel}
-                        onSetDegree={props.onSetDegree}
                     />
                 ))}
                 {tablesData.map((table)=>(
-                    <TablePostIt
+                    table.isDelete === false && <TablePostIt
                         key={table.id}
                         id={table.id}
                         table={table.contents}
@@ -72,10 +71,9 @@ const BulletinBoard = props => {
                         onDragPst={props.onDragPst}
                         onSizePst={props.onSizePst}
                         onZpst={props.onZPst}
-                        onDel={props.onDel}
                     />
                 ))}
-                <Canvas drewData={props.drewData} onSaveDraw={props.onSaveDraw} onSaveDB={props.onSaveDB}/>
+                <Canvas user={props.user} drawData={props.drawData} onSaveDraw={props.onSaveDraw} />
             </div>
         </div>
     );

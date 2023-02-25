@@ -19,18 +19,15 @@ const PostIt = props => {
     const updateZIndex= (data)=>{dispatch(postItActions.updateZIndex(data))};
     const updateXYPosition= (data)=>{dispatch(postItActions.updateXYPosition(data))};
     const updateWHPosition= (data)=>{dispatch(postItActions.updateWHPosition(data))};
-    const deleteTable= (data)=>{dispatch(postItActions.deleteTable(data))};
+    const deletePostIt= (data)=>{dispatch(postItActions.deletePostIt(data))};
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
     const pinEvent = () => {
         setDragable(!dragable);
     }
-    const closeEvent = async () => {
-        const id = await props.id;
-        const delData = {id: id, colName: "postIts"}
-        deleteTable(delData);
-        // props.onDel(delData);
+    const closeEvent = () => {
+        deletePostIt(props.id);
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";
@@ -43,12 +40,10 @@ const PostIt = props => {
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "postIts"};
         updateZIndex(Z);
-        // props.onZpst(Z);
     }
     const dragStop = (e, d, id = props.id) => {
         const XY = {id: id, x: d.x, y: d.y, colName: "postIts"}
         updateXYPosition(XY);
-        // props.onDragPst(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -62,13 +57,12 @@ const PostIt = props => {
         const height = props.height + delta.height
         const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postIts"}
         updateWHPosition(XYHW);
-        // props.onSizePst(XYHW);
     }
     return (
         <Rnd minWidth={100}
              minHeight={100}
              bounds={"parent"}
-             default={{x: props.positionX, y: props.positionY, width: props.width, height: props.height + 23}}
+             default={{x: props.positionX, y: props.positionY, width: props.width, height: +props.height + 23}}
              disableDragging={dragable}
              onDragStart={dragStart}
              onDragStop={dragStop}
@@ -76,7 +70,7 @@ const PostIt = props => {
              onResizeStop={resizeStop}
              style={{zIndex: props.positionZ}}
         >
-            <div className={classes.postIt} style={{width: diagramWidth, height: diagramHeight + 23}}
+            <div className={classes.postIt} style={{width: diagramWidth, height: +diagramHeight + 23}}
                  onMouseEnter={mouseIn} onMouseLeave={mouseOut}>
                 <span className={classes.tab} ref={tabRef}>
                     <span onClick={closeEvent}><FontAwesomeIcon className={classes.icon} style={{color:"red"}} icon={faCircleXmark}/></span>

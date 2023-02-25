@@ -12,6 +12,7 @@ import {
     faArrowRotateBackward
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const Canvas = (props) => {
     const dispatch = useDispatch();
@@ -26,6 +27,9 @@ const Canvas = (props) => {
     const postItData = useSelector(state => state.postIt.postItData);
     const heightFn = () => Math.ceil(window.innerHeight - 5);
     const widthFn = () => Math.ceil(window.innerWidth - 5);
+
+    const userId = props.user.userId
+
     useEffect(() => {
         setWidth(widthFn());
         setHeight(heightFn());
@@ -54,10 +58,25 @@ const Canvas = (props) => {
     const changeDraw = () => {
         setIsDraw();
     };
+
     const onSaveDB = () => {
-        const drawData = {userId: "userid", drawData: canvasRef.current.getSaveData()}
-        props.onSaveDB(postItData, tableData, fontData, drawData);
+        const drawData = {userId: userId, drawData: canvasRef.current.getSaveData()}
+        try {
+            axios.post("http://localhost:8123/api/savedb",
+            { postItData:postItData, tableData: tableData, fontData: fontData, drawData: drawData },
+            { withCredentials: true }
+            )
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } catch (error) {
+          console.log(error);
+        }
     };
+
     const menuMouseEnter = () => {
         penRef.current.style.left = "60px"
         penRef.current.style.opacity = "1"
@@ -74,7 +93,6 @@ const Canvas = (props) => {
         saveRef.current.style.left = "-200px"
         saveRef.current.style.opacity = "0"
     }
-
     return (
         <>
             <div className={classes.btnCntnr}>
@@ -123,7 +141,7 @@ const Canvas = (props) => {
             </div>
             <CanvasDraw
                 ref={canvasRef}
-                saveData={props.drewData[0]?.dbDrawData}
+                saveData={props.drawData[0]?.saveImage}
                 canvasWidth={width}
                 canvasHeight={height}
                 style={{backgroundColor: "#FFC0CB"}}

@@ -10,9 +10,10 @@ const {
     loginSuccess,
     logout,
     signUp,
-    idCheck
-} = require('./controller/index')
-
+    userIdCheck,
+    saveDB,
+    saveImg
+} = require('./controller/index');
 const app = express();
 dotenv.config();
 
@@ -40,7 +41,12 @@ app.post('/api/logout', logout);
 
 // 회원가입 라우터
 app.post('/api/signup', signUp);
-app.get('/api/signup/idcheck', idCheck);
+app.get('/api/signup/useridcheck', userIdCheck);
+
+// DB저장 라우터
+app.post('/api/savedb', saveDB);
+app.post('/api/saveImg', saveImg);
+
 
 app.listen(process.env.PORT, ()=>{
     console.log(`server is on ${process.env.PORT}`);

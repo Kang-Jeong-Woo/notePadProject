@@ -8,9 +8,10 @@ const postItSlice = createSlice({
     reducers: {
         setPostIt(state, action) {
             if (state.isInit) {
-                action.payload.map(postItData => (
+                action.payload.map(postItData => {
+                    postItData.id = postItData._id
                     state.postItData.push(postItData)
-                ));
+                });
                 state.isInit = false;
             }
             return
@@ -34,10 +35,9 @@ const postItSlice = createSlice({
             editAry.width=newData.w
             editAry.height=newData.h
         },
-        deleteTable(state, action) {
-            const newData = action.payload;
-            const editAry = state.postItData.findIndex((postIt) => postIt.id === newData.id);
-            state.postItData.splice(editAry, 1);
+        deletePostIt(state, action) {
+            const editAry = state.postItData.find((postIt) => postIt.id === action.payload);
+            editAry.isDelete = true
         },
     }
 });

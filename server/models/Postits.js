@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const postitsSchema = mongoose.Schema({
+const postItsSchema = mongoose.Schema({
 
-    serId: {
+    userId: {
         type: String,
         trim: true
     },
@@ -11,6 +11,10 @@ const postitsSchema = mongoose.Schema({
     },
     content: {
         type: String
+    },
+    isDelete: {
+        type: Boolean,
+        default: false
     },
     pinned: {
         type: Boolean
@@ -37,6 +41,6 @@ const postitsSchema = mongoose.Schema({
 
 })
 
-const Postits = mongoose.model('Postits', postitsSchema);
+const PostIts = mongoose.model('PostIts', postItsSchema);
 
-module.exports = { Postits };
+module.exports = { PostIts };

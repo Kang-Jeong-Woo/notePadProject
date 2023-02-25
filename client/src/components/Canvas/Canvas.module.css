@@ -55,10 +55,10 @@
 
 .toggleSwitch {
     position: absolute;
-    top: -3px;
+    top: 5px;
     display: inline-block;
-    width: 60px;
-    height: 17px;
+    width: 50px;
+    height: 18px;
 }
 
 .toggleButton {
@@ -76,8 +76,8 @@
 .toggleButton:before {
     position: absolute;
     content: "";
-    height: 8px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -94,7 +94,7 @@
 }
 
 .toggleSwitch input:checked + .toggleButton:before {
-    transform: translateX(26px);
+    transform: translateX(30px);
 }
 
 

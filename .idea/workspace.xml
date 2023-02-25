@@ -6,7 +6,37 @@
   <component name="ChangeListManager">
     <list default="true" id="8e5a3812-8879-4cd0-ab4a-38dae42d23b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/BulletinBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/BulletinBoard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/CanvasPrototype.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/CanvasProtytpe2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Detail/Font.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Detail/Pen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Detail/Plus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Detail/Table.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/PostItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/PostItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Table.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Table.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/choice-slice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/font-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/font-slice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/palette-sclice.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/postIt-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/postIt-slice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/table-slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/table-slice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/FontData.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/FontData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/Postits.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/Postits.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/TableData.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/TableData.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +73,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zzang\WebstormProjects\notepadproject" />
       <recent name="C:\Users\zzang\WebstormProjects\notepadproject\client" />
       <recent name="C:\Users\zzang\WebstormProjects\notepadproject\src\components\Form" />
       <recent name="C:\Users\zzang\WebstormProjects\notepadproject\src\components\BulletinBoard" />
       <recent name="C:\Users\zzang\WebstormProjects\notepadproject\src\components\UI" />
-      <recent name="C:\Users\zzang\WebstormProjects\notepadproject\storage" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -92,7 +122,9 @@
       <workItem from="1677218469793" duration="160000" />
       <workItem from="1677218632363" duration="23309000" />
       <workItem from="1677288187572" duration="9392000" />
-      <workItem from="1677325783337" duration="1812000" />
+      <workItem from="1677325783337" duration="14315000" />
+      <workItem from="1677340842976" duration="10000" />
+      <workItem from="1677341046414" duration="29000" />
     </task>
     <servers />
   </component>

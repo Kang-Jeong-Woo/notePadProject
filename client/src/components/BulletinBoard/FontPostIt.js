@@ -1,7 +1,7 @@
 import {Rnd} from "react-rnd";
 import {useEffect, useRef, useState} from "react";
 import classes from "./FontPostIt.module.css";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {fontActions} from "@/store/font-slice";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleXmark, faThumbtack} from "@fortawesome/free-solid-svg-icons";
@@ -22,7 +22,7 @@ const FontPostIt = (props) => {
     const updateXYPosition = (data) => {dispatch(fontActions.updateXYPosition(data))};
     const updateWHPosition = (data) => {dispatch(fontActions.updateWHPosition(data))};
     const updateDegree = (data) => {dispatch(fontActions.updateDegree(data))};
-    const deleteFont = (data) => {dispatch(fontActions.deleteFont(data))};
+    const deleteFont = (id) => {dispatch(fontActions.deleteFont(id))};
     const setZIndex = (current, next) => {
         return next > current ? next : current;
     };
@@ -31,9 +31,7 @@ const FontPostIt = (props) => {
     }
     const closeEvent = () => {
         const id = props.id;
-        const delData = {id: id, colName: "fontData"}
-        deleteFont(delData);
-        // props.onDel(delData);
+        deleteFont(id)
     }
     const mouseIn = () => {
         tabRef.current.style.top = "0px";
@@ -49,12 +47,10 @@ const FontPostIt = (props) => {
         d.node.style.zIndex = setIndex
         const Z = {id: id, z: setIndex, colName: "fontData"};
         updateZIndex(Z);
-        // props.onZpst(Z);
     }
     const dragStop = (e, d, id = props.id) => {
         const XY = {id: id, x: d.x, y: d.y, colName: "fontData"}
         updateXYPosition(XY);
-        // props.onDragPst(XY);
     }
     const resizeStart = (e, d, ref, delta, position) => {
         setFirstLoad(false);
@@ -68,7 +64,6 @@ const FontPostIt = (props) => {
         const height = props.height + delta.height
         const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "fontData"}
         updateWHPosition(XYHW);
-        // props.onSizePst(XYHW);
     }
     const wheelEvent = (event) => {
         if(event.deltaY<0){

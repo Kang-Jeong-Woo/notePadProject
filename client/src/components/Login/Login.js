@@ -80,7 +80,7 @@ export default function Login() {
             setUserIdMessage("Please enter at least 2 and no more than 10.")
         } else {
             axios.get(
-                "http://localhost:8123/api/signup/idcheck",
+                "http://localhost:8123/api/signup/useridcheck",
                 { params: { userId: userId } },
                 { withCredentials: true }
             ).then((result) => {
