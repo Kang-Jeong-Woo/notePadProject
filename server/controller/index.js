@@ -4,6 +4,10 @@ const { FontData } = require("../models/FontData");
 const { TableData } = require("../models/TableData");
 const { DrawData } = require("../models/DrawData");
 const { PostIts } = require("../models/PostIts");
+const mongoose = require("mongoose")
+
+const { ObjectId } = mongoose.Types;
+
 
 const login = async (req, res) => {
     const {userId, password} = await req.body;
@@ -145,9 +149,62 @@ const userIdCheck = (req, res) => {
 
 }
 
-const saveDB = (req, res) => {
+const saveDB = async (req, res) => {
 
+    console.log(req.body)
 
+    for(let i=0; i<req.body.tableData.length; i++) {
+        
+        if(ObjectId.isValid(req.body.tableData[i]._id)) {
+            await TableData.updateOne({_id: req.body.tableData[i].id}, req.body.tableData[i])
+            .then(()=>{
+                res.status(200).json({success: true})
+            })
+            .catch((err)=>{
+                res.status(403).json({success: false}, err)
+            })
+        } else {
+            const tableData = await new TableData(req.body.tableData[i]);
+            await tableData.save((err, tableData)=>{
+                    if(err) return res.json({success: false, err})
+                    return res.status(200).json({success: true})
+                })
+        }
+    
+    }
+
+    for(let i=0; i<req.body.fontData.length; i++) {
+        const fontData = await new FontData(req.body.fontData[i]);
+        await fontData.save((err, fontData)=>{
+                if(err) return res.json({success: false, err})
+                return res.status(200).json({success: true})
+            })
+    }
+
+    for(let i=0; i<req.body.drawData.length; i++) {
+        const drawData = await new DrawData(req.body.drawData[i]);
+        await drawData.save((err, drawData)=>{
+                if(err) return res.json({success: false, err})
+                return res.status(200).json({success: true})
+            })
+    }
+
+    // const tableData = await new TableData(req.body.tableData);
+    // const fontData = await new FontData(req.body.fontData);
+    // const drawData = await new DrawData(req.body.drawData);
+
+    // await tableData.save((err, tableData)=>{
+    //     if(err) return res.json({success: false, err})
+    //     return res.status(200).json({success: true})
+    // })
+    // await fontData.save((err, fontData)=>{
+    //     if(err) return res.json({success: false, err})
+    //     return res.status(200).json({success: true})
+    // })
+    // await drawData.save((err, drawData)=>{
+    //     if(err) return res.json({success: false, err})
+    //     return res.status(200).json({success: true})
+    // })
 
 
 }

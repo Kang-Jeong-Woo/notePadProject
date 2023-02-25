@@ -36,7 +36,7 @@ app.use(cors({
 app.post('/api/login', login);
 app.get('/api/accesstoken', accessToken);
 app.get('/api/refreshtoken', refreshToken);
-app.post('/api/login/success', loginSuccess);
+app.get('/api/login/success', loginSuccess);
 app.post('/api/logout', logout);
 
 // 회원가입 라우터

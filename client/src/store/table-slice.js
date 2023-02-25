@@ -8,14 +8,16 @@ const tableSlice = createSlice({
     reducers: {
         setTable(state, action) {
             if (state.isInit) {
-                action.payload.map(tableData => (
+                action.payload.map((tableData) => {
+                    tableData.id = tableData._id
                     state.tableData.push(tableData)
-                ));
+                });
                 state.isInit = false;
             }
             return
         },
         addTable(state, action) {
+
             const tableDefaultData = {
                 id: Math.random(),
                 positionX: 0,
@@ -88,11 +90,6 @@ const tableSlice = createSlice({
             const newData = action.payload;
             const editAry = state.tableData.find((table) => table.id === newData.id);
             console.log(editAry);
-            // for (let i = 0; i < state.tableData.length; i++) {
-            //     if (state.tableData[i].id === action.payload) {
-            //         state.tableData.splice(i, 1)
-            //     }
-            // }
         },
     }
 });

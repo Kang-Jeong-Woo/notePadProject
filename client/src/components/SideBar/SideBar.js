@@ -9,39 +9,18 @@ import FontSection from "@/components/Form/FontPoistItForm";
 import {addActions} from "@/store/addMenu-slice";
 
 const SideBar = (props) => {
-    // const [isModalSate, setIsModalState] = useState({
-    //     modal: false,
-    //     post: false,
-    //     font: false,
-    // });
 
     const dispatch = useDispatch();
     
     const userId = props.user.userId
     const addMenu = useSelector(state => state.add);
 
-    const addTable = () => {dispatch(tableActions.addTable())};
+    const addTable = (userId) => {dispatch(tableActions.addTable(userId))};
     const setFont = () => {dispatch(addActions.setFont())}
     const setPost = () => {dispatch(addActions.setPost())}
     const close = () => {dispatch(addActions.close())}
 
     console.log( addMenu.modal, addMenu.font, addMenu.post)
-
-    // const addPost = () => {
-    //     setIsModalState(prevState => {
-    //         return {...prevState, modal: true, post: !prevState.post}
-    //     })
-    // }
-    // const addFont = () => {
-    //     setIsModalState(prevState => {
-    //         return {...prevState, modal: true, font: !prevState.font}
-    //     })
-    // }
-    // const onClose = () => {
-    //     setIsModalState(prevState => {
-    //         return {...prevState, modal: !prevState.modal}
-    //     });
-    // }
 
     return (
         <div className={classes.Cntnr}>

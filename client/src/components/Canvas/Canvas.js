@@ -12,6 +12,7 @@ import {
     faArrowRotateBackward
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const Canvas = (props) => {
     const dispatch = useDispatch();
@@ -75,9 +76,8 @@ const Canvas = (props) => {
         } catch (error) {
           console.log(error);
         }
-
-        // props.onSaveDB(tableData, fontData, drawData);
     };
+
     const menuMouseEnter = () => {
         penRef.current.style.left = "80px"
         penRef.current.style.opacity = "1"

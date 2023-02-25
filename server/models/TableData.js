@@ -6,7 +6,7 @@ const tableDataSchema = mongoose.Schema({
             type: String,
             trim: true
     },
-    cotents: {
+    contents: {
         type: Object
     },
     pinned: {
