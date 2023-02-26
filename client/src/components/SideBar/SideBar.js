@@ -9,8 +9,12 @@ import {addActions} from "@/store/addMenu-slice";
 import {useRef} from "react";
 import Button from "@/components/UI/Button";
 import FontSection from "@/components/Form/FontPoistItForm";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const SideBar = (props) => {
+
+    const router = useRouter();
     const dispatch = useDispatch();
     const userRef = useRef();
     const addMenu = useSelector(state => state.add);
@@ -27,6 +31,25 @@ const SideBar = (props) => {
         userRef.current.style.left = "-200px"
         userRef.current.style.opacity = "0"
     }
+
+    const logout = () => {
+
+        axios.post(
+            "http://localhost:8123/api/logout",
+            { withCredentials: true }
+        ).then((result) => {
+            if (result.status === 200) {
+                console.log(result.data)
+                router.push("/")
+            }
+          })
+        .catch((error)=>{
+            console.log(error)
+        });
+
+    }
+
+
     return (
         <div className={classes.Cntnr}>
             <ul>
@@ -34,9 +57,9 @@ const SideBar = (props) => {
                 <li onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
                     <FontAwesomeIcon icon={faUser}/>
                     <div className={classes.userInfoCntnr} ref={userRef}>
-                        <div className={classes.userInfo}>{"NickName : "+props.user.nick}</div>
+                        <div className={classes.userInfo} style={{fontSize:"20px", fontWeight:"bold", letterSpacing:"2px", marginBottom:"-5px"}}>{props.user.nick}</div>
                         <div className={classes.btnCntnr}>
-                        <Button>LogOut</Button>
+                        <Button onClick={logout}>LogOut</Button>
                         </div>
                     </div>
                 </li>

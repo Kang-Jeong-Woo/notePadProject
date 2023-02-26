@@ -1,6 +1,6 @@
 import classes from "./BulletinBoard.module.css";
 import PostIt from "@/components/BulletinBoard/PostIt";
-import React from "react";
+import React, { useEffect } from "react";
 import Canvas from "@/components/Canvas/Canvas";
 import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 import {useSelector} from "react-redux";
@@ -17,6 +17,7 @@ const BulletinBoard = props => {
     const postItData = useSelector((state)=>{
         return state.postIt.postItData
     });
+
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>

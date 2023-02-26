@@ -16,6 +16,25 @@ const postItSlice = createSlice({
             }
             return
         },
+        addPostIt(state, action) {
+
+            const postItDefaultData = {
+                id: Math.random(),
+                positionX: 0,
+                positionY: 0,
+                positionZ: 10,
+                width: 200,
+                height: 220,
+                userId: action.payload.userId,
+                style: "",
+                pinned: false,
+                isDelete: false,
+                title:action.payload.title,
+                content: action.payload.content
+            }
+            state.postItData.push(postItDefaultData);
+
+        },
         updateZIndex(state, action){
             const newData = action.payload;
             const editAry = state.postItData.find((postIt) => postIt.id === newData.id);

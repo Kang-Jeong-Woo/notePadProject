@@ -4,6 +4,7 @@ const { FontData } = require("../models/FontData");
 const { TableData } = require("../models/TableData");
 const { DrawData } = require("../models/DrawData");
 const { PostIts } = require("../models/PostIts");
+const fs = require('fs');
 const mongoose = require("mongoose")
 
 const { ObjectId } = mongoose.Types;
@@ -101,15 +102,30 @@ const refreshToken = async (req, res) => {
 
 const loginSuccess = async (req, res) => {
 
+
     try {
         // 토큰 데이터 검증
         const data = jwt.verify(req.cookies.accessToken, process.env.ACCESS_SECRET);
+    
         // 검증 성공 시 데이터 전달
         const userData = await User.findOne({ userId:data.userId }).select('userId nick roll')
         const tableData = await TableData.find({ userId:userData.userId })
         const fontData = await FontData.find({ userId:userData.userId })
         const drawData = await DrawData.find({ userId:userData.userId })
         const postIts = await PostIts.find({ userId:userData.userId })
+        // .then(()=>{
+        //     const userDir = `../client/public/${userData.userId}`
+        //     if(fs.existsSync(userDir)) {
+        //         fs.readdir(userDir, (err, files) => {
+        //             if(err) {
+        //                 console.log(err)
+        //                 return
+        //             }
+        //             console.log(files);
+        //           });        
+        //     }
+        // })
+       
         res.status(200).json({userData: userData, tableData: tableData, fontData: fontData, drawData: drawData, postIts: postIts});
         
     } catch (error) {
@@ -119,7 +135,7 @@ const loginSuccess = async (req, res) => {
 
 const logout = (req, res) => {
     try {
-        // 엑세스쿠키 초기화
+        // 엑세스토큰 초기화
         res.cookie('accessToken', '')
         res.status(200).json({success:"Logout Success"})
     } catch (error) {
@@ -170,6 +186,11 @@ const saveDB = async (req, res) => {
             // 삭제
             if(postItData[i].isDelete) {
                 await PostIts.deleteOne({ _id: new ObjectId(postItData[i].id) })
+                fs.unlink("../client/public" + postItData[i].content, (err) => {
+                    if(err) {
+                      console.log(err)
+                    }
+                })
                 // 업데이트
             } else if(ObjectId.isValid(postItData[i]._id)) {
                 await PostIts.updateOne({_id: new ObjectId(postItData[i].id)}, {$set : postItData[i]})
@@ -215,7 +236,6 @@ const saveDB = async (req, res) => {
         }
 
         // 드로우 데이터 저장
-        // 업데이트
         await DrawData.updateOne({userId: drawData.userId}, {$set : {userId:drawData.userId, saveImage:drawData.drawData}}, {upsert:true})
         res.status(200).json({success: true, message: 'update success'})
        
@@ -226,14 +246,15 @@ const saveDB = async (req, res) => {
     }
 }
 
-const saveImg = async (req, res) => {
-    try {
-        await PostIts.insertMany(req.body.postItData);
-    } catch (e) {
-        res.status(403).json({success:false, e})
-    }
-}
+const saveImg = (req, res) => {
 
+    try {
+        res.status(200).json({success:true, message: "imgupload success"});
+    } catch (error) {
+        res.status(403).json({success:false, error})
+    }
+
+}
 
 module.exports = {
     login,

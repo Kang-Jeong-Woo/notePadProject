@@ -1,7 +1,7 @@
 const ShowFileImage = (props) => {
     return(
         <div>
-            <img src={props.scr} alt={props.alt}/>
+            <img src={props.src} alt={props.alt}/>
         </div>
     )
 }
