@@ -14,7 +14,8 @@ const {
     signUp,
     userIdCheck,
     saveDB,
-    saveImg
+    saveImg,
+    deleteImg
 } = require('./controller/index');
 const app = express();
 dotenv.config();
@@ -69,9 +70,10 @@ app.post('/api/logout', logout);
 app.post('/api/signup', signUp);
 app.get('/api/signup/useridcheck', userIdCheck);
 
-// DB저장 라우터
+// DB 라우터
 app.post('/api/savedb', saveDB);
 app.post('/api/saveImg', upload.single('image'), saveImg);
+app.post('/api/deleteimg', deleteImg)
 
 // 서버 실행
 app.listen(process.env.PORT, ()=>{

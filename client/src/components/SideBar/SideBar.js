@@ -3,6 +3,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faImage, faTable, faFont, faUser} from "@fortawesome/free-solid-svg-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {tableActions} from "@/store/table-slice";
+import {fontActions} from "@/store/font-slice";
+import {postItActions} from "@/store/postIt-slice";
+import {canvasActions} from "@/store/canvas-slice"
 import Modal from "@/components/UI/Modal";
 import PostItForm from "@/components/Form/PostItForm";
 import {addActions} from "@/store/addMenu-slice";
@@ -40,7 +43,11 @@ const SideBar = (props) => {
         ).then((result) => {
             if (result.status === 200) {
                 console.log(result.data)
-                router.push("/")
+                dispatch(tableActions.clear());
+                dispatch(fontActions.clear());
+                dispatch(postItActions.clear());
+                dispatch(canvasActions.clear());
+                router.push("/");
             }
           })
         .catch((error)=>{

@@ -113,18 +113,6 @@ const loginSuccess = async (req, res) => {
         const fontData = await FontData.find({ userId:userData.userId })
         const drawData = await DrawData.find({ userId:userData.userId })
         const postIts = await PostIts.find({ userId:userData.userId })
-        // .then(()=>{
-        //     const userDir = `../client/public/${userData.userId}`
-        //     if(fs.existsSync(userDir)) {
-        //         fs.readdir(userDir, (err, files) => {
-        //             if(err) {
-        //                 console.log(err)
-        //                 return
-        //             }
-        //             console.log(files);
-        //           });        
-        //     }
-        // })
        
         res.status(200).json({userData: userData, tableData: tableData, fontData: fontData, drawData: drawData, postIts: postIts});
         
@@ -256,6 +244,48 @@ const saveImg = (req, res) => {
 
 }
 
+const deleteImg = (req, res) => {
+
+    try {
+        const postItData = req.body.postItData;
+        const userId = req.body.user.userId;
+
+        if(fs.existsSync(`../client/public/${userId}`)) {
+            const userDir = `../client/public/${userId}`
+            fs.readdir(userDir, (err, files) => {
+                if(err) {
+                    console.log(err)
+                    return
+                }
+                for(let i=0; i<files.length; i++) {
+                    for(let j=0; j<postItData.length; j++) {
+                        if(files[i] == postItData[j].content.split('/')[2]) {
+                            files = files.slice(i, 1);
+                            j--;
+                        }
+                    }                
+                }
+                for(let i=0; i<files.length; i++) {
+                    if(fs.existsSync(userDir + "/" + files[i])) {
+                        fs.unlink(userDir + "/" + files[i], (err) => {
+                            if(err) {
+                            console.log(err)
+                            }
+                        })
+                    }
+                }
+            });        
+        }
+        res.status(200).json({success:true, message: "img delete success"});
+    } catch (error) {
+
+        console.log(error)
+
+    }
+
+
+}
+
 module.exports = {
     login,
     accessToken,
@@ -265,5 +295,6 @@ module.exports = {
     signUp,
     userIdCheck,
     saveDB,
-    saveImg
+    saveImg,
+    deleteImg
 }

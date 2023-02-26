@@ -58,6 +58,9 @@ const postItSlice = createSlice({
             const editAry = state.postItData.find((postIt) => postIt.id === action.payload);
             editAry.isDelete = true
         },
+        clear() {
+            return initialState
+        }
     }
 });
 
