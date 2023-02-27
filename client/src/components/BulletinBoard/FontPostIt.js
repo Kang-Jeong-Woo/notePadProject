@@ -95,7 +95,7 @@ const FontPostIt = (props) => {
                  onMouseEnter={mouseIn} onMouseLeave={mouseOut}>
                 <span className={classes.tab} ref={tabRef}>
                     <span onClick={closeEvent}><FontAwesomeIcon className={classes.icon} style={{color:"red"}} icon={faCircleXmark}/></span>
-                    <span onClick={pinEvent}><FontAwesomeIcon className={classes.icon} style={{color:dragable?"green":"yellow"}} icon={faThumbtack}/></span>
+                    <span onClick={pinEvent}><FontAwesomeIcon className={classes.icon} style={{color:dragable?"green":"#D6D01F"}} icon={faThumbtack}/></span>
                 </span>
                 <div className={classes.content} style={{
                     width: isFirstLoad ? props.width : +picWidth,

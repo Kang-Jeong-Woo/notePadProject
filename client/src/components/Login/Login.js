@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import DoddleBtn from "@/components/UI/DoddleBtn";
 
 export default function Login() {
 
@@ -135,7 +136,7 @@ export default function Login() {
         if(ConfimPassword !== undefined || password !== undefined) {
             passwordCheck()
         }
-    }, [password, ConfimPassword])
+    }, [password])
 
     useEffect(()=>{
         if(nick !== undefined) {
@@ -146,7 +147,7 @@ export default function Login() {
     return(
         <div className={classes.Cntnr}>
             <div className={classes.form}>
-                <div className={classes.logo} >
+                <div className={classes.logo}>
                     <Image src="/logo.jpg" alt="logo" width={120} height={80} style={{borderRadius:"20px"}}/>
                 </div>
                 { mode === 'login' ?
@@ -169,7 +170,7 @@ export default function Login() {
                             <a onClick={()=>{
                                 setMode('signup')
                                 }}>Sign-up</a>
-                            <span className={classes.spanBtn} onClick={login}>Log-in</span>
+                            <DoddleBtn onClick={login}>Log-in</DoddleBtn>
                         </div>
                     </>
                     :
@@ -209,7 +210,7 @@ export default function Login() {
 
                         <div className={classes.label}>
                             <span className={classes.spanMode}>Already have an account?</span><a onClick={()=>{setMode('login')}}>Log-in</a>
-                            <span className={classes.spanBtn} onClick={()=>{
+                            <DoddleBtn onClick={()=>{
                                 if(isUserId && isPassword && isNick) {
                                     signUp()
                                 } else {
@@ -217,7 +218,7 @@ export default function Login() {
                                     passwordCheck()
                                     nickCheck()
                                 }
-                            }}>Sign-up</span>
+                            }}>Sign-up</DoddleBtn>
                     </div>
                     </>
                     

@@ -5,23 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa28bcd9-a886-4edb-b843-87de6d675806" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/IU.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑로제.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑로제포스터.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑리사.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑사진.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑음반.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑제니.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑제니포스터.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑지수.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑지수포스터.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/블핑포스터.jfif" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/public/postItModal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/UI/DoddleBtn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/UI/DoddleBtn.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Container.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/_app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/styles/Home.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/Home.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/Form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/Form.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/PostItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/PostItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/TableForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/TableForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Button.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/zzang/WebstormProjects/duckzil",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,11 +71,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677473536193</updated>
-      <workItem from="1677473536195" duration="3954000" />
+      <workItem from="1677473536195" duration="16239000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

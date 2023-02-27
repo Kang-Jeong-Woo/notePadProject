@@ -25,7 +25,7 @@ const Canvas = (props) => {
     const tableData = useSelector((state) => state.table.tableData);
     const fontData = useSelector(state => state.font.fontData);
     const postItData = useSelector(state => state.postIt.postItData);
-    const heightFn = () => Math.ceil(window.innerHeight - 5);
+    const heightFn = () => Math.ceil(window.innerHeight - 50);
     const widthFn = () => Math.ceil(window.innerWidth - 5);
 
     const userId = props.user.userId
@@ -122,9 +122,9 @@ const Canvas = (props) => {
                             </label>
                         </div>
                         <div>
-                            <button onClick={eraseAll}><FontAwesomeIcon className={classes.iconB} icon={faEraser}
+                            <button onClick={eraseAll}><FontAwesomeIcon className={classes.icon} icon={faEraser}
                                                                         id={"eraser"}/></button>
-                            <button onClick={undo}><FontAwesomeIcon className={classes.iconB}
+                            <button onClick={undo}><FontAwesomeIcon className={classes.icon}
                                                                     icon={faArrowRotateBackward} id={"backWard"}/>
                             </button>
                         </div>
@@ -133,7 +133,7 @@ const Canvas = (props) => {
 
                 <div className={classes.saveCntnr} onClick={onSaveDB} onMouseEnter={saveMouseEnter}
                      onMouseLeave={saveMouseLeave}>
-                    <FontAwesomeIcon className={classes.icon} icon={faFloppyDisk} id={"save"}/>
+                    <FontAwesomeIcon icon={faFloppyDisk} id={"save"}/>
                     <label htmlFor={"save"}></label>
                     <div className={classes.save} ref={saveRef}>Save</div>
                 </div>

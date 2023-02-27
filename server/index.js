@@ -32,7 +32,7 @@ dotenv.config();
 
 // DB연결
 mongoose.connect(process.env.MONGODB_URI).then(()=>console.log('MongoDB Connected...'))
-.catch(err => console.log(err))
+    .catch(err => console.log(err))
 
 app.use(
     expressSession({
@@ -56,7 +56,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use("/", express.static("public"));
 app.use(cors({
-    origin : "https://da-g-gu.vercel.app",
+    origin : "http://localhost:3000",
     methods : ['GET', 'POST'],
     credentials : true
 }))
@@ -109,14 +109,21 @@ app.post('/api/deleteimg', deleteImg)
 // 서버 생성
 // const server = https.createServer(options, app);
 // 호스트 번호 설정
-const host = '127.0.0.1'
-
-https.createServer(options, app).listen(8123, host, () => {
-    console.log(`HTTPS server started on port 8123`);
-  });
+// https.createServer(options, app).listen(8123, host, () => {
+//     console.log(`HTTPS server started on port 8123`);
+//   });
 
 
 // 서버 실행
 // app.listen(process.env.PORT, "127.0.0.1", ()=>{
 //     console.log(`server is on ${process.env.PORT}`);
 // })
+// 서버 생성
+const server = http.createServer(app);
+// 호스트 번호 설정
+const host = '127.0.0.1'
+
+// 서버실행
+server.listen(process.env.PORT, host, function(){
+    console.log('server is on', host, process.env.PORT);
+})

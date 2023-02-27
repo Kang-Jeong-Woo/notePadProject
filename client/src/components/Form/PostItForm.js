@@ -6,6 +6,7 @@ import ShowFileImage from "@/components/Form/ShowFileImage";
 import classes from "./Form.module.css";
 import axios from "axios";
 import path from "path";
+import Image from "next/image";
 
 const PostItForm = (props) => {
     const dispatch = useDispatch();
