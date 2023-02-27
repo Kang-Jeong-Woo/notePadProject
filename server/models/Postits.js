@@ -17,7 +17,8 @@ const postItsSchema = mongoose.Schema({
         default: false
     },
     pinned: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     style: {
         type: String,

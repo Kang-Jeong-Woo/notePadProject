@@ -5,10 +5,11 @@ import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {tableActions} from "@/store/table-slice";
 import {fontActions} from "@/store/font-slice";
+import {postItActions} from "@/store/postIt-slice";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import {postItActions} from "@/store/postIt-slice";
+
 
 function HomePage() {
     const router = useRouter();
@@ -40,6 +41,7 @@ function HomePage() {
           console.log(error);
         }
       }, []);
+
     // 2시간마다 토큰 갱신
     setInterval((()=>{
         axios.get("http://localhost:8123/api/refreshtoken", { withCredentials: true })

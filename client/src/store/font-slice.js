@@ -63,6 +63,9 @@ const fontSlice = createSlice({
             const editAry = state.fontData.find((font) => font.id === newData.id);
             editAry.degree = newData.degree
         },
+        clear() {
+            return initialState
+        }
     }
 })
 

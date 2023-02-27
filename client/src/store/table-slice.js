@@ -86,6 +86,9 @@ const tableSlice = createSlice({
             editAry.width=newData.w
             editAry.height=newData.h
         },
+        clear() {
+            return initialState
+        }
     }
 });
 

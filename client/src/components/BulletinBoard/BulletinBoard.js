@@ -1,10 +1,11 @@
 import classes from "./BulletinBoard.module.css";
 import PostIt from "@/components/BulletinBoard/PostIt";
-import React from "react";
+import React, { useEffect } from "react";
 import Canvas from "@/components/Canvas/Canvas";
 import FontPostIt from "@/components/BulletinBoard/FontPostIt";
 import {useSelector} from "react-redux";
 import TablePostIt from "@/components/BulletinBoard/TablePostIt";
+import axios from "axios";
 
 const BulletinBoard = props => {
 
@@ -17,6 +18,27 @@ const BulletinBoard = props => {
     const postItData = useSelector((state)=>{
         return state.postIt.postItData
     });
+
+    // DB에 없는 이미지파일 정리
+    // useEffect(()=>{
+    //     try {
+    //         axios.post(
+    //             "http://localhost:8123/api/deleteimg",
+    //             {user: props.user, postItData: postItData},
+    //             { withCredentials: true })
+    //         .then((result) => {
+    //           if (result.data) {
+    //
+    //           }
+    //         })
+    //         .catch((error) => {
+    //           console.log(error);
+    //         });
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   }, []);
+
     return (
         <div className={classes.Cntnr}>
             <div className={classes.canvasCntnr}>

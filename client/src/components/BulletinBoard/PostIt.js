@@ -58,6 +58,7 @@ const PostIt = props => {
         const XYHW = {id: id, x: position.x, y: position.y, h: height, w: width, colName: "postIts"}
         updateWHPosition(XYHW);
     }
+
     return (
         <Rnd minWidth={100}
              minHeight={100}

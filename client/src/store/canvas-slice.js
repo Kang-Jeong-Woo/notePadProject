@@ -31,6 +31,9 @@ const canvasSlice = createSlice({
         setSliceData(state, action){
             state.drawData.userId = "userid";
             state.drawData.drawData = action.payload;
+        },
+        clear() {
+            return initialState
         }
     }
 });
