@@ -5,6 +5,8 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const http = require('http');
+
 const {
     login,
     accessToken,
@@ -22,7 +24,7 @@ dotenv.config();
 
 // DB연결
 mongoose.connect(process.env.MONGODB_URI).then(()=>console.log('MongoDB Connected...'))
-.catch(err => console.log(err))
+    .catch(err => console.log(err))
 
 
 // 기본설정
@@ -30,7 +32,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
-    origin : "http://localhost:3000",
+    origin : "https://da-g-gu.vercel.app",
     methods : ['GET', 'POST'],
     credentials : true
 }))
@@ -75,7 +77,12 @@ app.post('/api/savedb', saveDB);
 app.post('/api/saveImg', upload.single('image'), saveImg);
 app.post('/api/deleteimg', deleteImg)
 
-// 서버 실행
-app.listen(process.env.PORT, ()=>{
-    console.log(`server is on ${process.env.PORT}`);
+// 서버 생성
+const server = http.createServer(app);
+// 호스트 번호 설정
+const host = '127.0.0.1'
+
+// 서버실행
+server.listen(process.env.PORT, host, function(){
+    console.log('server is on', host, process.env.PORT);
 })

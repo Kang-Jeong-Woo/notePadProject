@@ -136,7 +136,7 @@ export default function Login() {
         if(ConfimPassword !== undefined || password !== undefined) {
             passwordCheck()
         }
-    }, [password, ConfimPassword])
+    }, [password])
 
     useEffect(()=>{
         if(nick !== undefined) {
