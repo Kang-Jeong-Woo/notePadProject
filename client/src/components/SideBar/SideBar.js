@@ -8,10 +8,11 @@ import {postItActions} from "@/store/postIt-slice";
 import {canvasActions} from "@/store/canvas-slice"
 import Modal from "@/components/UI/Modal";
 import PostItForm from "@/components/Form/PostItForm";
+import TableForm from "@/components/Form/TableForm";
+import FontSection from "@/components/Form/FontPoistItForm";
 import {addActions} from "@/store/addMenu-slice";
 import {useRef} from "react";
 import Button from "@/components/UI/Button";
-import FontSection from "@/components/Form/FontPoistItForm";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -21,11 +22,12 @@ const SideBar = (props) => {
     const dispatch = useDispatch();
     const userRef = useRef();
     const addMenu = useSelector(state => state.add);
-    const userId = props.user.userId
-    const addTable = (userId) => {dispatch(tableActions.addTable(userId))};
+   
     const setFont = () => {dispatch(addActions.setFont())}
     const setPost = () => {dispatch(addActions.setPost())}
+    const setTable = () => {dispatch(addActions.setTable())}
     const close = () => {dispatch(addActions.close())}
+
     const mouseEnter = () => {
         userRef.current.style.left = "70px"
         userRef.current.style.opacity = "1"
@@ -56,7 +58,6 @@ const SideBar = (props) => {
 
     }
 
-
     return (
         <div className={classes.Cntnr}>
             <ul>
@@ -76,8 +77,9 @@ const SideBar = (props) => {
                     {addMenu.modal && addMenu.post && <Modal onClose={close}><PostItForm userId ={props.user.userId}/></Modal>}
                 </li>
 
-                <li onClick={()=>{addTable(userId)}}>
+                <li onClick={setTable}>
                     <FontAwesomeIcon icon={faTable}/>
+                    {addMenu.modal && addMenu.table && <Modal onClose={close}><TableForm userId ={props.user.userId}/></Modal>}
                 </li>
 
                 <li onClick={setFont}>

@@ -18,6 +18,31 @@
     "btnCntnr btnCntnr btnCntnr";
 }
 
+.tableForm {
+    height: 400px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 47% 19%;
+    gap: 0px 0px;
+    grid-template-areas:
+    "fontCntnr fontCntnr fontCntnr "
+    "fontColorCntnr borderColorCntnr backColorCntnr"
+    "sendCntnr sendCntnr sendCntnr";
+}
+
+.fontColorCntnr {
+    grid-area: fontColorCntnr;
+}
+
+.borderColorCntnr {
+    grid-area: borderColorCntnr;
+}
+
+.backColorCntnr {
+    grid-area: backColorCntnr;
+}
+
+
 .titleCntnr {
     grid-area: titleCntnr;
     margin: 0 auto;

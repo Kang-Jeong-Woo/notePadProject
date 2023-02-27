@@ -124,12 +124,12 @@ const TablePostIt = (props) => {
     </>)
     const titleComponent = (<>
         {props.table.titles.map((title, index) => (
-            <td key={"T" + index}>{title}</td>
+            <td key={"T" + index} style={{border: `${props.color.border} 1px solid`}}>{title}</td>
         ))}
     </>)
     const titleEditComponent = (<>
         {props.table.titles.map((title, index) => (
-            <td key={"T" + index}><input className={classes.editInput} type={"text"} defaultValue={title}
+            <td key={"T" + index} style={{border: `${props.color.border} 1px solid`}}><input className={classes.editInput} type={"text"} defaultValue={title}
                                          onChange={e => {
                                              updateTable({id: props.id, i: index, type: "title", value: e.target.value})
                                          }}/></td>
@@ -137,9 +137,9 @@ const TablePostIt = (props) => {
     </>)
     const contentComponent = (<>
         {props.table.contents.map((content, index) => (
-            <tr key={"B" + index}>
+            <tr key={"B" + index} style={{border: `${props.color.border} 1px solid`}}>
                 {content.map((data, index) => (
-                    <td key={index}>{data}</td>
+                    <td key={index} style={{border: `${props.color.border} 1px solid`}}>{data} </td>
                 ))}
             </tr>
         ))}
@@ -147,9 +147,9 @@ const TablePostIt = (props) => {
     const contentEditComponent = (<>
         {props.table.contents.map((content, colIndex) => {
             return (
-                <tr key={"B" + colIndex}>
+                <tr key={"B" + colIndex} style={{border: `${props.color.border} 1px solid`}}>
                     {content.map((data, index) => (
-                        <td key={index}><input className={classes.editInput} type={"text"} defaultValue={data}
+                        <td key={index} style={{border: `${props.color.border} 1px solid`}}><input className={classes.editInput} type={"text"} defaultValue={data}
                                                onChange={e => {
                                                    updateTable({
                                                        id: props.id,
@@ -179,8 +179,12 @@ const TablePostIt = (props) => {
                 <table className={classes.table} style={{
                     width: isFirstLoad ? props.width : +picWidth,
                     height: isFirstLoad ? props.height : +picHeight - 23,
+                    background: props.color.back,
+                    color: props.color.font,
+                    border: `${props.color.border} 2px solid`,
+                    fontFamily: props.style.font
                 }}>
-                    <thead>
+                    <thead style={{border: `${props.color.border} 1px solid`}}>
                     <tr>
                         {isEdit ? titleEditComponent : titleComponent}
                     </tr>

@@ -4,6 +4,7 @@ const initialState = {
     modal: false,
     font: false,
     post: false,
+    table: false
 };
 
 const addSlice = createSlice({
@@ -14,16 +15,25 @@ const addSlice = createSlice({
             state.modal = true
             state.font = true
             state.post = false
+            state.table = false
         },
         setPost(state) {
             state.modal = true
             state.post = true
             state.font = false
+            state.table = false
+        },
+        setTable(state) {
+            state.modal = true
+            state.table = true
+            state.font = false
+            state.post = false
         },
         close(state) {
             state.modal = false
             state.post = false
             state.font = false
+            state.table = false
         },
     }
 });

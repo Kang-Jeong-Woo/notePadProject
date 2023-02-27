@@ -24,8 +24,15 @@ const tableSlice = createSlice({
                 positionZ: 10,
                 width: 200,
                 height: 220,
-                userId: action.payload,
-                style: "",
+                userId: action.payload.userId,
+                style: {
+                    font: action.payload.style.font
+                },
+                color: {
+                    font: action.payload.color.font,
+                    border: action.payload.color.border,
+                    back: action.payload.color.back
+                },
                 pinned: false,
                 isDelete: false,
                 contents: {titles: ["타이틀1", "타이틀2"], contents: [['내용1', '내용2'], ['내용3', '내용4']]}
