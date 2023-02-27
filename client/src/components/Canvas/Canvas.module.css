@@ -6,17 +6,29 @@
 }
 
 .iconCntnr {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    z-index: 10000;
+    list-style: none;
+    cursor: pointer;
+
     width: 33px;
     height: 33px;
     border-radius: 3rem;
+
+    position: absolute;
+    top: 50px;
+    left: 15px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(-225deg, #fff 0%, rgba(255, 255, 255, 0) 40%, rgba(0, 255, 255, 0) 60%, cyan 100%), linear-gradient(45deg, #3023AE 0%, #f09 100%);
+
+    margin-bottom: 10px;
+    padding: 0 20px;
+    background-color: #EBE51E;
+    color: #111;
+    border: 2px solid #111;
+    box-shadow: 4px 4px black;
+
+    z-index: 10000;
     transition: 0.6s;
 }
 
@@ -25,32 +37,25 @@
 }
 
 .iconCntnr:hover {
-    width: 48px;
-    height: 48px;
-    animation: vibrate-1 3s linear infinite both;
+    outline: 0;
+    box-shadow:0px 0px black;
 }
 
 .penMenu {
     position: absolute;
-    top: 15px;
+    top: 1px;
     left: -200px;
     transition: 0.5s;
     width: 200px;
 }
 
 .icon {
-    margin-right: 0.5em;
-    color: white;
-}
-
-.iconB {
-    margin-right: 0.5em;
-    font-size: x-large;
     color: black;
 }
 
 .penMenu div {
     padding: 0.25em 0;
+    animation: vibrate-1 3s linear infinite both;
 }
 
 .toggleSwitch {
@@ -86,11 +91,11 @@
 }
 
 .toggleSwitch input:checked + .toggleButton {
-    background-color: hotpink;
+    background-color: #EBE51E;
 }
 
 .toggleSwitch input:focus + .toggleButton {
-    box-shadow: 0 0 1px hotpink;
+    box-shadow: 0 0 1px #EBE51E;
 }
 
 .toggleSwitch input:checked + .toggleButton:before {
@@ -98,24 +103,38 @@
 }
 
 
-.saveCntnr {
-    position: absolute;
-    top: 60px;
-    left: 15px;
-    z-index: 10000;
+.saveCntnr{
+    list-style: none;
+    cursor: pointer;
+
     width: 33px;
     height: 33px;
     border-radius: 3rem;
+
+    position: absolute;
+    top: 95px;
+    left: 15px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    background: linear-gradient(-225deg, #fff 0%, rgba(255, 255, 255, 0) 40%, rgba(0, 255, 255, 0) 60%, cyan 100%), linear-gradient(45deg, #3023AE 0%, #f09 100%);
+
+    margin-bottom: 10px;
+    padding: 0 20px;
+    background-color: #EBE51E;
+    color: #111;
+    border: 2px solid #111;
+    box-shadow: 4px 4px black;
+
+    z-index: 10000;
     transition: 0.6s;
 }
-
-.saveCntnr svg {
-    margin: 0;
+.saveCntnr:active {
+    background-color: #D6D01F;
+}
+.saveCntnr:hover {
+    outline: 0;
+    box-shadow:0px 0px black;
 }
 
 .saveCntnr .save {
@@ -127,12 +146,12 @@
     left: -200px;
     transition: 0.5s;
     width: 70px;
-    height: 30px;
-    background: #fee6e3;
-    cursor: pointer;
     border-radius: 8px;
+    height: 30px;
+    background: #EBE51E;
     box-shadow: 2px 2px black;
     color: black;
+    cursor: pointer;
 }
 
 .saveCntnr .save:after {
@@ -143,20 +162,10 @@
     width: 0;
     height: 0;
     border: 10px solid transparent;
-    border-right-color: #fee6e3;
+    border-right-color: #EBE51E;
     border-left: 0;
     margin-top: -10px;
     margin-left: -10px;
-}
-
-.saveCntnr:hover {
-    width: 48px;
-    height: 48px;
-    animation: vibrate-1 3s linear infinite both;
-}
-
-.iconCntnr:hover + .saveCntnr {
-    top: 70px;
 }
 
 @keyframes vibrate-1 {

@@ -1,6 +1,6 @@
 /* CSS */
 .button {
-    background-color: hotpink;
+    background-color: #EBE51E;
     border: 0 solid #E5E7EB;
     box-sizing: border-box;
     color: #000000;
@@ -42,6 +42,8 @@
 }
 
 .button:hover:after {
+    content: "Logout";
+    background-color: #D6D01F;
     bottom: 2px;
     left: 2px;
 }

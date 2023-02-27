@@ -116,10 +116,10 @@ const TablePostIt = (props) => {
     const defaultComponent = (<>
         <span onClick={closeEvent}><FontAwesomeIcon className={classes.icon} style={{color: "red"}}
                                                     icon={faCircleXmark}/></span>
-        <span onClick={editEvent}><FontAwesomeIcon className={classes.icon} style={{color: "yellow"}}
+        <span onClick={editEvent}><FontAwesomeIcon className={classes.icon} style={{color: "#D6D01F"}}
                                                    icon={faGears}/></span>
         <span onClick={pinEvent}><FontAwesomeIcon className={classes.icon}
-                                                  style={{color: dragable ? "green" : "yellow"}}
+                                                  style={{color: dragable ? "green" : "#D6D01F"}}
                                                   icon={faThumbtack}/></span>
     </>)
     const titleComponent = (<>

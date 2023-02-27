@@ -4,6 +4,9 @@ const 보안API키 = "1234567890"
 
 const nextConfig = {
   reactStrictMode: true,
+  compiler:{
+    styledComponents: true,
+  },
   async redirects(){
     return[
       {

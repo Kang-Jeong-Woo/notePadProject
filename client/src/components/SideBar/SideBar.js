@@ -36,13 +36,11 @@ const SideBar = (props) => {
     }
 
     const logout = () => {
-
         axios.post(
             "http://localhost:8123/api/logout",
             { withCredentials: true }
         ).then((result) => {
             if (result.status === 200) {
-                console.log(result.data)
                 dispatch(tableActions.clear());
                 dispatch(fontActions.clear());
                 dispatch(postItActions.clear());
@@ -53,7 +51,6 @@ const SideBar = (props) => {
         .catch((error)=>{
             console.log(error)
         });
-
     }
 
 
