@@ -6,14 +6,12 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const mongoose = require('mongoose');
-const http = require('http');
 const https = require("https");
-const expressSession = require('express-session');    
 
 const options = {
     key: fs.readFileSync("./config/cert.key"),
     cert: fs.readFileSync("./config/cert.crt"),
-  };
+};
 
 const {
     login,
@@ -34,21 +32,6 @@ dotenv.config();
 mongoose.connect(process.env.MONGODB_URI).then(()=>console.log('MongoDB Connected...'))
 .catch(err => console.log(err))
 
-app.use(
-    expressSession({
-      resave: false,
-      saveUninitialized: false,
-      secret: process.env.COOKIE_SECRET,
-      proxy: true,
-      cookie: {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none'
-      },
-    })
-  );
-
-
 // 기본설정
 app.use(express.json());
 app.use(cookieParser());
@@ -60,7 +43,6 @@ app.use(cors({
     methods : ['GET', 'POST'],
     credentials : true
 }))
-
 
 // multer 기본설정
 const upload = multer({
@@ -101,22 +83,9 @@ app.post('/api/savedb', saveDB);
 app.post('/api/saveImg', upload.single('image'), saveImg);
 app.post('/api/deleteimg', deleteImg)
 
-
-
-// app.listen(8000, () => {
-//     console.log(`Server started on port`);
-//   });
-// 서버 생성
-// const server = https.createServer(options, app);
 // 호스트 번호 설정
 const host = '127.0.0.1'
-
+// https 서버 실행
 https.createServer(options, app).listen(8123, host, () => {
     console.log(`HTTPS server started on port 8123`);
   });
-
-
-// 서버 실행
-// app.listen(process.env.PORT, "127.0.0.1", ()=>{
-//     console.log(`server is on ${process.env.PORT}`);
-// })
