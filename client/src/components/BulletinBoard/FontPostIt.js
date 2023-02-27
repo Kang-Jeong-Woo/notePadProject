@@ -81,7 +81,7 @@ const FontPostIt = (props) => {
         return () => {
             clearTimeout(setDegree);
         }
-    }, [wheelEvent]);
+    }, [degree, props.id, updateDegree, wheelEvent]);
     return (
         <Rnd minWidth={100} minHeight={100} bounds={"parent"} disableDragging={dragable}
              default={{x: props.positionX, y: props.positionY, width: props.width, height: props.height + 23}}

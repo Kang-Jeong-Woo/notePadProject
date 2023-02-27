@@ -136,13 +136,13 @@ export default function Login() {
         if(ConfimPassword !== undefined || password !== undefined) {
             passwordCheck()
         }
-    }, [password, ConfimPassword])
+    }, [password, ConfimPassword, passwordCheck])
 
     useEffect(()=>{
         if(nick !== undefined) {
             nickCheck()
         }
-    }, [nick])
+    }, [nick, nickCheck])
 
     return(
         <div className={classes.Cntnr}>

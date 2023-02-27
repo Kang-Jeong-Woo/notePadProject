@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 const ShowFileImage = (props) => {
     return(
         <div>
-            <img src={props.src} alt={props.alt}/>
+            <Image src={props.src} alt={props.alt}/>
         </div>
     )
 }

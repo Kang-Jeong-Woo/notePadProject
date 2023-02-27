@@ -40,7 +40,7 @@ function HomePage() {
         } catch (error) {
           console.log(error);
         }
-      }, []);
+      }, [dispatch]);
 
     // 2시간마다 토큰 갱신
     setInterval((()=>{
