@@ -144,7 +144,7 @@ const Canvas = (props) => {
                 saveData={props.drawData[0]?.saveImage}
                 canvasWidth={width}
                 canvasHeight={height}
-                style={{backgroundColor: "#FFC0CB"}}
+                style={{backgroundColor: "#F2F2F2"}}
                 hideGrid={true}
                 disabled={canvasObj.drawingOn}
                 lazyRadius={0}
