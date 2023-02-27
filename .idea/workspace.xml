@@ -6,12 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="aa28bcd9-a886-4edb-b843-87de6d675806" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/FontPostIt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Form/ShowFileImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/ShowFileImage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/PostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BulletinBoard/TablePostIt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/FontPoistItForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Form/Form.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Form/Form.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Button.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Button.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,19 +38,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\zzang\WebstormProjects\notepadproject\client\public" />
@@ -55,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677473536193</updated>
-      <workItem from="1677473536195" duration="19506000" />
+      <workItem from="1677473536195" duration="16239000" />
     </task>
     <servers />
   </component>
