@@ -38,12 +38,13 @@ const login = async (req, res) => {
 
             // token 전송
             res.cookie("accessToken", accessToken, {
-                secure : false,
-                httpOnly : true
+                secure : true,
+                
+                // httpOnly : true
             })
             res.cookie("refreshToken", refreshToken, {
-                secure : false,
-                httpOnly : true
+                secure : true
+                // httpOnly : true
             })
 
             res.status(200).json({success: "Login Success"});
@@ -88,7 +89,7 @@ const refreshToken = async (req, res) => {
         // token 전송
         res.cookie("accessToken", accessToken, {
             secure : false,
-            httpOnly : true
+            // httpOnly : true
         })
 
         res.status(200).json({success: "Aceess Token Recreated"});
