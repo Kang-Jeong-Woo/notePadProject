@@ -14,7 +14,7 @@
     border-radius: 3rem;
 
     position: absolute;
-    top: 50px;
+    top: 73px;
     left: 15px;
 
     display: flex;
@@ -51,6 +51,7 @@
 
 .icon {
     color: black;
+    margin-right: 0.5em;
 }
 
 .penMenu div {
@@ -112,7 +113,7 @@
     border-radius: 3rem;
 
     position: absolute;
-    top: 95px;
+    top: 118px;
     left: 15px;
 
     display: flex;

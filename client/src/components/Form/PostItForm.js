@@ -61,18 +61,18 @@ const PostItForm = (props) => {
         formData.set('image', uploadedImage, fileName)
 
         try {
-            axios.post("https://127.0.0.1:8123/api/saveImg",
+            axios.post("http://localhost:8123/api/saveImg",
                 formData,
                 { withCredentials: true }
             )
             .then((result) => {
-                console.log(result)
+                // console.log(result)
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
 
         close();

@@ -6,9 +6,9 @@ import styled from "styled-components";
 
 const TableForm = (props) => {
     const [font, setFont] = useState();
-    const [fontColor, setFontColor] = useState();
-    const [borderColor, setBorderColor] = useState();
-    const [bgColor, setBgColor] = useState();
+    const [fontColor, setFontColor] = useState(undefined);
+    const [borderColor, setBorderColor] = useState(undefined);
+    const [bgColor, setBgColor] = useState(undefined);
 
     const dispatch = useDispatch();
     const addTableSlice = (data) => {dispatch(tableActions.addTable(data))};
@@ -42,9 +42,11 @@ const TableForm = (props) => {
                 example :
                 </div>
                 <table bgcolor={bgColor} style={{border:`${borderColor} 1px solid`, color:fontColor, fontFamily:font }}>
+                    <tbody>
                     <tr>
                         <td>example</td>
                     </tr>
+                    </tbody>
                 </table>
                 </div>
             </div>
@@ -66,21 +68,21 @@ const TableForm = (props) => {
                 <div className={classes.fontColorCntnr}>
                     <h2><label htmlFor={"color"}>2. Select the color of the font you want.</label></h2>
                     <div className={classes.center}>
-                        <input type={"color"} id={"color"} name={"color"} value={fontColor} onChange={setFontColorFn}/>
+                        <input type={"color"} id={"color"} name={"color"} value={fontColor||"#ffffff"} onChange={setFontColorFn}/>
                     </div>
                 </div>
 
                 <div className={classes.borderColorCntnr}>
                     <h2><label htmlFor={"color"}>3. Select the color of the border you want.</label></h2>
                     <div className={classes.center}>
-                        <input type={"color"} id={"color"} name={"color"} value={borderColor} onChange={setBorderColorFn}/>
+                        <input type={"color"} id={"color"} name={"color"} value={borderColor||"#ffffff"} onChange={setBorderColorFn}/>
                     </div>
                 </div>
 
                 <div className={classes.backColorCntnr}>
                     <h2><label htmlFor={"color"}>4. Select the color of the bg you want.</label></h2>
                     <div className={classes.center}>
-                        <input type={"color"} id={"color"} name={"color"} defaultValue={"#ffffff"} value={bgColor} onChange={setBgColorFn}/>
+                        <input type={"color"} id={"color"} name={"color"} value={bgColor||"#ffffff"} onChange={setBgColorFn}/>
                     </div>
                 </div>
 

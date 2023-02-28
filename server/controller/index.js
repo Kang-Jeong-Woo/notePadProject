@@ -38,13 +38,11 @@ const login = async (req, res) => {
 
             // token 전송
             res.cookie("accessToken", accessToken, {
-                secure : true,
-                sameSite: "none",
+                secure : false,
                 httpOnly : true
             })
             res.cookie("refreshToken", refreshToken, {
-                secure : true,
-                sameSite: "none",
+                secure : false,
                 httpOnly : true
             })
 
@@ -89,8 +87,7 @@ const refreshToken = async (req, res) => {
 
         // token 전송
         res.cookie("accessToken", accessToken, {
-            secure : true,
-            sameSite: "none",
+            secure : false,
             httpOnly : true
         })
 

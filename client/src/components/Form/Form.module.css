@@ -7,9 +7,9 @@
 }
 
 .imgForm {
-    height: 350px;
+    height: 45vh;
     display: grid;
-    grid-template-columns: 38% 25% 33%;
+    grid-template-columns: 36% 25% 31%;
     grid-template-rows: 33% 33% 33%;
     gap: 0px 0px;
     grid-template-areas:
@@ -31,7 +31,7 @@
     padding-right: 8em;
 }
 .tableForm {
-    height: 370px;
+    height: 45vh;
     display: grid;
     grid-template-columns: 31% 31% 31%;
     grid-template-rows: 33% 47% 19%;
@@ -114,7 +114,7 @@
 }
 
 .fontForm {
-    height: 300px;
+    height: 40vh;
     display: grid;
     grid-template-columns: 31% 31% 31%;
     grid-template-rows: 33% 47% 19%;

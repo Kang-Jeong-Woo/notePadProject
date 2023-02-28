@@ -23,7 +23,7 @@ function HomePage() {
     // 로그인 성공시 데이터 가져오기 
     useEffect(() => {
         try {
-            axios.get("https://127.0.0.1:8123/api/login/success", { withCredentials: true })
+            axios.get("http://localhost:8123/api/login/success", { withCredentials: true })
             .then((result) => {
               if (result.data) {
                 setIsLogin(true);
@@ -44,7 +44,7 @@ function HomePage() {
 
     // 2시간마다 토큰 갱신
     setInterval((()=>{
-        axios.get("https://127.0.0.1:8123/api/refreshtoken", { withCredentials: true })
+        axios.get("http://localhost:8123/api/refreshtoken", { withCredentials: true })
             .then((result) => {
               console.log(result.data)
             })

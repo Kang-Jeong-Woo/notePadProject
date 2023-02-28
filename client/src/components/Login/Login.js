@@ -38,17 +38,17 @@ export default function Login() {
             setLoginMessage("Please enter user-id or password.")
         } else {
             axios.post(
-                "https://127.0.0.1:8123/api/login",
+                "http://localhost:8123/api/login",
                 { userId: loginUserId, password: loginPassword },
                 { withCredentials: true }
             ).then((result) => {
                 if (result.status === 200) {
-                    console.log(result.data)
+                    // console.log(result.data)
                     router.push("/" + loginUserId)
                 }
               })
             .catch((error)=>{
-                console.log(error)
+                // console.log(error)
                 setLoginMessage("User-id or password do not match.")
             });
         }
@@ -56,17 +56,17 @@ export default function Login() {
     // 회원가입
     const signUp = () => {
         axios.post(
-            "https://127.0.0.1:8123/api/signup",
+            "http://localhost:8123/api/signup",
             { userId: userId, password: password, nick: nick },
             { withCredentials: true }
         ).then((result) => {
             if (result.status === 200) {
-                console.log(result.data)
+                // console.log(result.data)
                 setMode("login")
             }
           })
         .catch((error)=>{
-            console.log(error)
+            // console.log(error)
             setLoginMessage("Server error : registration failed")
         });
     }
@@ -81,12 +81,12 @@ export default function Login() {
             setUserIdMessage("Please enter at least 2 and no more than 10.")
         } else {
             axios.get(
-                "https://127.0.0.1:8123/api/signup/useridcheck",
+                "http://localhost:8123/api/signup/useridcheck",
                 { params: { userId: userId } },
                 { withCredentials: true }
             ).then((result) => {
                 if (result.status === 200) {
-                    console.log(result.data)
+                    // console.log(result.data)
                     if(result.data === null) {
                         setIsUserId(true)
                         setUserIdMessage("Not duplicate user-id.")
@@ -97,7 +97,7 @@ export default function Login() {
                 }
               })
             .catch((error)=>{
-                console.log(error)
+                // console.log(error)
             });
         }
     }
