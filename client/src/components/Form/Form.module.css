@@ -19,6 +19,43 @@
     color: black;
     font-family: cursive;
 }
+.tableExample {
+    font-family: cursive;
+    color: black;
+    padding-right: 1em;
+}
+.tableHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 8em;
+}
+.tableForm {
+    height: 370px;
+    display: grid;
+    grid-template-columns: 31% 31% 31%;
+    grid-template-rows: 33% 47% 19%;
+    gap: 0px 0px;
+    grid-template-areas:
+    "fontCntnr fontCntnr fontCntnr "
+    "fontColorCntnr borderColorCntnr backColorCntnr"
+    "sendCntnr sendCntnr sendCntnr";
+    color: black;
+    font-family: cursive;
+}
+
+.fontColorCntnr {
+    grid-area: fontColorCntnr;
+}
+
+.borderColorCntnr {
+    grid-area: borderColorCntnr;
+}
+
+.backColorCntnr {
+    grid-area: backColorCntnr;
+}
+
 
 .titleCntnr {
     grid-area: titleCntnr;

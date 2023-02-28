@@ -38,7 +38,7 @@ export default function Login() {
             setLoginMessage("Please enter user-id or password.")
         } else {
             axios.post(
-                "http://localhost:8123/api/login",
+                "https://127.0.0.1:8123/api/login",
                 { userId: loginUserId, password: loginPassword },
                 { withCredentials: true }
             ).then((result) => {
@@ -56,7 +56,7 @@ export default function Login() {
     // 회원가입
     const signUp = () => {
         axios.post(
-            "http://localhost:8123/api/signup",
+            "https://127.0.0.1:8123/api/signup",
             { userId: userId, password: password, nick: nick },
             { withCredentials: true }
         ).then((result) => {
@@ -81,7 +81,7 @@ export default function Login() {
             setUserIdMessage("Please enter at least 2 and no more than 10.")
         } else {
             axios.get(
-                "http://localhost:8123/api/signup/useridcheck",
+                "https://127.0.0.1:8123/api/signup/useridcheck",
                 { params: { userId: userId } },
                 { withCredentials: true }
             ).then((result) => {

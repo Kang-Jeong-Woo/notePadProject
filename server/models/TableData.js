@@ -18,8 +18,10 @@ const tableDataSchema = mongoose.Schema({
         default: false
     },
     style: {
-        type: String,
-        default: ""
+        type: Object,
+    },
+    color: {
+        type: Object,
     },
     width: {
         type: Number

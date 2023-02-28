@@ -62,7 +62,7 @@ const Canvas = (props) => {
     const onSaveDB = () => {
         const drawData = {userId: userId, drawData: canvasRef.current.getSaveData()}
         try {
-            axios.post("http://localhost:8123/api/savedb",
+            axios.post("https://127.0.0.1:8123/api/savedb",
             { postItData:postItData, tableData: tableData, fontData: fontData, drawData: drawData },
             { withCredentials: true }
             )

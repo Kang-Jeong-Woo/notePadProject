@@ -39,7 +39,7 @@ const PostItForm = (props) => {
 
     const showImage = useMemo(() => {
         if (!imageFile && imageFile === null) {
-            return <Image src={""} alt="사진 없음"/>
+            return <img src={""} alt="사진 없음"/>
         }
         return <ShowFileImage src={imageFile.thumbnail} alt={imageFile.type} onClick={handleClickFileInput}/>
     }, [imageFile]);
@@ -61,7 +61,7 @@ const PostItForm = (props) => {
         formData.set('image', uploadedImage, fileName)
 
         try {
-            axios.post("http://localhost:8123/api/saveImg",
+            axios.post("https://127.0.0.1:8123/api/saveImg",
                 formData,
                 { withCredentials: true }
             )

@@ -84,6 +84,8 @@ const BulletinBoard = props => {
                         key={table.id}
                         id={table.id}
                         table={table.contents}
+                        style={table.style}
+                        color={table.color}
                         width={table.width}
                         height={table.height}
                         pinned={table.pinned}
