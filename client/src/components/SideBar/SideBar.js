@@ -17,6 +17,8 @@ import axios from "axios";
 import {useRouter} from "next/router";
 import CSSTransition from "react-transition-group/CSSTransition";
 import Modal2 from "@/components/UI/Modal2";
+// import {router} from "next/client";
+
 
 const SideBar = (props) => {
     const router = useRouter();

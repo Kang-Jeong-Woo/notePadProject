@@ -1,3 +1,64 @@
-.Cntnr{
+.Cntnr {
     background-color: #F2F2F2;
+    display: grid;
+    grid-template-columns: 230px auto 230px;
+    grid-template-rows: 60px auto 70px;
+    gap: 10px 10px;
+    grid-template-areas:
+    "Nav Nav Nav"
+    "SideL Content SideR"
+    "Footer Footer Footer";
+    padding: 10px;
+}
+
+.Cntnr button {
+    border: none;
+    background: inherit;
+    color: black;
+    font-family: cursive;
+    cursor: pointer;
+}
+
+.border {
+    border-style: double;
+    border-width: thick;
+    color: black;
+    font-family: cursive;
+}
+.align {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 250px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Nav {
+    grid-area: Nav;
+    font-family: cursive;
+}
+
+.SideL {
+    grid-area: SideL;
+
+}
+
+.SideR {
+    grid-area: SideR;
+
+}
+
+.Content {
+    grid-area: Content;
+    min-height: 80vh;
+}
+
+.Footer {
+    grid-area: Footer;
+
 }

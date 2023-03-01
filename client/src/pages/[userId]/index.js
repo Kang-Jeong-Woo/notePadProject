@@ -9,6 +9,7 @@ import {postItActions} from "@/store/postIt-slice";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import {userActions} from "@/store/user-slice";
 
 
 function HomePage() {
@@ -28,6 +29,7 @@ function HomePage() {
               if (result.data) {
                 setIsLogin(true);
                 setUser(result.data.userData);
+                dispatch(userActions.setUser(result.data.userData));
                 dispatch(tableActions.setTable(result.data.tableData));
                 dispatch(fontActions.setFont(result.data.fontData));
                 dispatch(postItActions.setPostIt(result.data.postIts));
@@ -98,7 +100,7 @@ function HomePage() {
         <>
             <Head>
                 <meta charSet="utf-8"/>
-                <title>DuckZil Pad | Main</title>
+                <title>DuckZil Pad | Create</title>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
                 <meta name="description" content="마음껏 꾸밀 수 있는 나만의 다이어리"/>

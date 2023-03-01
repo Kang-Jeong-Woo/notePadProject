@@ -46,7 +46,7 @@ const login = async (req, res) => {
                 httpOnly : true
             })
 
-            res.status(200).json({success: "Login Success"});
+            res.status(200).json({success: "log-in Success"});
 
         } catch (error) {
             res.status(500).json(error);

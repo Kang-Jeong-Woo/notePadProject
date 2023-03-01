@@ -1,0 +1,30 @@
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mainCntnr{
+    padding: 10px;
+}
+.titles {
+    margin: 10px;
+    font-family: cursive;
+}
+
+.contentCntnr{
+    display: flex;
+}
+.contentCntnr span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: fantasy;
+    font-size: xxx-large;
+    min-width: 357px;
+}
+
+.videoCntnr {
+    margin: 20px;
+    min-width: 300px;
+    min-height: 300px;
+}

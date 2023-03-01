@@ -25,8 +25,8 @@ const Canvas = (props) => {
     const tableData = useSelector((state) => state.table.tableData);
     const fontData = useSelector(state => state.font.fontData);
     const postItData = useSelector(state => state.postIt.postItData);
-    const heightFn = () => Math.ceil(window.innerHeight - 50);
-    const widthFn = () => Math.ceil(window.innerWidth - 5);
+    const heightFn = () => Math.ceil(window.innerHeight - 70);
+    const widthFn = () => Math.ceil(window.innerWidth);
 
     const userId = props.user.userId
 

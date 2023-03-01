@@ -12,13 +12,11 @@ config.autoAddCss = false
 export default function App({ Component, pageProps }) {
   return(
       <>
+      <Provider store={store}>
           <BindingSpring/>
-          <Container>
-              <Provider store={store}>
-                <Component {...pageProps} />
-                  <div id={"overlay-root"}></div>
-              </Provider>
-          </Container>
+              <Component {...pageProps}/>
+              <div id={"overlay-root"}></div>
+      </Provider>
       </>
       )
 }

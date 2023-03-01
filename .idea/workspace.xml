@@ -6,12 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="6e4f0a65-c387-4523-9833-b83d0989448e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/bindingSpring.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Container.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Container.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/[userId]/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +46,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zzang\WebstormProjects\notepadproject\client\public" />
+      <recent name="C:\Users\zzang\WebstormProjects\notepadproject\client\public\test2" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -52,6 +62,7 @@
       <updated>1677632044545</updated>
       <workItem from="1677632046075" duration="5715000" />
       <workItem from="1677637920038" duration="1255000" />
+      <workItem from="1677639411156" duration="17666000" />
     </task>
     <servers />
   </component>
