@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa28bcd9-a886-4edb-b843-87de6d675806" name="Changes" comment="">
+    <list default="true" id="6e4f0a65-c387-4523-9833-b83d0989448e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/BindingSpring.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/BindingSpring.js" afterDir="false" />
->>>>>>> test
+      <change beforePath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Canvas/Canvas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar/SideBar.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/Modal.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +21,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2MJ6qdCcI2sS77YR8Oy51s83muF" />
+  <component name="ProjectId" id="2MOI7wj4gUc1Z56h5SdiHfbTvAx" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -28,66 +29,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/zzang/WebstormProjects/notepadproject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
-=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zzang/WebstormProjects/duckzil&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
->>>>>>> test
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\zzang\WebstormProjects\notepadproject\client\public" />
-    </key>
-  </component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="aa28bcd9-a886-4edb-b843-87de6d675806" name="Changes" comment="" />
-      <created>1677473536193</created>
+      <changelist id="6e4f0a65-c387-4523-9833-b83d0989448e" name="Changes" comment="" />
+      <created>1677632044545</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1677473536193</updated>
-      <workItem from="1677473536195" duration="16239000" />
-      <workItem from="1677508328555" duration="604000" />
-      <workItem from="1677512986760" duration="249000" />
+      <updated>1677632044545</updated>
+      <workItem from="1677632046075" duration="5715000" />
+      <workItem from="1677637920038" duration="1255000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

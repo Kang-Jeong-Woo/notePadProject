@@ -11,22 +11,33 @@ import PostItForm from "@/components/Form/PostItForm";
 import TableForm from "@/components/Form/TableForm";
 import FontSection from "@/components/Form/FontPoistItForm";
 import {addActions} from "@/store/addMenu-slice";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import Button from "@/components/UI/Button";
 import axios from "axios";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
+import CSSTransition from "react-transition-group/CSSTransition";
+import Modal2 from "@/components/UI/Modal2";
 
 const SideBar = (props) => {
-
     const router = useRouter();
     const dispatch = useDispatch();
     const userRef = useRef();
     const addMenu = useSelector(state => state.add);
-   
-    const setFont = () => {dispatch(addActions.setFont())}
-    const setPost = () => {dispatch(addActions.setPost())}
-    const setTable = () => {dispatch(addActions.setTable())}
-    const close = () => {dispatch(addActions.close())}
+    const [showModal, setShowModal] = useState(false);
+
+    const setFont = () => {
+        dispatch(addActions.setFont())
+    }
+    const setPost = () => {
+        dispatch(addActions.setPost())
+        // setShowModal(true);
+    }
+    const setTable = () => {
+        dispatch(addActions.setTable())
+    }
+    const close = () => {
+        dispatch(addActions.close())
+    }
 
     const mouseEnter = () => {
         userRef.current.style.left = "70px"
@@ -40,7 +51,7 @@ const SideBar = (props) => {
     const logout = () => {
         axios.post(
             "http://localhost:8123/api/logout",
-            { withCredentials: true }
+            {withCredentials: true}
         ).then((result) => {
             if (result.status === 200) {
                 dispatch(tableActions.clear());
@@ -49,10 +60,10 @@ const SideBar = (props) => {
                 dispatch(canvasActions.clear());
                 router.push("/");
             }
-          })
-        .catch((error)=>{
-            console.log(error)
-        });
+        })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 
     return (
@@ -62,31 +73,42 @@ const SideBar = (props) => {
                 <li onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
                     <FontAwesomeIcon icon={faUser}/>
                     <div className={classes.userInfoCntnr} ref={userRef}>
-                        <div className={classes.userInfo} style={{fontSize:"20px", fontWeight:"bold", letterSpacing:"2px", marginBottom:"-5px"}}>{props.user.nick}</div>
+                        <div className={classes.userInfo} style={{
+                            fontSize: "20px",
+                            fontWeight: "bold",
+                            letterSpacing: "2px",
+                            marginBottom: "-5px"
+                        }}>{props.user.nick}</div>
                         <div className={classes.btnCntnr}>
-                        <Button onClick={logout}>LogOut</Button>
+                            <Button onClick={logout}>LogOut</Button>
                         </div>
                     </div>
                 </li>
 
                 <li onClick={setPost}>
                     <FontAwesomeIcon icon={faImage}/>
-                    {addMenu.modal && addMenu.post && <Modal onClose={close}><PostItForm userId ={props.user.userId}/></Modal>}
+                    {addMenu.modal && addMenu.post &&
+                        <Modal onClose={close}><PostItForm userId={props.user.userId}/></Modal>}
                 </li>
+                {/*<CSSTransition in={showModal} timeout={500} mountOnEnter unmountOnExit classNames={"myclass"}>*/}
+                {/*    <Modal onClose={close}><PostItForm userId={props.user.userId}/></Modal>*/}
+                {/*</CSSTransition>*/}
 
                 <li onClick={setTable}>
                     <FontAwesomeIcon icon={faTable}/>
-                    {addMenu.modal && addMenu.table && <Modal onClose={close}><TableForm userId ={props.user.userId}/></Modal>}
+                    {addMenu.modal && addMenu.table &&
+                        <Modal onClose={close}><TableForm userId={props.user.userId}/></Modal>}
                 </li>
 
                 <li onClick={setFont}>
                     <FontAwesomeIcon icon={faFont}/>
-                    {addMenu.modal && addMenu.font && <Modal onClose={close}><FontSection userId = {props.user.userId}/></Modal>}
+                    {addMenu.modal && addMenu.font &&
+                        <Modal onClose={close}><FontSection userId={props.user.userId}/></Modal>}
                 </li>
 
             </ul>
         </div>
-    )
+    );
 }
 
 export default SideBar;

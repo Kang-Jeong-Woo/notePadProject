@@ -67,13 +67,16 @@ const Canvas = (props) => {
             { withCredentials: true }
             )
             .then((result) => {
-                console.log(result)
+                // console.log(result)
+                alert("saved!")
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
+                alert("failed!")
             });
         } catch (error) {
-          console.log(error);
+          // console.log(error);
+            alert("ask 4 manager")
         }
     };
 

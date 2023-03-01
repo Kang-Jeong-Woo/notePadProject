@@ -5,6 +5,7 @@
     width: 130%;
     height: 130vh;
     z-index: 90000;
+    opacity: 0;
     background-color: rgba(0, 0, 0, 0.75);
 }
 .backdrop :active {
@@ -53,4 +54,82 @@
         opacity: 0;
         transform: translateY(-3rem);
     }
+}
+
+.ModalOpen {
+    animation: openModal 0.4s ease-out forwards;
+}
+
+.ModalClosed {
+    animation: closeModal 1s ease-out forwards;
+}
+@keyframes openModal {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(90%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes closeModal {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(60%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+.myclass-enter{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.myclass-enter-active{
+    opacity: 1;
+    transform: translateY(90%);
+}
+.myclass-enter-done{
+    opacity: 1;
+    transform: translateY(0);
+}
+.myclass-exit{
+    opacity: 1;
+    transform: translateY(0);
+}
+.myclass-exit-active{
+    opacity: 0.8;
+    transform: translateY(60%);
+}
+.myclass-exit-done{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.myclass-entering {
+    opacity: 0.5;
+    transform: translateY(-100%);
+}
+.myclass-entered {
+    opacity: 1;
+    transform: translateY(0%);
+}
+.myclass-exiting {
+    opacity: 0.5;
+    transform: translateY(-50%);
+}
+.myclass-exited {
+    opacity: 0;
+    transform: translateY(-100%);
 }

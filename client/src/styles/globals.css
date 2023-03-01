@@ -105,3 +105,46 @@ a {
     color-scheme: dark;
   }
 }
+
+.myclass-enter{
+}
+.myclass-enter-active{
+  animation: openModal 0.4s ease-out forwards;
+}
+.myclass-enter-done{
+}
+.myclass-exit{
+}
+.myclass-exit-active{
+  animation: closeModal 1s ease-out forwards;
+}
+.myclass-exit-done{
+}@keyframes openModal {
+   0% {
+     opacity: 0;
+     transform: translateY(-100%);
+   }
+   50% {
+     opacity: 1;
+     transform: translateY(90%);
+   }
+   100% {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(60%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
