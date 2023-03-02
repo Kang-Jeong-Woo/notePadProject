@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Login from "@/components/Login/Login";
 import MainPage from "@/components/Main/MainPage";
 import Container from "@/components/UI/Container";
+import {useDispatch} from "react-redux";
+import {userActions} from "@/store/user-slice";
 
 export default function Home() {
     return (
