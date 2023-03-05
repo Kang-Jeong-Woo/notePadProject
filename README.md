@@ -3,11 +3,10 @@
 
 ## 🔊 Hot to start This Project?
 1. download ZIP
-2. type `npm init`
-3. before running this app u have to upload img to the `/public` folder
+2. open In IDE and `cd client` => type `npm install --force`
+3. type `cd ./server` => type `npm install`
 4. [http://localhost:3000](http://localhost:3000)
 
-or just visit URL (주소 추우 업로드 예쩡)
 <hr/>
 
 ## 🎶 About our Project
@@ -15,13 +14,22 @@ or just visit URL (주소 추우 업로드 예쩡)
   Therefore, we were planned to create an online space
 
 ## 📅 Duration of Project
-![img.png](img.png)
+![DPprojectDuration](https://user-images.githubusercontent.com/104994979/222954378-d56cd406-6bf1-499b-a318-ab771f35d5f2.png)
+
 
 ## 🎤 Key Features
-1. uploads img
-2. decorate "BulletinBoard"
-3. add font, table
-4. drawing! and Save!
+### 1. uploads img
+![img](https://user-images.githubusercontent.com/104994979/222954390-aa519d1a-3e53-43db-ae3a-8ea741bc2322.gif)
+
+### 2. decorate "BulletinBoard"
+![canvas](https://user-images.githubusercontent.com/104994979/222954397-74f20ca8-1b20-4fbb-9e78-7bbd8d903bc1.gif)
+
+### 3. add font, table
+![table](https://user-images.githubusercontent.com/104994979/222954403-4fd9d29a-123b-4438-812f-cc7e7abe7854.gif)
+
+### 4. drawing! and Save!
+![font](https://user-images.githubusercontent.com/104994979/222954413-f7358a4d-9a1c-460f-9d47-5f6ca8db50d4.gif)
+
 
 ## 🔧 Tool & Skill Stack
 <table>
@@ -83,8 +91,8 @@ or just visit URL (주소 추우 업로드 예쩡)
     </tr>
 </table>
 
-## 🎵 E-RDiagram 
-<사진>
+## 🎵 WorkFlow
+![my-Roadmap (2)](https://user-images.githubusercontent.com/104994979/222954424-343d6be0-332a-4029-bbe8-8423b2a3bda8.png)
 
 ## 🎙 Team
 <table>
